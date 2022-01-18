@@ -1,0 +1,11 @@
+.AppScreen {
+  display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.__inputBlock {
+  display: flex;
+  padding: 0 0 1rem 0;
+}

@@ -2,7 +2,7 @@
   "name": "2021-03-06-yunazon-learn-browser",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/index.tsx",
   "scripts": {
     "dev:start": "open-cli http://127.0.0.1:3550 & concurrently --kill-others --raw --success=first 'webpack-dev-server --config webpack/webpack.dev.ts --color'",
     "dev": "HTTPS=true concurrently --kill-others --raw --success=first 'webpack-dev-server --config webpack/webpack.dev.ts --color'",
