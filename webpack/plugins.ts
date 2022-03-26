@@ -6,7 +6,6 @@ import { WebpackDeduplicationPlugin } from 'webpack-deduplication-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 import DuplicatePackageCheckerPlugin from 'duplicate-package-checker-webpack-plugin'
 import ESLintPlugin from 'eslint-webpack-plugin'
-import ErrorOverlayPlugin from 'error-overlay-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
@@ -16,7 +15,6 @@ import WebpackNotifierPlugin from 'webpack-notifier'
 export const commonPlugins = []
 
 export const prodPlugins = [
-  new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   new webpack.DefinePlugin({
     // <-- key to reducing React's size
     'process.env': {
@@ -33,16 +31,17 @@ export const prodPlugins = [
   }),
   new DuplicatePackageCheckerPlugin(),
   new WebpackDeduplicationPlugin({
-    cacheDir: path.resolve(__dirname, '../dist'),
+    cacheDir: path.resolve(__dirname, '../build'),
     rootPath: path.resolve(__dirname, '../'),
   }),
 ]
+
+// console.info('plugins [40]', { 'process.env': process.env })
 
 export const devPlugins = [
   new webpack.DefinePlugin({
     // <-- key to reducing React's size
     'process.env': {
-      NODE_ENV: JSON.stringify('development'),
       REACT_APP_GIT_BRANCH: getExtractedGitParam(
         'git rev-parse --abbrev-ref HEAD'
       ),
@@ -59,6 +58,7 @@ export const devPlugins = [
   new webpack.ProvidePlugin({
     React: 'react',
     'react-dom': 'ReactDOM',
+    process: 'process/browser',
   }),
   new WebpackNotifierPlugin({
     title: function (params) {
@@ -70,18 +70,16 @@ export const devPlugins = [
   }),
   new HtmlWebpackPlugin({
     title: 'Dev-server',
-    template: 'template.html',
+    template: 'webpack/template.html',
   }),
   new ESLintPlugin({
     files: 'src/**/*.(js|jsx|ts|tsx)',
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    configFile: '.eslintrc.json',
     lintDirtyModulesOnly: true,
     emitError: true,
     emitWarning: true,
     failOnError: false,
     failOnWarning: false,
   }),
-  new ErrorOverlayPlugin(),
   new webpack.HotModuleReplacementPlugin({}),
 ]

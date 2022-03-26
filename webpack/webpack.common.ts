@@ -11,10 +11,10 @@ import path from 'path'
 
 export const common = {
   entry: {
-    dist: ['./src/index.tsx'],
+    build: ['./src/index.tsx'],
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../build'),
     filename: '[name]Client.min.js',
     publicPath: '/',
   },
@@ -22,6 +22,13 @@ export const common = {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.less'],
     alias: {
       '@ant-design/icons/lib/dist$': path.resolve(__dirname, './src/icons.js'),
+    },
+    fallback: {
+      fs: false,
+      // dgram: false,
+      // net: false,
+      // tls: false,
+      // child_process: false,
     },
   },
   module: {
@@ -106,13 +113,12 @@ export const common = {
     hints: false,
   },
   watchOptions: {
-    ignored: ['dist', 'node_modules'],
+    ignored: ['build', 'node_modules'],
     poll: 1000,
   },
   watch: false,
   target: 'web',
   externals: [{ pg: true }],
-  node: { fs: 'empty' },
   optimization: {
     nodeEnv: 'production',
     flagIncludedChunks: true,

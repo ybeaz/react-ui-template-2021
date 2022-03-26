@@ -6,7 +6,7 @@ import { commonPlugins, prodPlugins } from './plugins'
 export default {
   ...common,
   mode: 'production',
-  devtool: 'none',
+  devtool: false,
   optimization: {
     nodeEnv: 'production',
     flagIncludedChunks: true,
