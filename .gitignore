@@ -5,8 +5,8 @@
 
 # Node artifact files
 node_modules/
-package-lock.json
-yarn.lock
+!package-lock.json
+!yarn.lock
 .awcache/
 .temp_cache/
 dist/bundle.min.js
