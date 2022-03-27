@@ -38,7 +38,7 @@ export const prodPlugins = [
 
 // console.info('plugins [40]', { 'process.env': process.env })
 
-export const devPlugins = [
+export const devPlugins: any = [
   new webpack.DefinePlugin({
     // <-- key to reducing React's size
     'process.env': {

@@ -23,6 +23,7 @@ export const GlobalTheme: React.FunctionComponent<GlobalThemeArgs> = (
   const getThemeRemotely: Function = () => {
     try {
       document.getElementsByTagName('body')[0].style.display = 'none'
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       require(`./index.style.less`)
       document.getElementsByTagName('body')[0].style.display = 'flex'
     } catch (error) {

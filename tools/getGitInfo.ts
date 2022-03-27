@@ -1,5 +1,5 @@
-const childProcess = require('child_process')
-const fs = require('fs')
+import childProcess from 'child_process'
+import fs from 'fs'
 
 function writeToEnv(key: string = '', value: string = '') {
   const empty = key === '' && value === ''

@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 
-export const getExtractedGitParam = gitCommand => {
+export const getExtractedGitParam = (gitCommand: string): string => {
   let outcome = execSync(gitCommand, {
     encoding: 'utf8',
     timeout: 100,
