@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { config } from 'dotenv'
-import { cwd } from 'process'
-import { resolve } from 'path'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 
 import { URL_APP_BASE } from '../../Constants/servers.const'
@@ -12,10 +9,6 @@ import { FooterFrame } from '../Frames/FooterFrame'
 import { MainFrame } from '../Frames/MainFrame'
 import { Image } from '../Components/Image'
 import { IRootStore } from '../../Interfaces/IRootStore'
-
-config({
-  path: resolve(cwd(), `.env.${process.env.NODE_ENV}`),
-})
 
 interface IAppProps {
   routeProps: {
@@ -39,12 +32,6 @@ export const TemplateScreen: React.FunctionComponent<IAppProps> = (
     store,
   })
 
-  const gitData = {
-    REACT_APP_GIT_BRANCH: process?.env?.REACT_APP_GIT_BRANCH || '',
-    REACT_APP_GIT_SHA: process?.env?.REACT_APP_GIT_SHA || '',
-    REACT_APP_GIT_COMMIT: process?.env?.REACT_APP_GIT_COMMIT || '',
-  }
-
   const canonicalUrl = `${URL_APP_BASE}${props?.routeProps.location.pathname}`
 
   const propsOut = {
@@ -66,20 +53,18 @@ export const TemplateScreen: React.FunctionComponent<IAppProps> = (
           <meta charSet='utf-8' />
           <title>{'TemplateScreen'}</title>
           <link rel='canonical' href={canonicalUrl} />
-          <meta
-            name='ui-git-branch'
-            content={gitData.REACT_APP_GIT_BRANCH}
-          ></meta>
-          <meta name='ui-git-sha' content={gitData.REACT_APP_GIT_SHA}></meta>
-          <meta
-            name='ui-git-commit'
-            content={gitData.REACT_APP_GIT_COMMIT}
-          ></meta>
           <meta name='description' content={'Description'} />
         </Helmet>
         <MainFrame {...propsOut.mainFrameProps}>
           {/* header */}
-          <HeaderFrame {...propsOut.headerFrameProps} />
+          <HeaderFrame {...propsOut.headerFrameProps}>
+            {/* header-left */}
+            {null}
+            {/* header-main */}
+            {null}
+            {/* header-right */}
+            {null}
+          </HeaderFrame>
           {/* middle-left */}
           {null}
           {/* middle-main */}
@@ -88,6 +73,11 @@ export const TemplateScreen: React.FunctionComponent<IAppProps> = (
           {null}
           {/* footer */}
           <FooterFrame {...propsOut.footerFrameProps}>
+            {/* footer-left */}
+            {null}
+            {/* footer-main */}
+            {null}
+            {/* footer-right */}
             <Image {...propsOut.imageBottomProps} />
           </FooterFrame>
         </MainFrame>

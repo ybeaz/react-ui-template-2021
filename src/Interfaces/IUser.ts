@@ -1,6 +1,6 @@
 export interface IUser {
   userAvatar: string
-  userBirthYear: number
+  userBirthYear: number | null
   userDateCreated: string
   userDateDeleted: string
   userDateUpdated: string
@@ -22,7 +22,7 @@ export interface IUser {
   userNameMiddle: string
   userPasswordAuth: string
   userPasswordAuth2: string
-  userPhone: number
+  userPhone: number | null
   userRoles: string[]
   userSkillsExpertise: string[]
   userStatus: string

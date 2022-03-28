@@ -109,6 +109,7 @@ import { RiVoiceprintFill } from 'react-icons/ri'
 import { SiAppstore, SiGoogleplay } from 'react-icons/si'
 
 export const ICONS = {
+  '': BiLogOutCircle,
   BiLogOutCircle,
   BiLogInCircle,
   FaUserCircle,

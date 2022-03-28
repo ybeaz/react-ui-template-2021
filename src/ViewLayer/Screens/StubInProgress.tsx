@@ -39,7 +39,14 @@ export const StubInProgress: React.FunctionComponent<StubInProgressArgs> = (
     <div className='StubInProgress'>
       <MainFrame {...propsOut.mainFrameProps}>
         {/* header */}
-        <HeaderFrame {...propsOut.headerFrameProps} />
+        <HeaderFrame {...propsOut.headerFrameProps}>
+          {/* header-left */}
+          {null}
+          {/* header-main */}
+          {null}
+          {/* header-right */}
+          {null}
+        </HeaderFrame>
         {/* middle-left */}
         {null}
         {/* middle-main */}
@@ -47,7 +54,12 @@ export const StubInProgress: React.FunctionComponent<StubInProgressArgs> = (
         {/* middle-right */}
         {null}
         {/* footer */}
-        <FooterFrame>
+        <FooterFrame {...propsOut.footerFrameProps}>
+          {/* footer-left */}
+          {null}
+          {/* footer-main */}
+          {null}
+          {/* footer-right */}
           <Image {...propsOut.imageBottomProps} />
         </FooterFrame>
       </MainFrame>

@@ -4,9 +4,13 @@ import { useSelector } from 'react-redux'
 import { handleEvents } from '../../DataLayer/index.handleEvents'
 import { IRootStore } from '../../Interfaces/IRootStore'
 
+interface IGetChildren {
+  (children: any[]): (JSX.Element | null)[]
+}
+
 const ChildStub = <div>This is modul stub</div>
 
-const CHILDREN = {
+const CHILDREN: Record<string, React.ReactElement> = {
   ChildStub,
 }
 
@@ -16,10 +20,10 @@ export const ModalFrames: React.FunctionComponent = (): ReactElement => {
     componentsState: { modalFrames },
   } = store
 
-  const getChildren: Function = (children: any[]): ReactElement[] => {
+  const getChildren: IGetChildren = children => {
     return children.map(child => {
       const { childName, isActive, childProps } = child
-      const CHILD = CHILDREN[childName]
+      const CHILD: any = CHILDREN[childName]
 
       if (!CHILD) return null
 

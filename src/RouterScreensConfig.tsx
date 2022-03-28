@@ -7,7 +7,7 @@ import { Error404 } from './ViewLayer/Screens/Error404'
 import { TemplateScreen } from './ViewLayer/Screens/TemplateScreen'
 import { URL_APP_BASE } from './Constants/servers.const'
 
-const PAGES = {
+const PAGES: Record<string, any> = {
   TemplateScreen,
   StubInProgress,
   Error404,

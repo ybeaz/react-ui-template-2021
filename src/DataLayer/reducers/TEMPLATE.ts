@@ -1,3 +1,5 @@
-export const TEMPLATE = (store, data) => {
+import { Store } from 'redux'
+
+export const TEMPLATE = (store: Store, data: any) => {
   return store
 }

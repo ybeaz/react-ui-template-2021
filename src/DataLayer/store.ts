@@ -10,10 +10,12 @@ interface IConfigureStore {
   (indexReducer: IIndexReducer): Store
 }
 
+// @ts-ignore
 const configureStore: IConfigureStore = indexReducer2 => {
   const sagaMiddleware = createSagaMiddleware()
   const middlewares: any[] = [thunk, sagaMiddleware]
   const store2 = createStore(
+    // @ts-ignore
     indexReducer2,
     composeWithDevTools(applyMiddleware(...middlewares))
   )

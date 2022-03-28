@@ -12,10 +12,12 @@ interface IconReactArgs {
 export const IconReact: React.FunctionComponent<IconReactArgs> = (
   props: IconReactArgs
 ): ReactElement => {
-  const { icon = null, icon2 = null, classAdded } = props
+  const { icon = '', icon2 = '', classAdded } = props
 
-  const Icon = ICONS[icon]
-  const Icon2 = ICONS[icon2]
+  // @ts-ignore
+  const Icon: any = ICONS[icon]
+  // @ts-ignore
+  const Icon2: any = ICONS[icon2]
 
   return (
     <>

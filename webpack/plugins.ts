@@ -42,11 +42,7 @@ export const devPlugins: any = [
   new webpack.DefinePlugin({
     // <-- key to reducing React's size
     'process.env': {
-      REACT_APP_GIT_BRANCH: getExtractedGitParam(
-        'git rev-parse --abbrev-ref HEAD'
-      ),
-      REACT_APP_GIT_SHA: getExtractedGitParam('git rev-parse --short HEAD'),
-      REACT_APP_GIT_COMMIT: getExtractedGitParam('git log -1 --oneline'),
+      NODE_ENV: JSON.stringify('production'),
     },
   }),
   new BundleAnalyzerPlugin({

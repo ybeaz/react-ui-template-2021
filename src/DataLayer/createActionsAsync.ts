@@ -54,6 +54,7 @@ export const createAsyncAction: Function = (
  */
 export const createRequestTypesLegacy = (base: string) =>
   [REQUEST, SUCCESS, FAILURE].reduce((acc, type) => {
+    // @ts-ignore
     acc[type] = `${base}_${type}`
     return acc
   }, {})

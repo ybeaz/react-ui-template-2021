@@ -1,23 +1,35 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "allowJs": true,
+    "alwaysStrict": true,
     "declaration": true,
-    "checkJs": false,
     "esModuleInterop": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "target": "es2017",
-    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
     "jsx": "preserve",
-    "types": ["node", "jest", "react-dom"],
-    "lib": ["dom", "dom.iterable", "es2018", "es2015", "es5", "es6"],
-    "typeRoots": ["./node_modules/@types/", "src/@types"],
-    "allowJs": true
+    "lib": ["dom", "dom.iterable", "es2019"],
+    "module": "CommonJS",
+    "noEmitOnError": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "outDir": "lib",
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "strict": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "stripInternal": true,
+    "target": "ES2019"
   },
   "include": ["./src/**/*"],
   "exclude": ["./node_modules/**/*", "./dist/**/*"],
   "linterOptions": {
     "exclude": ["config/**/*", "node_modules/**/*"]
   },
-  "defaultSeverity": "warning"
+  "defaultSeverity": "warning",
+  "// 01": "compilerOptions > \"noUnusedLocals\": true,",
+  "// 02": "compilerOptions > \"noUnusedParameters\": true,"
 }

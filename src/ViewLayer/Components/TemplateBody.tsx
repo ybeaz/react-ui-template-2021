@@ -7,7 +7,7 @@ interface TemplateBodyArgs {}
 export const TemplateBody: React.FunctionComponent<TemplateBodyArgs> = (
   props: TemplateBodyArgs
 ): JSX.Element => {
-  const [dataState, setDataState] = useState([])
+  const [dataState, setDataState] = useState(['', '', '', ''])
 
   useEffect(() => {
     setDataState(['here', 'is', 'some', 'content'])

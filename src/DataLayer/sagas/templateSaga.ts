@@ -1,10 +1,10 @@
-import axios from 'axios'
+import axios, { AxiosPromise } from 'axios'
 import { takeLatest, takeEvery, put, select } from 'redux-saga/effects'
 
 import { actionSync, actionAsync } from '../../DataLayer/index.action'
 import { templateConnector } from '../../CommunicationLayer/templateConnector'
 
-function* template(dataInput) {
+function* template(dataInput: any) {
   const { data } = dataInput
 
   const { method, url, payload, options } = templateConnector()
@@ -15,6 +15,7 @@ function* template(dataInput) {
       data: {
         data: { templateData },
       },
+      // @ts-ignore
     } = yield axios[method](url, payload, options)
     yield put(actionAsync.TEMPLATE_ASYNC.SUCCESS(templateData))
 

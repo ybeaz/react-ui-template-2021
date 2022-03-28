@@ -1,1 +1,1 @@
-export const TEMPLATE = (event, data) => {}
+export const TEMPLATE = (event: Event, data: any) => {}

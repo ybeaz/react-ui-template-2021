@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 interface MainFrameArgs {
   screenType?: string
-  children: ReactElement[]
+  children: (ReactElement | null)[]
 }
 
 export const MainFrame: React.FunctionComponent<MainFrameArgs> = props => {

@@ -11,5 +11,6 @@ export const handleEvents: IHandleEventsInterface = (event, props): void => {
     TEMPLATE,
   }
 
+  // @ts-ignore
   output[type] && output[type](event, data)
 }

@@ -6,7 +6,7 @@ interface TemplateArgs {}
 
 export const Template: React.FunctionComponent<TemplateArgs> = (
   props: TemplateArgs
-): JSX.Element => {
+) => {
   const store = useSelector((store2: IRootStore) => store2)
 
   const propsOut = {}

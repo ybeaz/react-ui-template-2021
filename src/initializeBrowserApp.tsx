@@ -9,13 +9,14 @@ import { RouterScreensConfig } from './RouterScreensConfig'
 export const initializeBrowserApp = () => {
   const root = document.getElementById('root')
 
-  let renderMethod
+  let renderMethod: string
   if (root && root.innerHTML !== '') {
     renderMethod = 'hydrate'
   } else {
     renderMethod = 'render'
   }
 
+  // @ts-ignore
   ReactDOM[renderMethod](
     <StrictMode>
       <Provider store={store}>
