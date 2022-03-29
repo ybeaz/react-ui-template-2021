@@ -7,12 +7,13 @@ export interface IForms {
   searchInput: string
   userPrev: IUser
   user: IUser
+  [key: string]: any
 }
 
 export interface IRootStore {
   componentsState: IComponentsState
   users: IUser[]
-  forms: IForms
+  forms: IForms | any
   isLoaded: {
     isLoadedGlobalVars: boolean
   }

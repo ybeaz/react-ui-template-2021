@@ -7,7 +7,7 @@ import { TemplateBody } from '../Components/TemplateBody'
 import { HeaderFrame } from '../Frames/HeaderFrame'
 import { FooterFrame } from '../Frames/FooterFrame'
 import { MainFrame } from '../Frames/MainFrame'
-import { Image } from '../Components/Image'
+import { Image } from '../ComponentsLibrary/Image'
 import { IRootStore } from '../../Interfaces/IRootStore'
 
 interface IAppProps {

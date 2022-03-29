@@ -1,6 +1,6 @@
 import React, { useEffect, ReactElement } from 'react'
 
-import { Image } from '../Components/Image'
+import { Image } from '../ComponentsLibrary/Image'
 import { FooterFrame } from '../Frames/FooterFrame'
 import { HeaderFrame } from '../Frames/HeaderFrame'
 import { Error404Body } from '../Components/Error404Body'

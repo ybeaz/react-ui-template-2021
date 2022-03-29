@@ -5,7 +5,7 @@ import { handleEvents } from '../../DataLayer/index.handleEvents'
 
 interface ImageArgs {
   classAdded: string
-  src: string
+  src: string | undefined
   action?: IAction
   handleEvents?: Function
 }

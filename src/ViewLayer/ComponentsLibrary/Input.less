@@ -1,0 +1,181 @@
+.Input {
+  display: flex;
+  position: relative;
+  width: -webkit-fill-available;
+
+  .__form {
+    display: flex;
+    width: 100%;
+
+    .__input {
+      display: flex;
+      width: 100%;
+      max-width: 100%;
+      margin: 0 0 0 0;
+      padding: 2px 0.7rem 2px 0.7rem;
+      text-size-adjust: 100%;
+      font-weight: 400;
+      font-size: @fontSize;
+      line-height: 24px;
+      letter-spacing: -0.3px;
+      direction: ltr;
+      border-width: 1px;
+      border-style: solid;
+      -webkit-appearance: none;
+      background-clip: border-box;
+      cursor: text;
+      &:active,
+      &:focus {
+        border-radius: 0px;
+        outline: none;
+        text-size-adjust: 100%;
+      }
+    }
+  }
+  ._hidden {
+    display: none;
+  }
+
+  ._iconClose {
+    position: absolute;
+    top: 50%;
+    right: 11px;
+    z-index: 1;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-top: -9px;
+    margin-right: 2px;
+    color: rgba(0, 0, 0, 0.25);
+    font-size: 12px;
+    font-style: normal;
+    line-height: 1;
+    text-align: center;
+    text-transform: none;
+    background: #fff;
+    cursor: pointer;
+    opacity: 0;
+    transition: color 0.3s ease, opacity 0.15s ease;
+    text-rendering: auto;
+  }
+
+  &:hover ._iconClose {
+    // .ant-select-clear
+    opacity: 1;
+  }
+}
+
+.Input_userNameFirst {
+  display: flex;
+}
+
+.Input_ProfileBody_avatar {
+  display: flex;
+  padding: 0 0 0 1rem;
+
+  .__form {
+    .__input {
+      padding: 0;
+      border: none;
+      color: transparent;
+
+      &:active,
+      &:focus {
+      }
+
+      &::-webkit-file-upload-button {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &:hover ._iconClose {
+    opacity: 0;
+  }
+}
+
+.Input_ageFromToRequired {
+  display: flex;
+  width: 49%;
+
+  .__form {
+    .__input {
+      cursor: text;
+      padding: 0.1rem 0.5rem;
+      border-radius: 0.2rem;
+      height: 2rem;
+
+      &:active,
+      &:focus {
+      }
+    }
+  }
+}
+
+.Input_descriptionRequired {
+  .Input_ageFromToRequired;
+  width: 100%;
+}
+
+.Input_passwordAuth {
+  padding: 0.5rem 0;
+
+  .__form {
+    .__input {
+      cursor: text;
+      padding: 0.5rem 0.75rem;
+      &:active,
+      &:focus {
+      }
+    }
+  }
+}
+
+.Input_usernameAuth {
+  padding: 0.5rem 0;
+
+  .__form {
+    .__input {
+      cursor: text;
+      padding: 0.5rem 0.75rem;
+      &:active,
+      &:focus {
+      }
+    }
+  }
+}
+
+.Input_email {
+  .__form {
+    .__input {
+      cursor: text;
+      padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+      &:active,
+      &:focus {
+      }
+    }
+  }
+}
+
+.Input_name {
+  .__form {
+    .__input {
+      cursor: text;
+      padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+      &:active,
+      &:focus {
+      }
+    }
+  }
+}
+
+.Input_search {
+  .__form {
+    .__input {
+      cursor: text;
+      &:active,
+      &:focus {
+      }
+    }
+  }
+}

@@ -1,0 +1,1290 @@
+.Button {
+  display: flex;
+  position: relative;
+
+  ._tooltipTop {
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+  }
+
+  ._tooltipRight {
+    top: -5px;
+    left: 105%;
+  }
+
+  ._tooltipBottom {
+    width: 120px;
+    top: 110%;
+    left: 50%;
+    margin-left: -60px;
+  }
+
+  ._tooltipLeft {
+    width: 120px;
+    top: -5px;
+    right: 105%;
+  }
+
+  .__tooltipText {
+    visibility: hidden;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0.5rem;
+    font-size: @fontSizeS;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+
+  .__tooltipTextVisible {
+    visibility: visible;
+  }
+
+  &:hover .__tooltipText {
+    visibility: visible;
+  }
+
+  .__button {
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    &:active,
+    &:focus {
+      outline: none;
+      text-size-adjust: 100%;
+    }
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      ._capture_left {
+        padding: 0 0.3rem 0 0;
+        line-height: 1.1;
+      }
+      ._icon {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+      ._capture_right {
+        padding: 0 0 0 0.3rem;
+        line-height: 1.1;
+      }
+    }
+  }
+
+  .__underlined {
+    display: flex;
+    width: 95%;
+  }
+}
+
+.Button_sideMenuItems {
+  width: fit-content;
+
+  .__tooltipText {
+    font-size: @fontSize;
+  }
+
+  .__button {
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+        display: flex;
+        position: relative;
+        height: 2.2rem;
+        cursor: pointer;
+        font-size: @fontSize;
+      }
+    }
+  }
+}
+
+.Button_authSideMenu_authorized {
+  padding: 0.5rem 0 0 0;
+
+  .__button {
+    justify-content: start;
+
+    &:active,
+    &:focus {
+    }
+    ._in {
+      ._capture_left {
+      }
+
+      ._image {
+        width: 1.5vw;
+        height: 1.5vw;
+        border-radius: 50%;
+      }
+
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_authSideMenu {
+  padding: 0.5rem 0 0 0;
+
+  .__button {
+    justify-content: start;
+
+    &:active,
+    &:focus {
+    }
+    ._in {
+      ._capture_left {
+      }
+
+      ._image {
+        width: 1.5vw;
+        height: 1.5vw;
+        border-radius: 50%;
+      }
+
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_authHeader_authorized {
+  .__button {
+    justify-content: start;
+
+    &:active,
+    &:focus {
+    }
+    ._in {
+      ._capture_left {
+      }
+
+      ._image {
+        width: 1.7vw;
+        height: 1.7vw;
+        border-radius: 50%;
+      }
+
+      ._icon {
+        width: 1.7vw;
+        height: 1.7vw;
+      }
+
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_authHeader {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      ._capture_left {
+      }
+
+      ._image {
+        width: 2vw;
+        height: 2vw;
+        border-radius: 50%;
+      }
+
+      ._icon {
+        height: 2rem;
+        width: 2rem;
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_Avatar {
+  .__button {
+    ._in {
+      display: flex;
+    }
+  }
+}
+
+.Button_BackToTop {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  position: absolute;
+  bottom: 1.5rem;
+  right: -6rem;
+
+  ._tooltipBottom {
+    width: 100%;
+    top: 110%;
+    left: 0%;
+    margin-left: 0px;
+  }
+
+  ._text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ._line1 {
+      display: flex;
+      padding: 0 0 0.5rem 0;
+      font-size: @fontSizeS;
+    }
+
+    ._line2 {
+      display: flex;
+      font-style: italic;
+    }
+  }
+
+  .__button {
+    flex: 1;
+    justify-content: space-evenly;
+    border-radius: 50%;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      ._capture_left {
+      }
+
+      ._icon {
+        -webkit-transform: rotate(270deg);
+        transform: rotate(270deg);
+        height: 3rem;
+        width: 3rem;
+      }
+      ._capture_right {
+      }
+    }
+  }
+
+  @media @tablet, @tablet-strict {
+    ._capture_left {
+      font-size: @fontSizeS;
+    }
+  }
+  @media @phone, @phone-strict {
+    bottom: -3rem;
+    right: 2rem;
+
+    ._capture_left {
+      font-size: @fontSizeS;
+    }
+  }
+}
+
+.Button_MdArrowRight2 {
+  position: absolute;
+  bottom: 0rem;
+  right: -1.5rem;
+
+  .__button {
+    padding: 0 0.5rem;
+    background-color: white;
+    border-radius: 50%;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 0.5rem;
+
+      ._capture_left {
+      }
+      ._icon {
+        width: 3.5vw;
+        height: 3.5vw;
+      }
+      ._capture_right {
+      }
+    }
+  }
+
+  @media @phone, @phone-strict {
+    bottom: -0.1rem;
+    right: 0rem;
+
+    .__button {
+      ._in {
+        ._icon {
+          width: 9vw;
+          height: 9vw;
+        }
+      }
+    }
+  }
+}
+
+.Button_MdArrowRight3 {
+  position: absolute;
+  background-color: white;
+  bottom: -0.5rem;
+  right: 0.5rem;
+  width: fit-content;
+
+  .__button {
+    background-color: white;
+    border-radius: 0%;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 0.5rem;
+
+      ._capture_left {
+      }
+      ._icon {
+        width: 3.5rem;
+        height: 3.5rem;
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+      ._capture_right {
+      }
+    }
+  }
+
+  @media @phone, @phone-strict {
+    bottom: -0.1rem;
+    right: 0rem;
+
+    .__button {
+      ._in {
+        ._icon {
+          width: 3.5rem;
+          height: 3.5rem;
+        }
+      }
+    }
+  }
+}
+
+.Button_SiAppstore {
+  flex: 1;
+  padding: 0;
+  align-items: center;
+  .__button {
+    padding: 0 0.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 0.5rem;
+
+      ._capture_left {
+      }
+      ._icon {
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_SiGoogleplay {
+  .Button_SiAppstore;
+}
+
+.Button_CategoryCatalog {
+  padding: 0;
+  align-items: center;
+  .__button {
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 0 0.5rem 0.5rem 0;
+
+      ._capture_left {
+      }
+      ._icon {
+        height: 4rem;
+        width: 4rem;
+        opacity: 90%;
+      }
+      ._capture_right {
+      }
+    }
+  }
+
+  @media @phone, @phone-strict {
+    .__button {
+      ._in {
+        ._icon {
+          height: 3rem;
+          width: 3rem;
+        }
+      }
+    }
+  }
+}
+
+.Button_searchSepPassive {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+
+  ._tooltipBottom {
+    width: 100%;
+    top: 110%;
+    left: 0%;
+    margin-left: 0px;
+  }
+
+  ._text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ._line1 {
+      display: flex;
+      padding: 0 0 0.5rem 0;
+      font-size: @fontSizeS;
+    }
+
+    ._line2 {
+      display: flex;
+      font-style: italic;
+    }
+  }
+
+  .__button {
+    flex: 1;
+    height: 2.5rem;
+    justify-content: space-evenly;
+    cursor: not-allowed;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+
+      ._capture_left {
+      }
+
+      ._icon {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      ._capture_right {
+      }
+    }
+  }
+
+  @media @tablet, @tablet-strict {
+    ._capture_left {
+      font-size: @fontSizeS;
+    }
+  }
+  @media @phone, @phone-strict {
+    ._capture_left {
+      font-size: @fontSizeS;
+    }
+  }
+}
+
+.Button_searchSepActive {
+  .Button_searchSepPassive;
+
+  .__button {
+    cursor: pointer;
+  }
+}
+
+.Button_сontinueIntroSep {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 0 0 0 0;
+  align-items: center;
+
+  ._tooltipBottom {
+    width: 100%;
+    top: 110%;
+    left: 0%;
+    margin-left: 0px;
+  }
+
+  ._text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ._line1 {
+      display: flex;
+      padding: 0 0 0.5rem 0;
+      font-size: @fontSizeS;
+    }
+
+    ._line2 {
+      display: flex;
+      font-style: italic;
+    }
+  }
+
+  .__button {
+    display: flex;
+    max-width: 35%;
+    min-width: fit-content;
+    justify-content: none;
+    flex: 1;
+    height: 2.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      ._capture_left {
+        padding: 0 0.5rem 0 1rem;
+      }
+      @media @tablet, @tablet-strict {
+        ._capture_left {
+          font-size: @fontSizeS;
+        }
+      }
+      @media @phone, @phone-strict {
+        ._capture_left {
+          font-size: @fontSizeS;
+        }
+      }
+      ._icon {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_ForgetPassword {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      padding: 1.3rem 0;
+
+      ._capture_left {
+      }
+      ._icon {
+        height: 2rem;
+        width: 2rem;
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_SignUp {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      padding: 1.3rem 0;
+
+      ._capture_left {
+      }
+      ._icon {
+        height: 2rem;
+        width: 2rem;
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_AuthSignInUp {
+  flex: 1;
+  padding: 0.5rem 0 0.5rem 0.1rem;
+  align-items: center;
+  .__button {
+    flex: 1;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      padding: 1.3rem;
+
+      ._capture_left {
+      }
+      ._icon {
+        height: 2rem;
+        width: 2rem;
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_AuthSignInUpBack {
+  flex: 1;
+  padding: 0.5rem 0.1rem 0.5rem 0;
+  align-items: center;
+  width: 100%;
+
+  .__button {
+    flex: 1;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      padding: 1.3rem;
+
+      ._capture_left {
+      }
+      ._icon {
+        height: 2rem;
+        width: 2rem;
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_AuthGoogle {
+  flex: 1;
+  padding: 0.5rem 0 0.5rem 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+    justify-content: start;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      padding: 1.3rem 0;
+
+      ._capture_left {
+      }
+      ._icon {
+        height: 2rem;
+        width: 2rem;
+      }
+      ._capture_right {
+      }
+    }
+    ._in:first-child {
+      padding: 1.3rem 0 1.3rem 0.5rem;
+    }
+  }
+}
+
+.Button_AuthVkontakte {
+  flex: 1;
+  padding: 0.5rem 0 0.5rem 0;
+  align-items: center;
+
+  .__button {
+    flex: 1;
+    justify-content: start;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      padding: 1.3rem 0;
+
+      ._capture_left {
+      }
+      ._icon {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+      ._capture_right {
+      }
+    }
+    ._in:first-child {
+      padding: 1.3rem 0 1.3rem 0.5rem;
+    }
+  }
+}
+
+.Button_AuthFacebook {
+  flex: 1;
+  padding: 0.5rem 0 0.5rem 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+    justify-content: start;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      padding: 1.3rem 0;
+
+      ._capture_left {
+      }
+      ._icon {
+        height: 1.5rem;
+        width: 1.5rem;
+      }
+      ._capture_right {
+      }
+    }
+    ._in:first-child {
+      padding: 1.3rem 0 1.3rem 0.4rem;
+    }
+  }
+}
+
+.Button_AddCourse {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      ._capture_left {
+      }
+      ._icon {
+        height: 2rem;
+        width: 2rem;
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_ThemeToggle {
+  padding: 0.25rem 0 0 0;
+}
+
+.Button_CallForActionMatrix {
+  flex: 1;
+  padding: 0.5rem 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+    height: 2.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      height: 1.5rem;
+      ._capture_left {
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_UseCertificate {
+  flex: 1;
+  padding: 0 0 0 0.35rem;
+  align-items: center;
+  .__button {
+    height: 2.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      padding: 0 0.5rem;
+      // .bouncy;
+    }
+  }
+}
+
+.Button_startModule {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+
+  ._tooltipBottom {
+    width: 100%;
+    top: 110%;
+    left: 0%;
+    margin-left: 0px;
+  }
+
+  ._text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    ._line1 {
+      display: flex;
+      padding: 0 0 0.5rem 0;
+      font-size: @fontSizeS;
+    }
+
+    ._line2 {
+      display: flex;
+      font-style: italic;
+    }
+  }
+
+  .__button {
+    flex: 1;
+    height: 2.5rem;
+    justify-content: space-evenly;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      color: rgba(255, 255, 255, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row;
+      padding: 0 1rem 0 1rem;
+      ._capture_left {
+      }
+      @media @tablet, @tablet-strict {
+        ._capture_left {
+          font-size: @fontSizeS;
+        }
+      }
+      @media @phone, @phone-strict {
+        ._capture_left {
+          font-size: @fontSizeS;
+        }
+      }
+      ._icon {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+      ._capture_right {
+      }
+    }
+  }
+}
+
+.Button_downLeft {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+    height: 2.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+      }
+    }
+  }
+}
+
+.Button_MdBlock {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+    height: 2.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+      }
+    }
+  }
+}
+
+.Button_MdClose {
+  flex: 1;
+  padding: 0.5rem 0.5rem 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+    height: 2rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+      }
+    }
+  }
+}
+
+.Button_MdBackward3 {
+  flex: 1;
+  padding: 0 1rem 0 0;
+  align-items: center;
+  width: 5rem;
+
+  ._tooltipBottom {
+    width: 120px;
+    top: 110%;
+    left: 100%;
+    margin-left: -60px;
+  }
+
+  .__button {
+    flex: 1;
+    height: 2.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+      }
+    }
+  }
+}
+
+.Button_MdBackward2 {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+    height: 2.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+      }
+    }
+  }
+}
+
+.Button_MdForward2 {
+  flex: 1;
+  padding: 0 0 0 0;
+  align-items: center;
+  .__button {
+    flex: 1;
+    height: 2.5rem;
+
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+      }
+    }
+  }
+}
+
+.Button_MdForward {
+  padding: 0 0 0 0;
+  align-items: center;
+  flex: 1;
+  .__button {
+    width: 100%;
+    height: 2.5rem;
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      padding: 0 1rem 0 0;
+      ._icon {
+        margin: 0 0 0 1rem;
+      }
+    }
+  }
+}
+
+.Button_MdPlayArrow {
+  padding-right: 1.4em;
+  align-items: center;
+  .__button {
+    width: 4rem;
+    height: 2rem;
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+      }
+    }
+  }
+}
+
+.Button_MdPause {
+  padding-right: 1.4em;
+  align-items: center;
+  .__button {
+    width: 4rem;
+    height: 2rem;
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+      }
+    }
+  }
+}
+
+.Button_MdRemoveCircle {
+  padding-right: 1.4em;
+  align-items: center;
+  .__button {
+    width: 4rem;
+    height: 2rem;
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+      }
+    }
+  }
+}
+
+.Button_MdMenu {
+  padding-right: 0.5em;
+  align-items: center;
+  .__button {
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+      }
+    }
+  }
+}
+
+.Button_MdPerson {
+  .__button {
+    &:active,
+    &:focus {
+    }
+
+    ._in {
+      ._icon {
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+    }
+  }
+}
+
+.Button_MdSearch {
+  .__button {
+    width: 4.5rem;
+    &:active,
+    &:focus {
+    }
+    ._in {
+      ._icon {
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+    }
+  }
+  @media @phone, @phone-strict {
+    .__button {
+      width: 2rem;
+    }
+  }
+}
+
+.bouncy {
+  animation: bouncy 10s infinite linear;
+  position: relative;
+}
+@keyframes bouncy {
+  0% {
+    top: 0em;
+  }
+  40% {
+    top: 0em;
+  }
+  43% {
+    top: -0.9em;
+  }
+  46% {
+    top: 0em;
+  }
+  48% {
+    top: -0.4em;
+  }
+  50% {
+    top: 0em;
+  }
+  100% {
+    top: 0em;
+  }
+}
+
+.Button_none {
+  display: none;
+}
