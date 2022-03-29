@@ -7,7 +7,7 @@ export interface IHeaders {
 export interface IConnectorOutput {
   testCapture: string
   method: string
-  payload: {
+  payload?: {
     operationName: string
     variables: any
     query: string

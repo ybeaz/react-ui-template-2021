@@ -1,5 +1,6 @@
-import { SERVERS } from '../Constants/servers.const'
-import { IHeaders, IConnector } from '../Interfaces/IConnector'
+import { IConnector } from '../Interfaces/IConnector'
+
+import { IHeaders, IConnectorOutput } from '../Interfaces/IConnectorOutput'
 
 const headers: IHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -8,7 +9,7 @@ const headers: IHeaders = {
 }
 
 export const templateConnector: IConnector = () => {
-  const obj: any = {
+  const obj: IConnectorOutput = {
     testCapture: 'should return 200 code and data defined',
     method: 'post',
     payload: {

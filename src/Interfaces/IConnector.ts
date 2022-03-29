@@ -1,19 +1,11 @@
-export interface IHeaders {
-  'Access-Control-Allow-Origin': string
-  'Content-Type': string
-  timestamp: number
+import { IConnectorOutput } from './IConnectorOutput'
+
+export interface IConnectorOptions {
+  method: string
+  url: string
+  headersAdd: any
 }
 
 export interface IConnector {
-  (): {
-    testCapture: string
-    method: string
-    payload?: {
-      operationName: string
-      variables: any
-      query: string
-    }
-    options: { headers: IHeaders }
-    url: string
-  }
+  (options?: IConnectorOptions): IConnectorOutput
 }
