@@ -1,9 +1,6 @@
-import { IRootStore } from '../../Interfaces/IRootStore'
+import { IReducer } from '../../Interfaces/IReducer'
 
-export const TOGGLE_LOADER_OVERLAY: Function = (
-  store: IRootStore,
-  data: any
-): IRootStore => {
+export const TOGGLE_LOADER_OVERLAY: IReducer = (store, data) => {
   const { componentsState } = store
   const componentsStateNext = {
     ...componentsState,

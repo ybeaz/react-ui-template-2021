@@ -1,5 +1,5 @@
-import { Store } from 'redux'
+import { IReducer } from '../../Interfaces/IReducer'
 
-export const TEMPLATE = (store: Store, data: any) => {
+export const TEMPLATE: IReducer = (store, data) => {
   return store
 }
