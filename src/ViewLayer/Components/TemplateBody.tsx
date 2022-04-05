@@ -19,7 +19,7 @@ export const TemplateBody: React.FunctionComponent<TemplateBodyArgs> = (
     <div className='TemplateBody'>
       {' '}
       <h1 className='_h1'>React Typescript Template</h1>
-      <div>created 2021-11-01, updated 2022-03-31</div>
+      <div>created 2021-11-01, updated 2022-04-05</div>
       <div>{dataState.join(' ')}</div>
     </div>
   )

@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 
+import { Button } from '../ComponentsLibrary/Button'
 import { handleEvents } from '../../DataLayer/index.handleEvents'
 import { IRootStore } from '../../Interfaces/IRootStore'
 
@@ -10,7 +11,7 @@ interface IGetChildren {
 
 const ChildStub = <div>This is modul stub</div>
 
-const CHILDREN: Record<string, React.ReactElement> = {
+const CHILDREN: any = {
   ChildStub,
 }
 
@@ -23,7 +24,7 @@ export const ModalFrames: React.FunctionComponent = (): ReactElement => {
   const getChildren: IGetChildren = children => {
     return children.map(child => {
       const { childName, isActive, childProps } = child
-      const CHILD: any = CHILDREN[childName]
+      const CHILD = CHILDREN[childName]
 
       if (!CHILD) return null
 
@@ -32,15 +33,16 @@ export const ModalFrames: React.FunctionComponent = (): ReactElement => {
         data: [{ childName, isActive: false, childProps }],
       }
 
-      const buttonCloseProps = {
-        icon: 'MdClose',
-        classAdded: 'Button_MdClose',
-        action: closeAction,
-      }
-
       const addClass = !isActive ? '' : 'ModalFrames_display'
 
-      const propsOut = {}
+      const propsOut = {
+        buttonCloseProps: {
+          icon: 'MdClose',
+          classAdded: 'Button_MdClose',
+          action: closeAction,
+        },
+        childProps,
+      }
 
       return (
         <div
@@ -50,7 +52,7 @@ export const ModalFrames: React.FunctionComponent = (): ReactElement => {
         >
           <div className='_content'>
             <span className='_close'>
-              <button>Click me</button>
+              <Button {...propsOut.buttonCloseProps} />
             </span>
             <div
               className='_inner'
@@ -58,7 +60,7 @@ export const ModalFrames: React.FunctionComponent = (): ReactElement => {
                 handleEvents(event, { typeEvent: 'STOP_PROPAGATION' })
               }
             >
-              <CHILD {...childProps} />
+              <CHILD {...propsOut.childProps} />
             </div>
           </div>
         </div>

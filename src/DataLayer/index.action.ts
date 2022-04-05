@@ -4,6 +4,7 @@ import { createAsyncAction, CreateAsyncAction } from './createActionsAsync'
 /** @description  Synchroneours redux actions */
 const ACTIONS_SYNC: string[] = [
   // 'SET_THEME',
+  'SET_MODAL_FRAMES',
   'TOGGLE_LOADER_OVERLAY',
   'TEMPLATE',
 ]

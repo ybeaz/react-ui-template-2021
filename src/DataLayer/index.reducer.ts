@@ -2,6 +2,7 @@ import { IRootStore } from '../Interfaces/IRootStore'
 import { IAction } from '../Interfaces/IAction'
 
 import { TEMPLATE } from './reducers/TEMPLATE'
+import { SET_MODAL_FRAMES } from './reducers/SET_MODAL_FRAMES'
 import { TOGGLE_LOADER_OVERLAY } from './reducers/TOGGLE_LOADER_OVERLAY'
 
 import { rootStoreDefault } from './rootStoreDefault'
@@ -18,6 +19,7 @@ export const indexReducer: IIndexReducer = (
 
   const output = {
     TEMPLATE,
+    SET_MODAL_FRAMES,
     TOGGLE_LOADER_OVERLAY,
   }
 
