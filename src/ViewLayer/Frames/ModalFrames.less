@@ -67,5 +67,15 @@
 
 .ModalFrames_display {
   display: flex;
-  backdrop-filter: contrast(75%) blur(0px) invert(25%);
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+@supports (
+  (-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))
+) {
+  .ModalFrames_display {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: contrast(75%) blur(0px) invert(25%);
+    -webkit-backdrop-filter: contrast(75%) blur(0px) invert(25%);
+  }
 }
