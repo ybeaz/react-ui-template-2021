@@ -36,6 +36,7 @@ export const userStoreDefault: IUser = {
 }
 
 export const componentsStateDefault: IComponentsState = {
+  isLoaderOverlayVisible: false,
   modalFrames: [
     {
       childName: 'AuthUser',

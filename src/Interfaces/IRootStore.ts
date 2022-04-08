@@ -1,5 +1,6 @@
 import { IUser } from './IUser'
 export interface IComponentsState {
+  isLoaderOverlayVisible: boolean
   modalFrames: { childName: string; isActive: boolean; childProps: any }[]
 }
 

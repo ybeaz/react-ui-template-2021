@@ -2,6 +2,7 @@ import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 
+import { LoaderOverlay } from '../ComponentsLibrary/LoaderOverlay'
 import { ModalFrames } from '../Frames/ModalFrames'
 interface HeaderFrameArgs {
   screenType?: string
@@ -19,6 +20,7 @@ export const HeaderFrame: React.FunctionComponent<HeaderFrameArgs> = props => {
         <div className='_right'>{props.children[2]}</div>
       </div>
       <ModalFrames />
+      <LoaderOverlay />
     </div>
   )
 }
