@@ -2,6 +2,7 @@ import { IHandleEventsInterface } from '../Interfaces/IHandleEventsInterface'
 import { IActionEvent } from '../Interfaces/IActionEvent'
 
 import { TEMPLATE } from './handlers/TEMPLATE'
+import { DEV_STAGE } from './handlers/DEV_STAGE'
 import { SET_MODAL_FRAMES } from './handlers/SET_MODAL_FRAMES'
 import { STOP_PROPAGATION } from './handlers/STOP_PROPAGATION'
 
@@ -11,6 +12,7 @@ export const handleEvents: IHandleEventsInterface = (event, props): void => {
 
   const output: Record<string, IActionEvent> = {
     TEMPLATE,
+    DEV_STAGE,
     SET_MODAL_FRAMES,
     STOP_PROPAGATION,
   }

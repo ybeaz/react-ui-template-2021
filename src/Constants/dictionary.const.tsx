@@ -15,6 +15,10 @@ export const DICTIONARY: IDictionary = {
     en: 'We are currently looking for support and feedback.',
     ru: 'В настоящее время мы ищем поддержку и отзывы.',
   },
+  weAreWorkingOnThis: {
+    en: 'Sorry for inconvenience\nwe are working on this',
+    ru: 'Извините за неудобства\nмы работаем над этим',
+  },
   If_you_have_any_ideas_or_opinions: {
     en: 'If you have any ideas, opinion or suggesions,',
     ru: 'Если у вас есть идеи, мнение или предложения,',
