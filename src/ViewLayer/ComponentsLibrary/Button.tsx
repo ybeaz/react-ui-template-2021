@@ -86,7 +86,9 @@ export const Button: React.FunctionComponent<IButtonArgs> = (
       <button
         className={`__button`}
         type='button'
-        onClickCapture={event => handleEventsToUse(event, action)}
+        onClickCapture={(event: React.MouseEvent<HTMLButtonElement>) =>
+          handleEventsToUse(event, action)
+        }
       >
         {captureLeft ? (
           <div className='_in'>

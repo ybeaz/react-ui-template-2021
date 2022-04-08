@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
-import { nanoid } from 'nanoid'
 
-import { IconReact } from './IconReact'
 import { handleEvents } from '../../DataLayer/index.handleEvents'
 import { IRootStore } from '../../Interfaces/IRootStore'
+import { IconReact } from './IconReact'
 
 interface InputArgs {
   tagName?: string // input tag, may be 'input' or 'textarea'
@@ -43,10 +42,8 @@ export const Input: React.FunctionComponent<InputArgs> = (
   const iconReactProps = {
     icon: 'AiFillCloseCircle',
     icon2: 'null',
-    classAdded: `IconReact_Input`,
+    classAdded: 'IconReact_Input',
   }
-
-  const nanoId = nanoid()
 
   const inputFileRef = useRef(null)
 
@@ -62,27 +59,33 @@ export const Input: React.FunctionComponent<InputArgs> = (
       <form className='__form'>
         {tagName === 'input' && (
           <input
-            className={`__input _hidden`}
+            className={'__input _hidden'}
             ref={inputFileRef}
             type={type}
             placeholder={placeholder}
             value={value}
             accept={accept}
-            onInput={event => handleEvents(event, action)}
+            onInput={(event: React.ChangeEvent<HTMLInputElement>) =>
+              handleEvents(event, action)
+            }
           />
         )}
         {tagName === 'textarea' && (
           <textarea
-            className={`__input`}
+            className={'__input'}
             placeholder={placeholder}
-            onChange={event => handleEvents(event, action)}
+            onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) =>
+              handleEvents(event, action)
+            }
             value={value}
           />
         )}
       </form>
       <span
         className='_iconClose'
-        onClick={event => handleEvents({ target: { value: '' } }, action)}
+        onClick={(_event: React.MouseEvent<HTMLSpanElement>) =>
+          handleEvents({ target: { value: '' } }, action)
+        }
       >
         <IconReact {...iconReactProps} />
       </span>

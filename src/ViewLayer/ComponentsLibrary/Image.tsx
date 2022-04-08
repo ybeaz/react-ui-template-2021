@@ -22,7 +22,9 @@ export const Image: React.FunctionComponent<ImageArgs> = (
   return (
     <div
       className={`Image ${classAdded}`}
-      onClickCapture={event => handleEventsToUse(event, action)}
+      onClickCapture={(event: React.MouseEvent<HTMLDivElement>) =>
+        handleEventsToUse(event, action)
+      }
     >
       <img className={`_image ${classCursor}`} src={src} />
     </div>
