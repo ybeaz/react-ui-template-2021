@@ -1,6 +1,12 @@
 import React, { useState, useEffect, useRef, ReactElement } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { IRootStore } from '../../Interfaces/IRootStore'
+import {
+  Button as ButtonUserto,
+  IconReact as IconReactUserto,
+  Image as ImageUserto,
+  Input as InputUserto,
+} from 'userto-components'
 
 interface TemplateArgs {}
 

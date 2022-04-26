@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
+import { Image as ImageUserto } from 'userto-components'
 
 import { URL_APP_BASE } from '../../Constants/servers.const'
 import { TemplateBody } from '../Components/TemplateBody'
 import { HeaderFrame } from '../Frames/HeaderFrame'
 import { FooterFrame } from '../Frames/FooterFrame'
 import { MainFrame } from '../Frames/MainFrame'
-import { Image } from '../ComponentsLibrary/Image'
 import { IRootStore } from '../../Interfaces/IRootStore'
 
 interface IAppProps {
@@ -40,7 +40,7 @@ export const TemplateScreen: React.FunctionComponent<IAppProps> = (
     templateBodyProps: {},
     footerFrameProps: {},
     imageBottomProps: {
-      classAdded: 'Image_bottom',
+      className: 'Image_bottom',
       src: 'https://yourails.com/images/bottomRightBackground.jpg',
     },
   }
@@ -78,7 +78,7 @@ export const TemplateScreen: React.FunctionComponent<IAppProps> = (
             {/* footer-main */}
             {null}
             {/* footer-right */}
-            <Image {...propsOut.imageBottomProps} />
+            <ImageUserto {...propsOut.imageBottomProps} />
           </FooterFrame>
         </MainFrame>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, ReactElement } from 'react'
+import { Image as ImageUserto } from 'userto-components'
 
-import { Image } from '../ComponentsLibrary/Image'
 import { FooterFrame } from '../Frames/FooterFrame'
 import { HeaderFrame } from '../Frames/HeaderFrame'
 import { StubUserGoodbye } from '../Components/StubUserGoodbye'
@@ -30,7 +30,7 @@ export const StubInProgress: React.FunctionComponent<StubInProgressArgs> = (
     templateBodyProps: {},
     footerFrameProps: {},
     imageBottomProps: {
-      classAdded: 'Image_bottom',
+      className: 'Image_bottom',
       src: 'https://yourails.com/images/bottomRightBackground.jpg',
     },
   }
@@ -60,7 +60,7 @@ export const StubInProgress: React.FunctionComponent<StubInProgressArgs> = (
           {/* footer-main */}
           {null}
           {/* footer-right */}
-          <Image {...propsOut.imageBottomProps} />
+          <ImageUserto {...propsOut.imageBottomProps} />
         </FooterFrame>
       </MainFrame>
     </div>

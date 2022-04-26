@@ -27,7 +27,8 @@ export const GlobalTheme: React.FunctionComponent<GlobalThemeArgs> = (
       require(`./index.style.less`)
       document.getElementsByTagName('body')[0].style.display = 'flex'
     } catch (error) {
-      console.info('RouterScreensConfig [115]', { msg: error.message })
+      const err: any = error
+      console.info('RouterScreensConfig [115]', { msg: err.message })
     }
   }
 

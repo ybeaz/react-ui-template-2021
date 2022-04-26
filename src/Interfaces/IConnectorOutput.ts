@@ -1,17 +1,13 @@
-export interface IHeaders {
-  'Access-Control-Allow-Origin': string
-  'Content-Type': string
-  timestamp: number
-}
-
+import { Axios, Method } from 'axios'
 export interface IConnectorOutput {
   testCapture: string
-  method: string
-  payload?: {
+  axiosClient: Axios
+  method: Method
+  params?: {
     operationName: string
     variables: any
     query: string
   }
-  options: { headers: IHeaders }
-  url: string
 }
+
+export { AxiosRequestHeaders, Method } from 'axios'

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react'
 import { useSelector } from 'react-redux'
+import { Button as ButtonUserto } from 'userto-components'
 
-import { Button } from '../ComponentsLibrary/Button'
 import { handleEvents } from '../../DataLayer/index.handleEvents'
 import { IRootStore } from '../../Interfaces/IRootStore'
 
@@ -22,7 +22,7 @@ export const ModalFrames: React.FunctionComponent = (): ReactElement => {
   } = store
 
   const getChildren: IGetChildren = children => {
-    return children.map(child => {
+    return children.map((child, index) => {
       const { childName, isActive, childProps } = child
       const CHILD = CHILDREN[childName]
 
@@ -38,8 +38,10 @@ export const ModalFrames: React.FunctionComponent = (): ReactElement => {
       const propsOut = {
         buttonCloseProps: {
           icon: 'MdClose',
-          classAdded: 'Button_MdClose',
-          action: closeAction,
+          className: 'Button_MdClose',
+          onClick: () => {
+            handleEvents({}, closeAction)
+          },
         },
         childProps,
       }
@@ -48,11 +50,12 @@ export const ModalFrames: React.FunctionComponent = (): ReactElement => {
         <div
           id='modalFrames'
           className={`ModalFrames ${addClass} ModalFrames_${childName}`}
+          key={`mf-${index}`}
           onClick={event => handleEvents(event, closeAction)}
         >
           <div className='_content'>
             <span className='_close'>
-              <Button {...propsOut.buttonCloseProps} />
+              <ButtonUserto {...propsOut.buttonCloseProps} />
             </span>
             <div
               className='_inner'

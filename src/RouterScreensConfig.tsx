@@ -103,7 +103,7 @@ export const RouterScreensConfig: React.FunctionComponent<any> = () => {
   }
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={'.'}>
       <Switch>
         {getRoutes(routes)}
         {getRedirects(redirects)}

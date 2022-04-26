@@ -15,6 +15,7 @@ dist/bundle.min.js.map
 dist/index.html
 build/stats.json
 build/duplicates-*
+build
 
 # Compiled Java class files
 *.class

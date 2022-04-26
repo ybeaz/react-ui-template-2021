@@ -18,7 +18,7 @@ import { RiVoiceprintFill } from 'react-icons/ri'
 
 import { SiAppstore, SiGoogleplay } from 'react-icons/si'
 
-export const ICONS = {
+export const ICONS: any = {
   MdSearch,
   MdClose,
 }
