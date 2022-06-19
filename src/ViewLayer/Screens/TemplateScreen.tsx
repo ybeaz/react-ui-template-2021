@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Image as ImageUserto } from 'userto-components'
 
+import { handleEvents } from '../../DataLayer/index.handleEvents'
 import { URL_APP_BASE } from '../../Constants/servers.const'
 import { TemplateBody } from '../Components/TemplateBody'
 import { HeaderFrame } from '../Frames/HeaderFrame'
@@ -27,6 +28,16 @@ export const TemplateScreen: React.FunctionComponent<IAppProps> = (
   const {
     globalVars: { language },
   } = store
+
+  useEffect(() => {
+    handleEvents(
+      {},
+      {
+        typeEvent: 'TEMPLATE',
+        data: { id: '3' },
+      }
+    )
+  }, [])
 
   console.info('TemplateScreen  [41]', {
     store,
