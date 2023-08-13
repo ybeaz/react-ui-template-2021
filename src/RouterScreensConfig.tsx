@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
+import { GlobalTheme } from './ViewLayer/Styles/GlobalTheme'
 import { routes } from './Constants/routes.const'
 import { StubInProgress } from './ViewLayer/Screens/StubInProgress'
 import { Error404 } from './ViewLayer/Screens/Error404'
@@ -103,12 +104,14 @@ export const RouterScreensConfig: React.FunctionComponent<any> = () => {
   }
 
   return (
-    <BrowserRouter basename={'.'}>
-      <Switch>
-        {getRoutes(routes)}
-        {getRedirects(redirects)}
-        {getError404Route()}
-      </Switch>
-    </BrowserRouter>
+    <GlobalTheme>
+      <BrowserRouter basename={'/'}>
+        <Switch>
+          {getRoutes(routes)}
+          {getRedirects(redirects)}
+          {getError404Route()}
+        </Switch>
+      </BrowserRouter>
+    </GlobalTheme>
   )
 }

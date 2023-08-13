@@ -1,0 +1,17 @@
+import { promises as fs } from 'fs'
+
+export const getReadFile = async (path: string) => {
+  const data = await fs.readFile(path, 'utf8')
+  return JSON.stringify(data)
+}
+
+/**
+ * @description Tool to getTxtToJsonTool
+ * @import import { getTxtToJsonTool } from ./Shared/getTxtToJsonTool'
+ */
+;(async () => {
+  const path =
+    '/Users/admin/Dev/react-ui-template-2021/src/ViewLayer/ComponentsSamples/ButtonReactV0101.tsx'
+  const str = await getReadFile(path)
+  console.info('getTxtToJsonTool [43]', { str })
+})()

@@ -11,6 +11,9 @@ import { FooterFrame } from '../Frames/FooterFrame'
 import { MainFrame } from '../Frames/MainFrame'
 import { IRootStore } from '../../Interfaces/IRootStore'
 
+import { CounterReact } from '../ComponentsSamples/CounterReactV0101'
+import { ToDoListReact } from '../ComponentsSamples/ToDoListReactV0301'
+
 interface IAppProps {
   routeProps: {
     location: {
@@ -38,10 +41,6 @@ export const TemplateScreen: React.FunctionComponent<IAppProps> = (
       }
     )
   }, [])
-
-  console.info('TemplateScreen  [41]', {
-    store,
-  })
 
   const canonicalUrl = `${URL_APP_BASE}${props?.routeProps.location.pathname}`
 
@@ -72,7 +71,10 @@ export const TemplateScreen: React.FunctionComponent<IAppProps> = (
             {/* header-left */}
             {null}
             {/* header-main */}
-            {null}
+            <>
+              <ToDoListReact />
+              <CounterReact />
+            </>
             {/* header-right */}
             {null}
           </HeaderFrame>

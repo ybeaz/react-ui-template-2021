@@ -6,7 +6,7 @@ import {
   DefaultOptions,
 } from '@apollo/client'
 
-const headers = {
+const headers: Record<string, any> = {
   'Access-Control-Allow-Origin': '*',
   'Content-Type': 'application/json',
   timestamp: +new Date(),
