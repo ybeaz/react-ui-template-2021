@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "jsx": "react",
     "allowJs": true,
     "alwaysStrict": true,
     "declaration": true,
@@ -8,6 +7,7 @@
     "experimentalDecorators": true,
     "inlineSourceMap": true,
     "inlineSources": true,
+    "jsx": "react",
     "lib": ["dom", "dom.iterable", "es2019"],
     "module": "CommonJS",
     "noEmitOnError": false,

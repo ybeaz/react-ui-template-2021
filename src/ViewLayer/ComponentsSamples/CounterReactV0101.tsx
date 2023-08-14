@@ -7,13 +7,19 @@ export type CounterReactPropsType = {
 }
 
 /**
- * @description Component Functional component on ReactJS to
- *      - display count value
- *      - create the first Button to increase count value by 1
- *      - create the second Button to decrease count value by 1
- * @import import { CounterReact } from '../ComponentsSamples/CounterReactV0101'
+ * @description React functional component with an internal state to
+        - display a title from props
+        - display a clickable button to increase the counter value by 1
+        - display a clickable button to decrease the counter value by 1
+        - render the counter value if this value is non-zero
+ * @props type CounterReactPropsType = {
+            title: string
+            increment: (count: number, func: any) => void
+            decrement: (count: number, func: any) => void
+          }
+ * @import import { CounterReact } from './CounterReact'
  */
-export const CounterReact: React.FC<CounterReactPropsType> = ({
+export const CounterReact: React.FunctionComponent<CounterReactPropsType> = ({
   title: titleIn,
   increment,
   decrement,
@@ -21,7 +27,7 @@ export const CounterReact: React.FC<CounterReactPropsType> = ({
   let title = titleIn
   if (typeof titleIn !== 'string') title = 'Sorry for unexpected behavior'
 
-  const [countState, setCounterState] = useState(0)
+  const [counterState, setCounterState] = useState(0)
 
   const handlers: Record<
     string,
@@ -34,21 +40,21 @@ export const CounterReact: React.FC<CounterReactPropsType> = ({
   return (
     <div className='CounterReact'>
       <h2 className='title'>{title}</h2>
-      {countState ? (
-        <p className='counterValue'>Counter Value: {countState}</p>
-      ) : null}
       <button
         className='buttonIncrement'
-        onClick={() => handlers.increment(countState, setCounterState)}
+        onClick={() => handlers.increment(counterState, setCounterState)}
       >
         Increment
       </button>
       <button
         className='buttonDecrement'
-        onClick={() => handlers.decrement(countState, setCounterState)}
+        onClick={() => handlers.decrement(counterState, setCounterState)}
       >
         Decrement
       </button>
+      {counterState ? (
+        <p className='counterValue'>Counter Value: {counterState}</p>
+      ) : null}
     </div>
   )
 }

@@ -6,6 +6,7 @@ export type ListType = { id: string; name: string }
 
 export type ToDoListReactPropsType = {
   list?: ListType[]
+  handlers?: Record<string, (handlersProps: any) => void>
 }
 
 const listDefault: ListType[] = [
@@ -14,17 +15,57 @@ const listDefault: ListType[] = [
   { id: 'id_2', name: 'list_Item_3' },
 ]
 
+const handlersDefault: Record<string, (handlersProps: any) => void> = {
+  inputEvent({ data, setInputValueState }) {
+    setInputValueState(data)
+  },
+  addItem({
+    uuidv4,
+    listState,
+    setListState,
+    inputValueState,
+    setInputValueState,
+  }) {
+    if (!inputValueState) return
+    const listStateNext = [
+      { id: uuidv4(), name: inputValueState },
+      ...listState,
+    ]
+    setListState(listStateNext)
+    setInputValueState('')
+  },
+  clearInput({ setInputValueState }) {
+    setInputValueState('')
+  },
+  removeItem({ data, listState, setListState }) {
+    const listStateNext = listState.filter((list: ListType) => list.id !== data)
+    setListState(listStateNext)
+  },
+}
+
 /**
- * @description Component Functional component on ReactJS to
- *      - take a list of tasks with default list values as props
- *      - display a numbered list of tasks from the list of tasks
- *      - input a name of the new task
- *      - add a new task to the list using useState
- *      - remove a task using useState
- * @import import { ToDoListReact } from '../ComponentsSamples/ToDoListReactV0301'
+ * @description React functional component with an internal state to
+        - display a numbered list of tasks from the component props
+        - keep the list of tasks in the state of the component
+        - display an input field for entering the name of the new task
+        - display a button labeled "Add" next to the input field
+        - ensure that clicking on the "Add" button adds an item from the input field on the top of the list of tasks
+        - prevent adding an item from the input field on the top of the list of tasks if the input field is empty
+        - make sure that when you click on the "Add" button, the input field is cleared
+        - display a button labeled "Clear" next to the Add button if input field value is not empty (non-zero)
+        - ensure that when you click on the "Clear" button, the input field is cleared
+        - display buttons labeled "Remove" in the list of tasks next to the name of each task
+        - provide that clicking on the "Remove" button removes the task in the corresponding line from the component view
+        - ensure that clicking on the "Remove" button removes that task in the corresponding line from the state of the component
+ * @props type ToDoListReactPropsType = {
+            list?: ListType[]
+            handlers?: Record<string, (handlersProps: any) => void>
+          }
+ * @import import { ToDoListReact } from '../ComponentsSamples/ToDoListReact'
  */
-export const ToDoListReact: React.FC<ToDoListReactPropsType> = ({
+export const ToDoListReact: React.FunctionComponent<ToDoListReactPropsType> = ({
   list: listIn = listDefault,
+  handlers = handlersDefault,
 }: ToDoListReactPropsType) => {
   let list: ListType[] = []
   if (Array.isArray(listIn)) list = listIn
@@ -38,7 +79,9 @@ export const ToDoListReact: React.FC<ToDoListReactPropsType> = ({
         {listItem.name}
         <button
           className='listRemove'
-          onClick={() => handlers.removeItem(listItem.id)}
+          onClick={() =>
+            handlers.removeItem({ data: listItem.id, listState, setListState })
+          }
         >
           Remove
         </button>
@@ -50,47 +93,41 @@ export const ToDoListReact: React.FC<ToDoListReactPropsType> = ({
 
   const renderedList = useMemo(() => getRenderedList(listState), [listState])
 
-  const handlers: Record<string, (data?: any) => void> = {
-    inputEvent(data) {
-      console.info('ToDoListReactV0301 [52]', { data })
-      setInputValueState(data)
-    },
-    addItem() {
-      const listStateNext = [
-        { id: uuidv4(), name: inputValueState },
-        ...listState,
-      ]
-      setListState(listStateNext)
-      setInputValueState('')
-    },
-    clearInput() {
-      setInputValueState('')
-    },
-    removeItem(data) {
-      const listStateNext = listState.filter(
-        (list: ListType) => list.id !== data
-      )
-      setListState(listStateNext)
-    },
-  }
-
   return (
     <div className='ToDoListReact'>
       <div className='inputWrapper'>
         <input
           className='inputItem'
-          onChange={(event: any) => handlers.inputEvent(event.target.value)}
+          onChange={(event: any) =>
+            handlers.inputEvent({
+              data: event.target.value,
+              setInputValueState,
+            })
+          }
           value={inputValueState}
         />
-        <button className='addItemButton' onClick={() => handlers.addItem()}>
+        <button
+          className='addItemButton'
+          onClick={() =>
+            handlers.addItem({
+              uuidv4,
+              listState,
+              setListState,
+              inputValueState,
+              setInputValueState,
+            })
+          }
+        >
           Add
         </button>
-        <button
-          className='clearInputButton'
-          onClick={() => handlers.clearInput()}
-        >
-          Clear
-        </button>
+        {inputValueState ? (
+          <button
+            className='clearInputButton'
+            onClick={() => handlers.clearInput({ setInputValueState })}
+          >
+            Clear
+          </button>
+        ) : null}
       </div>
       <div className='listWrapper'>{renderedList}</div>
     </div>

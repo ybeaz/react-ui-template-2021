@@ -2,19 +2,24 @@ import React from 'react'
 
 export type ButtonReactPropsType = {
   title: string
-  click?: (params: any) => void
+  click?: (params?: any) => void
   params?: any
 }
 
 /**
- * @description Component Functional component on ReactJS to
- *      - create stateless Button component
- *      - take two properties in props: {title: string, click?: () => void }
- * @import import { ButtonReact } from '../ComponentsSamples/ButtonReactV0101'
+ * @description React functional component without an internal state to
+        - display button with title from props
+        - trigger "click" function with "params" argument from props
+ * @props type ButtonReactPropsType = {
+            title: string
+            click?: (params?: any) => void
+            params?: any
+          }
+ * @import import { ButtonReact } from './ButtonReact'
  */
-export const ButtonReact: React.FC<ButtonReactPropsType> = ({
+export const ButtonReact: React.FunctionComponent<ButtonReactPropsType> = ({
   title,
-  click = (params: any) => {},
+  click = () => {},
   params,
 }: ButtonReactPropsType) => {
   return (
