@@ -7,11 +7,13 @@ import { StubInProgress } from './ViewLayer/Screens/StubInProgress'
 import { Error404 } from './ViewLayer/Screens/Error404'
 import { TemplateScreen } from './ViewLayer/Screens/TemplateScreen'
 import { URL_APP_BASE } from './Constants/servers.const'
+import { TestScreen } from './ViewLayer/Screens/TestScreen'
 
 const PAGES: Record<string, any> = {
   TemplateScreen,
   StubInProgress,
   Error404,
+  TestScreen,
 }
 
 export const RouterScreensConfig: React.FunctionComponent<any> = () => {

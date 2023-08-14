@@ -2,23 +2,25 @@ import React from 'react'
 
 export type ButtonReactPropsType = {
   title: string
-  click?: () => void
+  click?: (params: any) => void
+  params?: any
 }
 
 /**
  * @description Component Functional component on ReactJS to
  *      - create stateless Button component
  *      - take two properties in props: {title: string, click?: () => void }
- * @import import { ButtonReact } from '../ComponentsSamples/ButtonReactV0301'
+ * @import import { ButtonReact } from '../ComponentsSamples/ButtonReactV0101'
  */
 export const ButtonReact: React.FC<ButtonReactPropsType> = ({
   title,
-  click = () => {},
+  click = (params: any) => {},
+  params,
 }: ButtonReactPropsType) => {
   return (
     <div className='ButtonReact'>
-      <button className='button' onClick={click}>
-        {title}
+      <button className='buttonElement' onClick={() => click(params)}>
+        {`${title}`}
       </button>
     </div>
   )

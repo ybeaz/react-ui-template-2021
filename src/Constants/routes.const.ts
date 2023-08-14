@@ -28,7 +28,7 @@ export const routes: IRoute[] = [
   {
     path: `/`,
     exact: true,
-    page: 'TemplateScreen',
+    page: 'TestScreen',
     themeDafault: 'Light',
   },
 ]

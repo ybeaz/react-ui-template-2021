@@ -1,53 +1,116 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-// import enzyme, { shallow, mount } from 'enzyme'
-// import Adapter from 'enzyme-adapter-react-16'
+import { render, fireEvent, waitFor } from '@testing-library/react'
+import { ButtonReact, ButtonReactPropsType } from '../ButtonReactV0101'
 
-import { ButtonReact } from '../ButtonReactV0101'
+let click = () => {}
+let params = 'test param'
+let container: any
+let buttonReact: Node
+let buttonElement: Node
 
-// enzyme.configure({ adapter: new Adapter() })
-// jest.mock('../../Shared/serviceFunc')
+const buttonReactProps: ButtonReactPropsType = {
+  title: 'Click me',
+  click,
+  params,
+}
 
-describe('ComponentXyzFunc', () => {
-  it('renders without crashing', () => {
-    const div = document.createElement('div')
+/**
+ * @description: Unit Test Suites that implement
+ *      - Render Test
+ *      - Props Test,
+ *      - Function Callbacks Test
+ *      - Behavior Test, State Change Test,
+ *      - Conditional Rendering Test
+ *      - Error Handling Test, Prop Validation Test,
+ *      - Lifecycle Methods Test
+ */
 
-    const buttonReactProps = { title: 'title', click: () => {} }
+describe('ButtonReact', () => {
+  beforeEach(() => {
+    container = render(<ButtonReact {...buttonReactProps} />).container
+    buttonReact = container.getElementsByClassName('ButtonReact')[0]
+    buttonElement = container.getElementsByClassName('buttonElement')[0]
+  })
 
-    ReactDOM.render(<ButtonReact {...buttonReactProps} />, div)
-    ReactDOM.unmountComponentAtNode(div)
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  test('Render Test: ButtonReact render all elements with expected content', () => {
+    expect(buttonReact).toBeInTheDocument()
+    expect(buttonReact).toHaveTextContent('Click me')
+
+    expect(buttonElement).toBeInTheDocument()
+    expect(buttonElement).toHaveTextContent('Click me')
+  })
+
+  test('Props Test: display the coorrect ButtonReact', () => {
+    let buttonReactProps: ButtonReactPropsType = {
+      title: 'The first buttonReact',
+      click,
+    }
+    container = render(<ButtonReact {...buttonReactProps} />).container
+    buttonReact = container.getElementsByClassName('ButtonReact')[0]
+    expect(buttonReact).toHaveTextContent('The first buttonReact')
+
+    buttonReactProps = {
+      title: 'The second buttonReact',
+      click,
+    }
+    container = render(<ButtonReact {...buttonReactProps} />).container
+    buttonReact = container.getElementsByClassName('ButtonReact')[0]
+    expect(buttonReact).toHaveTextContent('The second buttonReact')
+  })
+
+  test('Function Callbacks Test: check click functions arguments', () => {
+    params = 'test param'
+    const buttonReactProps: ButtonReactPropsType = {
+      title: 'Click me',
+      click,
+      params,
+    }
+    const clickMock = jest.spyOn(buttonReactProps, 'click')
+
+    container = render(<ButtonReact {...buttonReactProps} />).container
+    buttonElement = container.getElementsByClassName('buttonElement')[0]
+
+    fireEvent.click(buttonElement)
+    expect(clickMock).toHaveBeenCalledWith(params)
+
+    fireEvent.click(buttonElement)
+    expect(clickMock).toHaveBeenCalledWith(params)
+  })
+
+  test('Function Callbacks Test: count click function calls', () => {
+    params = 'test param'
+    const clickMock = jest.fn()
+
+    const buttonReactProps: ButtonReactPropsType = {
+      title: 'Click me',
+      click: clickMock,
+      params,
+    }
+    container = render(<ButtonReact {...buttonReactProps} />).container
+    buttonElement = container.getElementsByClassName('buttonElement')[0]
+
+    fireEvent.click(buttonElement)
+    expect(clickMock).toHaveBeenCalledTimes(1)
+
+    fireEvent.click(buttonElement)
+    fireEvent.click(buttonElement)
+    expect(clickMock).toHaveBeenCalledTimes(3)
+  })
+
+  test('Error Handling Test and Prop Validation Test: display title, converted to the string if the title is not a string', () => {
+    let buttonReactProps: ButtonReactPropsType = {
+      // @ts-ignore
+      title: 123,
+      click,
+    }
+
+    // @ts-ignore
+    container = render(<ButtonReact {...buttonReactProps} />).container
+    buttonReact = container.getElementsByClassName('ButtonReact')[0]
+    expect(buttonReact).toHaveTextContent('123')
   })
 })
-
-/*
-
-  it('should input have a value', () => {
-    const wrapperMount = mount(<ComponentXyzFunc />)
-    const mockFn = jest.fn()
-    const ComponentXyzInput = wrapperMount.find('.ComponentXyzFunc__input')
-    ComponentXyzInput.props().value = 'Hello value'
-    expect(ComponentXyzInput.props().value).toBe('Hello value')
-  })
-
-  it('should respond on onClick', () => {
-    const wrapper = shallow(<ComponentXyzFunc />)
-    const mockFn = jest.fn()
-    const ComponentXyzButton = wrapper.find('.ComponentXyzFunc__button').first()
-    ComponentXyzButton.simulate('click', mockFn())
-    expect(mockFn).toHaveBeenCalledTimes(1)
-    expect(mockFn).toHaveBeenCalled()
-  })
-
-  it('should serviceFunc.utilMaxValue called', () => {
-    const component = shallow(<ComponentXyzFunc debug />)
-    expect(serviceFunc.utilMaxValue).toHaveReturned()
-    expect(serviceFunc.utilMaxValue).toHaveBeenCalledWith([])
-    expect(serviceFunc.utilMaxValue).toBeCalled()
-  })
-
-  it('should match snapshot in "debug" mode', () => {
-    const component = shallow(<ComponentXyzFunc debug />)
-    expect(component).toMatchSnapshot()
-  })
-
-*/

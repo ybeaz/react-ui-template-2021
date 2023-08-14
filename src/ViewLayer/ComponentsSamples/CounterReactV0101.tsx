@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 
-export type CounterReactPropsType = {}
+export type CounterReactPropsType = {
+  title: string
+  increment: (count: number, func: any) => void
+  decrement: (count: number, func: any) => void
+}
 
 /**
  * @description Component Functional component on ReactJS to
@@ -9,24 +13,42 @@ export type CounterReactPropsType = {}
  *      - create the second Button to decrease count value by 1
  * @import import { CounterReact } from '../ComponentsSamples/CounterReactV0101'
  */
-export const CounterReact: React.FC<
-  CounterReactPropsType
-> = ({}: CounterReactPropsType) => {
-  const [count, setCount] = useState(0)
+export const CounterReact: React.FC<CounterReactPropsType> = ({
+  title: titleIn,
+  increment,
+  decrement,
+}: CounterReactPropsType) => {
+  let title = titleIn
+  if (typeof titleIn !== 'string') title = 'Sorry for unexpected behavior'
 
-  const increment = () => {
-    setCount(count + 1)
-  }
+  const [countState, setCounterState] = useState(0)
 
-  const decrement = () => {
-    setCount(count - 1)
+  const handlers: Record<
+    string,
+    (count: number, setCounterState: any) => void
+  > = {
+    increment,
+    decrement,
   }
 
   return (
-    <div>
-      <p>Counter Value: {count}</p>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
+    <div className='CounterReact'>
+      <h2 className='title'>{title}</h2>
+      {countState ? (
+        <p className='counterValue'>Counter Value: {countState}</p>
+      ) : null}
+      <button
+        className='buttonIncrement'
+        onClick={() => handlers.increment(countState, setCounterState)}
+      >
+        Increment
+      </button>
+      <button
+        className='buttonDecrement'
+        onClick={() => handlers.decrement(countState, setCounterState)}
+      >
+        Decrement
+      </button>
     </div>
   )
 }

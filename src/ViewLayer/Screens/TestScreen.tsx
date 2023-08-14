@@ -11,7 +11,11 @@ import { FooterFrame } from '../Frames/FooterFrame'
 import { MainFrame } from '../Frames/MainFrame'
 import { IRootStore } from '../../Interfaces/IRootStore'
 
-interface TemplateScreenPropsType {
+import { CounterReact } from '../ComponentsSamples/CounterReactV0101'
+import { ToDoListReact } from '../ComponentsSamples/ToDoListReactV0301'
+import { ButtonReact } from '../ComponentsSamples/ButtonReactV0101'
+
+interface TestScreenPropsType {
   routeProps: {
     location: {
       pathname: string
@@ -21,12 +25,12 @@ interface TemplateScreenPropsType {
 }
 
 /**
- * @description Component TemplateScreen
- * @import import { TemplateScreen } from './ViewLayer/Screens/TemplateScreen'
+ * @description Component TestScreen
+ * @import import { TestScreen } from './ViewLayer/Screens/TestScreen'
  */
-export const TemplateScreen: React.FunctionComponent<
-  TemplateScreenPropsType
-> = (props: TemplateScreenPropsType) => {
+export const TestScreen: React.FunctionComponent<TestScreenPropsType> = (
+  props: TestScreenPropsType
+) => {
   const store = useSelector((store2: IRootStore) => store2)
 
   const {
@@ -43,7 +47,7 @@ export const TemplateScreen: React.FunctionComponent<
     )
   }, [])
 
-  console.info('TemplateScreen  [41]', {
+  console.info('TestScreen  [41]', {
     store,
   })
 
@@ -60,13 +64,23 @@ export const TemplateScreen: React.FunctionComponent<
     },
   }
 
+  const counterReactProps = {
+    title: 'Counter component',
+    increment: (count: number, func: any) => {
+      func(count + 1)
+    },
+    decrement: (count: number, func: any) => {
+      func(count - 1)
+    },
+  }
+
   return (
     <HelmetProvider>
-      <div className='TemplateScreen'>
+      <div className='TestScreen'>
         <Helmet>
           <html lang={language} />
           <meta charSet='utf-8' />
-          <title>{'TemplateScreen'}</title>
+          <title>{'TestScreen'}</title>
           <link rel='canonical' href={canonicalUrl} />
           <meta name='description' content={'Description'} />
         </Helmet>
@@ -85,7 +99,10 @@ export const TemplateScreen: React.FunctionComponent<
           {/* middle-main */}
           <TemplateBody {...propsOut.templateBodyProps} />
           {/* middle-right */}
-          {null}
+          <div>
+            <CounterReact {...counterReactProps} />
+            <ToDoListReact />
+          </div>
           {/* footer */}
           <FooterFrame {...propsOut.footerFrameProps}>
             {/* footer-left */}
