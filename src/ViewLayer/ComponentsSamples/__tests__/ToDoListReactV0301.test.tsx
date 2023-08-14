@@ -30,7 +30,7 @@ let listRemove: NodeListOf<Element>
  * @description: Unit Test Suites that implement
  *      - Render Test
  *      - Props Test
- *      - Function Callbacks Test
+ *      // - Function Callbacks Test
  *      - Behavior Test
  *      - State Change Test
  *      - Conditional Rendering Test
@@ -84,37 +84,39 @@ describe('ToDoListReact', () => {
     expect(listLi[1]).toHaveTextContent('list_Item_5')
   })
 
-  // test('Function Callbacks Test: checks function arguments', () => {
-  //   const inputEventMock = jest.fn()
-  //   const addItemMock = jest.fn()
-  //   const clearInputMock = jest.fn()
-  //   const removeItemMock = jest.fn()
+  /*
+  test('Function Callbacks Test: checks function arguments', () => {
+    const inputEventMock = jest.fn()
+    const addItemMock = jest.fn()
+    const clearInputMock = jest.fn()
+    const removeItemMock = jest.fn()
 
-  //   const handlers = {
-  //     inputEvent: inputEventMock,
-  //     addItem: addItemMock,
-  //     clearInput: clearInputMock,
-  //     removeItem: removeItemMock,
-  //   }
+    const handlers = {
+      inputEvent: inputEventMock,
+      addItem: addItemMock,
+      clearInput: clearInputMock,
+      removeItem: removeItemMock,
+    }
 
-  //   container = render(<ToDoListReact {...toDoListReactProps} />).container
-  //   inputItem = container.getElementsByClassName('inputItem')[0]
-  //   addItemButton = container.getElementsByClassName('addItemButton')[0]
-  //   clearInputButton = container.getElementsByClassName('clearInputButton')[0]
-  //   listRemove = container.getElementsByClassName('listRemove')
+    container = render(<ToDoListReact {...toDoListReactProps} />).container
+    inputItem = container.getElementsByClassName('inputItem')[0]
+    addItemButton = container.getElementsByClassName('addItemButton')[0]
+    clearInputButton = container.getElementsByClassName('clearInputButton')[0]
+    listRemove = container.getElementsByClassName('listRemove')
 
-  //   fireEvent.change(inputItem, { target: { value: 'New item' } })
-  //   expect(inputEventMock).toHaveBeenCalledWith('New item')
+    fireEvent.change(inputItem, { target: { value: 'New item' } })
+    expect(inputEventMock).toHaveBeenCalledWith('New item')
 
-  //   fireEvent.click(addItemButton)
-  //   expect(addItemMock).toHaveBeenCalledTimes(1)
+    fireEvent.click(addItemButton)
+    expect(addItemMock).toHaveBeenCalledTimes(1)
 
-  //   fireEvent.click(clearInputButton)
-  //   expect(clearInputMock).toHaveBeenCalledTimes(1)
+    fireEvent.click(clearInputButton)
+    expect(clearInputMock).toHaveBeenCalledTimes(1)
 
-  //   fireEvent.click(listRemove[0])
-  //   expect(removeItemMock).toHaveBeenCalledWith('id_0')
-  // })
+    fireEvent.click(listRemove[0])
+    expect(removeItemMock).toHaveBeenCalledWith('id_0')
+  })
+  */
 
   test('Behavior Test and State Change Test: adds and removes items correctly', () => {
     container = render(<ToDoListReact {...toDoListReactProps} />).container
