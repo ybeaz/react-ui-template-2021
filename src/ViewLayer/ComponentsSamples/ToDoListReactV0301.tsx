@@ -1,5 +1,6 @@
-import { nanoid } from 'nanoid'
 import React, { ReactElement, useState, useMemo } from 'react'
+// import { nanoid } from 'nanoid'
+import { v4 as uuidv4 } from 'uuid'
 
 export type ListType = { id: string; name: string }
 
@@ -7,7 +8,7 @@ export type ToDoListReactPropsType = {
   list?: ListType[]
 }
 
-const listIn: ListType[] = [
+const listDefault: ListType[] = [
   { id: 'id_0', name: 'list_Item_0' },
   { id: 'id_1', name: 'list_Item_2' },
   { id: 'id_2', name: 'list_Item_3' },
@@ -23,8 +24,11 @@ const listIn: ListType[] = [
  * @import import { ToDoListReact } from '../ComponentsSamples/ToDoListReactV0301'
  */
 export const ToDoListReact: React.FC<ToDoListReactPropsType> = ({
-  list = listIn,
+  list: listIn = listDefault,
 }: ToDoListReactPropsType) => {
+  let list: ListType[] = []
+  if (Array.isArray(listIn)) list = listIn
+
   const [listState, setListState] = useState(list)
   const [inputValueState, setInputValueState] = useState('')
 
@@ -48,11 +52,12 @@ export const ToDoListReact: React.FC<ToDoListReactPropsType> = ({
 
   const handlers: Record<string, (data?: any) => void> = {
     inputEvent(data) {
+      console.info('ToDoListReactV0301 [52]', { data })
       setInputValueState(data)
     },
     addItem() {
       const listStateNext = [
-        { id: nanoid(), name: inputValueState },
+        { id: uuidv4(), name: inputValueState },
         ...listState,
       ]
       setListState(listStateNext)

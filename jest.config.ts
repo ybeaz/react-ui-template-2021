@@ -2,6 +2,7 @@ import type { Config } from 'jest'
 
 const config: Config = {
   preset: 'ts-jest',
+  // preset: 'ts-jest/presets/js-with-ts',
   testEnvironment: 'jsdom',
   moduleNameMapper: {
     // Add any module aliases or paths you use in your project
@@ -9,16 +10,16 @@ const config: Config = {
   },
   transform: {
     '^.+\\.tsx?$': 'ts-jest',
+    'node_modules/variables/.+\\.(j|t)sx?$': 'ts-jest',
   },
+  // testEnvironment: 'node',
+  transformIgnorePatterns: ['node_modules/(?!nanoid/.*)'],
   setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
-
-  // collectCoverageFrom: [
-  //   '**/*.{js,jsx}',
-  //   '!**/node_modules/**',
-  //   '!**/vendor/**',
-  // ],
-  // preset: 'ts-jest',
-  // testEnvironment: 'jest-environment-jsdom',
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.json',
+    },
+  },
 }
 
 export default config

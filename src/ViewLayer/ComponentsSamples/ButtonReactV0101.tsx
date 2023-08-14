@@ -20,7 +20,7 @@ export const ButtonReact: React.FC<ButtonReactPropsType> = ({
   return (
     <div className='ButtonReact'>
       <button className='buttonElement' onClick={() => click(params)}>
-        {`${title}`}
+        {title.toString()}
       </button>
     </div>
   )

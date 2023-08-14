@@ -17,12 +17,10 @@ const buttonReactProps: ButtonReactPropsType = {
 /**
  * @description: Unit Test Suites that implement
  *      - Render Test
- *      - Props Test,
+ *      - Props Test
  *      - Function Callbacks Test
- *      - Behavior Test, State Change Test,
- *      - Conditional Rendering Test
- *      - Error Handling Test, Prop Validation Test,
- *      - Lifecycle Methods Test
+ *      - Function Callbacks Test
+ *      - Error Handling Test and Prop Validation Test
  */
 
 describe('ButtonReact', () => {
@@ -36,7 +34,7 @@ describe('ButtonReact', () => {
     jest.clearAllMocks()
   })
 
-  test('Render Test: ButtonReact render all elements with expected content', () => {
+  test('Render Test: ButtonReact renders all elements with expected content', () => {
     expect(buttonReact).toBeInTheDocument()
     expect(buttonReact).toHaveTextContent('Click me')
 
@@ -44,7 +42,7 @@ describe('ButtonReact', () => {
     expect(buttonElement).toHaveTextContent('Click me')
   })
 
-  test('Props Test: display the coorrect ButtonReact', () => {
+  test('Props Test: displays the coorrect ButtonReact', () => {
     let buttonReactProps: ButtonReactPropsType = {
       title: 'The first buttonReact',
       click,
@@ -62,7 +60,7 @@ describe('ButtonReact', () => {
     expect(buttonReact).toHaveTextContent('The second buttonReact')
   })
 
-  test('Function Callbacks Test: check click functions arguments', () => {
+  test('Function Callbacks Test: checks click functions arguments', () => {
     params = 'test param'
     const buttonReactProps: ButtonReactPropsType = {
       title: 'Click me',
@@ -81,7 +79,7 @@ describe('ButtonReact', () => {
     expect(clickMock).toHaveBeenCalledWith(params)
   })
 
-  test('Function Callbacks Test: count click function calls', () => {
+  test('Function Callbacks Test: counts click function calls', () => {
     params = 'test param'
     const clickMock = jest.fn()
 
@@ -101,7 +99,7 @@ describe('ButtonReact', () => {
     expect(clickMock).toHaveBeenCalledTimes(3)
   })
 
-  test('Error Handling Test and Prop Validation Test: display title, converted to the string if the title is not a string', () => {
+  test('Error Handling Test and Prop Validation Test: displays title, converted to the string if the title is not a string', () => {
     let buttonReactProps: ButtonReactPropsType = {
       // @ts-ignore
       title: 123,

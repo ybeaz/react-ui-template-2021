@@ -30,7 +30,7 @@ let decrementButton: any
  *      - Behavior Test, State Change Test,
  *      - Conditional Rendering Test
  *      - Error Handling Test, Prop Validation Test,
- *      - Lifecycle Methods Test
+ *      - Hooks usage Test
  */
 
 describe('CounterReact', () => {
@@ -46,7 +46,7 @@ describe('CounterReact', () => {
     jest.clearAllMocks()
   })
 
-  test('Render Test: CounterReact render all elements with expected content', () => {
+  test('Render Test: CounterReact renders all elements with expected content', () => {
     expect(title).toBeInTheDocument()
     expect(title).toHaveTextContent('Counter component')
 
@@ -59,7 +59,7 @@ describe('CounterReact', () => {
     expect(decrementButton).toHaveTextContent('Decrement')
   })
 
-  test('Props Test: display the coorrect title', () => {
+  test('Props Test: displays the correct title', () => {
     let counterReactProps: CounterReactPropsType = {
       title: 'The first title',
       increment,
@@ -79,7 +79,7 @@ describe('CounterReact', () => {
     expect(title).toHaveTextContent('The second title')
   })
 
-  test('Function Callbacks Test: check functions arguments', () => {
+  test('Function Callbacks Test: checks function arguments', () => {
     const counterReactProps: CounterReactPropsType = {
       title: 'Counter component',
       increment,
@@ -106,7 +106,7 @@ describe('CounterReact', () => {
     expect(decrementMock).toHaveBeenCalledWith(-1, expect.anything())
   })
 
-  test('Function Callbacks Test: count increments and decrements calls', () => {
+  test('Function Callbacks Test: counts increments and decrements calls', () => {
     const incrementMock = jest.fn()
     const decrementMock = jest.fn()
 
@@ -128,7 +128,7 @@ describe('CounterReact', () => {
     expect(decrementMock).toHaveBeenCalledTimes(2)
   })
 
-  test('Conditional Rendering Test: display the coorrect component conditionally', async () => {
+  test('Conditional Rendering Test: displays the coorrect component conditionally', async () => {
     expect(counterValue).toEqual(undefined)
 
     fireEvent.click(incrementButton)
@@ -144,7 +144,7 @@ describe('CounterReact', () => {
     expect(counterValue).toHaveTextContent('Counter Value: -1')
   })
 
-  test('Behavior Test and State Change Test: display the coorrect counter value', async () => {
+  test('Behavior Test and State Change Test: displays the coorrect counter value', async () => {
     expect(counterValue).toEqual(undefined)
 
     fireEvent.click(incrementButton)
@@ -159,7 +159,7 @@ describe('CounterReact', () => {
     expect(counterValue).toHaveTextContent('Counter Value: 1')
   })
 
-  test('Error Handling Test and Prop Validation Test: display default title if the title is not a string', () => {
+  test('Error Handling Test and Prop Validation Test: displays default title if the title is not a string', () => {
     let counterReactProps: CounterReactPropsType = {
       // @ts-ignore
       title: 123,
@@ -173,7 +173,7 @@ describe('CounterReact', () => {
     expect(title).toHaveTextContent('Sorry for unexpected behavior')
   })
 
-  test('Lifecycle Methods Test: test values useState is called with and number of times it is called', () => {
+  test('Hooks usage Test: checks values useState is called with and number of times it is called', () => {
     const setStateMock = jest.fn()
     const useStateMock: any = (stateMock: any) => [stateMock, setStateMock]
     jest.spyOn(React, 'useState').mockImplementation(useStateMock)
