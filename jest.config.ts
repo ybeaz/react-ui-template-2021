@@ -3,7 +3,7 @@ import type { Config } from '@jest/types'
 export default async (): Promise<Config.InitialOptions> => {
   return {
     setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-    preset: 'ts-jest',
+    preset: '@testing-library/react',
     testEnvironment: 'jsdom',
     testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|jsx?|ts?|tsx?)$',
     testPathIgnorePatterns: [

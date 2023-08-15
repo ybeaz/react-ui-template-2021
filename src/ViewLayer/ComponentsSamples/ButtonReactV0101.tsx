@@ -25,7 +25,7 @@ export const ButtonReact: React.FunctionComponent<ButtonReactPropsType> = ({
   title,
   click = () => {},
   params,
-}: ButtonReactPropsType): ReactNode => {
+}: ButtonReactPropsType) => {
   return (
     <div className='ButtonReact'>
       <button className='buttonElement' onClick={() => click(params)}>

@@ -1,5 +1,13 @@
-/* eslint-disable import/no-commonjs */
+module.exports = {
+  presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-flow'],
+  plugins: [
+    'babel-plugin-styled-components',
+    '@babel/plugin-proposal-class-properties',
+  ],
+}
 
+/* eslint-disable import/no-commonjs */
+/*
 export default api => {
   api.cache(true)
   return {
@@ -50,3 +58,4 @@ export default api => {
     },
   }
 }
+*/
