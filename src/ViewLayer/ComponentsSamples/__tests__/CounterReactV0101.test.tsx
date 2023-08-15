@@ -1,6 +1,10 @@
 import React from 'react'
 import { render, fireEvent, waitFor } from '@testing-library/react'
-import { CounterReact, CounterReactPropsType } from '../CounterReactV0101'
+import {
+  CounterReact,
+  CounterReactPropsType,
+  handlersDefault,
+} from '../CounterReactV0101'
 
 const increment = (count: number, func: any) => {
   func(count + 1)
@@ -24,13 +28,14 @@ let decrementButton: any
 
 /**
  * @description: Unit Test Suites that implement
- *      - Render Test
- *      - Props Test,
- *      - Function Callbacks Test
- *      - Behavior Test, State Change Test,
- *      - Conditional Rendering Test
- *      - Error Handling Test, Prop Validation Test,
- *      - Hooks usage Test
+       - Render Test
+       - Props Test,
+       - Functions Callbacks Test
+       - Handlers Callbacks Test
+       - Behavior Test, State Change Test,
+       - Conditional Rendering Test
+       - Error Handling Test, Prop Validation Test,
+       - Hooks usage Test
  */
 
 describe('CounterReact', () => {
@@ -128,6 +133,58 @@ describe('CounterReact', () => {
     expect(decrementMock).toHaveBeenCalledTimes(2)
   })
 
+  test('Handlers Callbacks Test: checks values handlers are called with', () => {
+    const incrementSpy = jest.spyOn(handlersDefault, 'increment')
+    const decrementSpy = jest.spyOn(handlersDefault, 'decrement')
+
+    let counterReactProps: CounterReactPropsType = {
+      title: 'Hello Counters',
+      increment,
+      decrement,
+    }
+
+    container = render(<CounterReact {...counterReactProps} />).container
+    incrementButton = container.getElementsByClassName('buttonIncrement')[0]
+    decrementButton = container.getElementsByClassName('buttonDecrement')[0]
+
+    fireEvent.click(incrementButton)
+    expect(incrementSpy).toHaveBeenCalledWith({
+      incrementIn: increment,
+      counterState: 0,
+      setCounterState: expect.anything(),
+    })
+
+    fireEvent.click(decrementButton)
+    fireEvent.click(decrementButton)
+    expect(decrementSpy).toHaveBeenCalledWith({
+      decrementIn: decrement,
+      counterState: 0,
+      setCounterState: expect.anything(),
+    })
+  })
+
+  test('Handlers Callbacks Test: checks number of times they are called', () => {
+    const incrementSpy = jest.spyOn(handlersDefault, 'increment')
+    const decrementSpy = jest.spyOn(handlersDefault, 'decrement')
+
+    let counterReactProps: CounterReactPropsType = {
+      title: 'Hello Counters',
+      increment,
+      decrement,
+    }
+
+    container = render(<CounterReact {...counterReactProps} />).container
+    incrementButton = container.getElementsByClassName('buttonIncrement')[0]
+    decrementButton = container.getElementsByClassName('buttonDecrement')[0]
+
+    fireEvent.click(incrementButton)
+    fireEvent.click(decrementButton)
+    fireEvent.click(decrementButton)
+
+    expect(incrementSpy).toHaveBeenCalledTimes(1)
+    expect(decrementSpy).toHaveBeenCalledTimes(2)
+  })
+
   test('Conditional Rendering Test: displays the coorrect component conditionally', async () => {
     expect(counterValue).toEqual(undefined)
 
@@ -173,7 +230,7 @@ describe('CounterReact', () => {
     expect(title).toHaveTextContent('Sorry for unexpected behavior')
   })
 
-  test('Hooks usage Test: checks values useState is called with and number of times it is called', () => {
+  test('Hooks Usage Test: checks values useState is called with and number of times it is called', () => {
     const setStateMock = jest.fn()
     const useStateMock: any = (stateMock: any) => [stateMock, setStateMock]
     jest.spyOn(React, 'useState').mockImplementation(useStateMock)
@@ -194,6 +251,7 @@ describe('CounterReact', () => {
     fireEvent.click(decrementButton)
     expect(setStateMock).toHaveBeenCalledWith(1)
 
-    expect(setStateMock).toHaveBeenCalledTimes(2)
+    fireEvent.click(decrementButton)
+    expect(setStateMock).toHaveBeenCalledTimes(3)
   })
 })

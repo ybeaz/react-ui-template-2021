@@ -9,6 +9,10 @@ const SOURCES_DICTIONARY: Record<string, string> = {
     '/Users/admin/Dev/react-ui-template-2021/src/ViewLayer/ComponentsSamples/CounterReactV0101.tsx',
   CounterReactV0101Test:
     '/Users/admin/Dev/react-ui-template-2021/src/ViewLayer/ComponentsSamples/__tests__/CounterReactV0101.test.tsx',
+  ToDoListReactV0301:
+    '/Users/admin/Dev/react-ui-template-2021/src/ViewLayer/ComponentsSamples/ToDoListReactV0301.tsx',
+  ToDoListReactV0301test:
+    '/Users/admin/Dev/react-ui-template-2021/src/ViewLayer/ComponentsSamples/ToDoListReactV0301.tsx',
 }
 
 export const getReadFile = async (path: string) => {

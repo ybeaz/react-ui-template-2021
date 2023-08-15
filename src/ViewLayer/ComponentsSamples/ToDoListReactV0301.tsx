@@ -2,20 +2,13 @@ import React, { ReactElement, useState, useMemo } from 'react'
 // import { nanoid } from 'nanoid'
 import { v4 as uuidv4 } from 'uuid'
 
-export type ListType = { id: string; name: string }
-
-export type ToDoListReactPropsType = {
-  list?: ListType[]
-  handlers?: Record<string, (handlersProps: any) => void>
-}
-
 const listDefault: ListType[] = [
   { id: 'id_0', name: 'list_Item_0' },
   { id: 'id_1', name: 'list_Item_2' },
   { id: 'id_2', name: 'list_Item_3' },
 ]
 
-const handlersDefault: Record<string, (handlersProps: any) => void> = {
+export const handlersDefault: Record<string, (handlersProps: any) => void> = {
   inputEvent({ data, setInputValueState }) {
     setInputValueState(data)
   },
@@ -41,6 +34,13 @@ const handlersDefault: Record<string, (handlersProps: any) => void> = {
     const listStateNext = listState.filter((list: ListType) => list.id !== data)
     setListState(listStateNext)
   },
+}
+
+export type ListType = { id: string; name: string }
+
+export type ToDoListReactPropsType = {
+  list?: ListType[]
+  handlers?: Record<string, (handlersProps: any) => void>
 }
 
 /**
@@ -78,7 +78,7 @@ export const ToDoListReact: React.FunctionComponent<ToDoListReactPropsType> = ({
       <li key={listItem.id} className='listLi'>
         {listItem.name}
         <button
-          className='listRemove'
+          className='removeItem'
           onClick={() =>
             handlers.removeItem({ data: listItem.id, listState, setListState })
           }

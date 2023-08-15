@@ -9,7 +9,7 @@ export type ButtonReactPropsType = {
 /**
  * @description React functional component without an internal state to
         - display button with title from props
-        - trigger "click" function with "params" argument from props
+        - trigger 'click' function with 'params' argument from props
  * @props type ButtonReactPropsType = {
             title: string
             click?: (params?: any) => void

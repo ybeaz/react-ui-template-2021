@@ -4,6 +4,7 @@ import {
   ToDoListReact,
   ToDoListReactPropsType,
   ListType,
+  handlersDefault,
 } from '../ToDoListReactV0301'
 import { timeout } from '../../../Shared/timeout'
 
@@ -25,19 +26,20 @@ let clearInputButton: Node
 let listWrapper: Node
 let listOl: Node
 let listLi: NodeListOf<Element>
-let listRemove: NodeListOf<Element>
+let removeItems: NodeListOf<Element>
+let removeItem: Node
 
 /**
  * @description: Unit Test Suites that implement
- *      - Render Test
- *      - Props Test
- *      // - Function Callbacks Test
- *      - Behavior Test
- *      - State Change Test
- *      - Conditional Rendering Test
- *      - Error Handling Test
- *      - Prop Validation Test
- *      - Hooks usage Test
+       - Render Test
+       - Props Test
+       - Handlers Callbacks Test
+       - Behavior Test
+       - State Change Test
+       - Conditional Rendering Test
+       - Error Handling Test
+       - Prop Validation Test
+       - Hooks usage Test
  */
 describe('ToDoListReact', () => {
   beforeEach(() => {
@@ -49,7 +51,8 @@ describe('ToDoListReact', () => {
     listWrapper = container.getElementsByClassName('listWrapper')[0]
     listOl = container.getElementsByClassName('listOl')[0]
     listLi = container.getElementsByClassName('listLi')
-    listRemove = container.getElementsByClassName('listRemove')
+    removeItems = container.getElementsByClassName('removeItem')
+    removeItem = container.getElementsByClassName('removeItem')[0]
   })
 
   afterEach(() => {
@@ -61,13 +64,11 @@ describe('ToDoListReact', () => {
     expect(inputItem).toBeInTheDocument()
     expect(addItemButton).toBeInTheDocument()
     expect(addItemButton).toHaveTextContent('Add')
-    // expect(clearInputButton).toBeInTheDocument()
-    // expect(clearInputButton).toHaveTextContent('Clear')
 
     expect(listWrapper).toBeInTheDocument()
     expect(listOl).toBeInTheDocument()
     expect(listLi.length).toBe(3)
-    expect(listRemove.length).toBe(3)
+    expect(removeItems.length).toBe(3)
   })
 
   test('Props Test: displays the correct list items', () => {
@@ -85,49 +86,86 @@ describe('ToDoListReact', () => {
     expect(listLi[1]).toHaveTextContent('list_Item_5')
   })
 
-  /*
-  test('Function Callbacks Test: checks function arguments', () => {
-    const inputEventMock = jest.fn()
-    const addItemMock = jest.fn()
-    const clearInputMock = jest.fn()
-    const removeItemMock = jest.fn()
+  test('Handlers Callbacks Test: checks values handlers are called with', () => {
+    const inputEventSpy = jest.spyOn(handlersDefault, 'inputEvent')
+    const addItemSpy = jest.spyOn(handlersDefault, 'addItem')
+    const clearInputSpy = jest.spyOn(handlersDefault, 'clearInput')
+    const removeItemSpy = jest.spyOn(handlersDefault, 'removeItem')
 
-    const handlers = {
-      inputEvent: inputEventMock,
-      addItem: addItemMock,
-      clearInput: clearInputMock,
-      removeItem: removeItemMock,
-    }
+    const setStateMock = jest.fn()
+    const useStateMock: any = (stateMock: any) => [stateMock, setStateMock]
+    const useStateMockSpy = jest
+      .spyOn(React, 'useState')
+      .mockImplementation(useStateMock)
 
     container = render(<ToDoListReact {...toDoListReactProps} />).container
     inputItem = container.getElementsByClassName('inputItem')[0]
     addItemButton = container.getElementsByClassName('addItemButton')[0]
-    clearInputButton = container.getElementsByClassName('clearInputButton')[0]
-    listRemove = container.getElementsByClassName('listRemove')
+    removeItem = container.getElementsByClassName('removeItem')[0]
 
     fireEvent.change(inputItem, { target: { value: 'New item' } })
-    expect(inputEventMock).toHaveBeenCalledWith('New item')
+    expect(inputEventSpy).toHaveBeenCalledWith({
+      data: 'New item',
+      setInputValueState: expect.anything(),
+    })
 
     fireEvent.click(addItemButton)
-    expect(addItemMock).toHaveBeenCalledTimes(1)
+    expect(addItemSpy).toHaveBeenCalledWith({
+      uuidv4: expect.anything(),
+      listState: expect.anything(),
+      setListState: expect.anything(),
+      inputValueState: expect.anything(),
+      setInputValueState: expect.anything(),
+    })
 
-    fireEvent.click(clearInputButton)
-    expect(clearInputMock).toHaveBeenCalledTimes(1)
-
-    fireEvent.click(listRemove[0])
-    expect(removeItemMock).toHaveBeenCalledWith('id_0')
+    fireEvent.click(removeItem)
+    expect(removeItemSpy).toHaveBeenCalledWith({
+      data: 'id_0',
+      listState: expect.anything(),
+      setListState: expect.anything(),
+    })
+    useStateMockSpy.mockRestore()
   })
-  */
+
+  test('Handlers Callbacks Test: checks number of times they are called', () => {
+    const inputEventSpy = jest.spyOn(handlersDefault, 'inputEvent')
+    const addItemSpy = jest.spyOn(handlersDefault, 'addItem')
+    const removeItemSpy = jest.spyOn(handlersDefault, 'removeItem')
+
+    const setStateMock = jest.fn()
+    const useStateMock: any = (stateMock: any) => [stateMock, setStateMock]
+    const useStateMockSpy = jest
+      .spyOn(React, 'useState')
+      .mockImplementation(useStateMock)
+
+    container = render(<ToDoListReact {...toDoListReactProps} />).container
+    inputItem = container.getElementsByClassName('inputItem')[0]
+    addItemButton = container.getElementsByClassName('addItemButton')[0]
+    removeItem = container.getElementsByClassName('removeItem')[0]
+
+    fireEvent.change(inputItem, { target: { value: 'New item' } })
+    fireEvent.change(inputItem, { target: { value: 'New item' } })
+    fireEvent.change(inputItem, { target: { value: 'New item' } })
+    expect(inputEventSpy).toHaveBeenCalledTimes(3)
+
+    fireEvent.click(addItemButton)
+    fireEvent.click(addItemButton)
+    expect(addItemSpy).toHaveBeenCalledTimes(2)
+
+    fireEvent.click(removeItem)
+    expect(removeItemSpy).toHaveBeenCalledTimes(1)
+
+    useStateMockSpy.mockRestore()
+  })
 
   test('Behavior Test and State Change Test: adds and removes items correctly', () => {
     container = render(<ToDoListReact {...toDoListReactProps} />).container
     inputItem = container.getElementsByClassName('inputItem')[0]
     addItemButton = container.getElementsByClassName('addItemButton')[0]
-    clearInputButton = container.getElementsByClassName('clearInputButton')[0]
     listWrapper = container.getElementsByClassName('listWrapper')[0]
     listOl = container.getElementsByClassName('listOl')[0]
     listLi = container.getElementsByClassName('listLi')
-    listRemove = container.getElementsByClassName('listRemove')
+    removeItem = container.getElementsByClassName('removeItem')[0]
 
     fireEvent.change(inputItem, { target: { value: 'New item' } })
     fireEvent.click(addItemButton)
@@ -136,9 +174,23 @@ describe('ToDoListReact', () => {
     expect(listLi.length).toBe(4)
     expect(listLi[0]).toHaveTextContent('New item')
 
-    fireEvent.click(listRemove[0])
+    fireEvent.click(removeItem)
     listLi = container.getElementsByClassName('listLi')
     expect(listLi.length).toBe(3)
+
+    fireEvent.change(inputItem, { target: { value: 'New item 2' } })
+    clearInputButton = container.getElementsByClassName('clearInputButton')[0]
+    fireEvent.click(clearInputButton)
+    fireEvent.click(addItemButton)
+    listLi = container.getElementsByClassName('listLi')
+    expect(listLi.length).toBe(3)
+
+    fireEvent.change(inputItem, { target: { value: 'New item 3' } })
+    fireEvent.click(addItemButton)
+    fireEvent.change(inputItem, { target: { value: 'New item 4' } })
+    fireEvent.click(addItemButton)
+    listLi = container.getElementsByClassName('listLi')
+    expect(listLi.length).toBe(5)
   })
 
   test('Conditional Rendering Test: displays the correct list items conditionally', () => {
@@ -169,16 +221,20 @@ describe('ToDoListReact', () => {
   test('Hooks usage Test: checks values useState and useMemo are called with and number of times they are called', async () => {
     const setStateMock = jest.fn()
     const useStateMock: any = (stateMock: any) => [stateMock, setStateMock]
-    jest.spyOn(React, 'useState').mockImplementation(useStateMock)
+    const useStateMockSpy = jest
+      .spyOn(React, 'useState')
+      .mockImplementation(useStateMock)
 
     const useMemoMock = jest.fn((fn: any) => fn())
-    jest.spyOn(React, 'useMemo').mockImplementation(useMemoMock)
+    const useMemoMockSpy = jest
+      .spyOn(React, 'useMemo')
+      .mockImplementation(useMemoMock)
 
     container = render(<ToDoListReact {...toDoListReactProps} />).container
     inputItem = container.getElementsByClassName('inputItem')[0]
     addItemButton = container.getElementsByClassName('addItemButton')[0]
     clearInputButton = container.getElementsByClassName('clearInputButton')[0]
-    listRemove = container.getElementsByClassName('listRemove')
+    removeItem = container.getElementsByClassName('removeItem')[0]
 
     fireEvent.change(inputItem, { target: { value: 'New item' } })
     expect(setStateMock).toHaveBeenCalledWith('New item')
@@ -186,9 +242,12 @@ describe('ToDoListReact', () => {
     fireEvent.click(addItemButton)
     expect(setStateMock).toHaveBeenCalledTimes(1)
 
-    fireEvent.click(listRemove[0])
+    fireEvent.click(removeItem)
     expect(setStateMock).toHaveBeenCalledTimes(2)
 
     expect(useMemoMock).toHaveBeenCalledTimes(1)
+
+    useStateMockSpy.mockRestore()
+    useMemoMockSpy.mockRestore()
   })
 })

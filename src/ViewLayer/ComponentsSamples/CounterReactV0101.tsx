@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
 
+export const handlersDefault: Record<string, (handlersProps: any) => void> = {
+  increment({ incrementIn, counterState, setCounterState }) {
+    incrementIn(counterState, setCounterState)
+  },
+  decrement({ decrementIn, counterState, setCounterState }) {
+    decrementIn(counterState, setCounterState)
+  },
+}
+
 export type CounterReactPropsType = {
   title: string
   increment: (count: number, func: any) => void
   decrement: (count: number, func: any) => void
+  handlers?: Record<string, (handlersProps: any) => void>
 }
 
 /**
@@ -21,34 +31,31 @@ export type CounterReactPropsType = {
  */
 export const CounterReact: React.FunctionComponent<CounterReactPropsType> = ({
   title: titleIn,
-  increment,
-  decrement,
+  increment: incrementIn,
+  decrement: decrementIn,
+  handlers = handlersDefault,
 }: CounterReactPropsType) => {
   let title = titleIn
   if (typeof titleIn !== 'string') title = 'Sorry for unexpected behavior'
 
   const [counterState, setCounterState] = useState(0)
 
-  const handlers: Record<
-    string,
-    (count: number, setCounterState: any) => void
-  > = {
-    increment,
-    decrement,
-  }
-
   return (
     <div className='CounterReact'>
       <h2 className='title'>{title}</h2>
       <button
         className='buttonIncrement'
-        onClick={() => handlers.increment(counterState, setCounterState)}
+        onClick={() =>
+          handlers.increment({ incrementIn, counterState, setCounterState })
+        }
       >
         Increment
       </button>
       <button
         className='buttonDecrement'
-        onClick={() => handlers.decrement(counterState, setCounterState)}
+        onClick={() =>
+          handlers.decrement({ decrementIn, counterState, setCounterState })
+        }
       >
         Decrement
       </button>

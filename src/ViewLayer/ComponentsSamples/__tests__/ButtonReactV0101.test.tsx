@@ -16,11 +16,11 @@ const buttonReactProps: ButtonReactPropsType = {
 
 /**
  * @description: Unit Test Suites that implement
- *      - Render Test
- *      - Props Test
- *      - Function Callbacks Test
- *      - Function Callbacks Test
- *      - Error Handling Test and Prop Validation Test
+      - Render Test
+      - Props Test
+      - Function Callbacks Test
+      - Function Callbacks Test
+      - Error Handling Test and Prop Validation Test
  */
 
 describe('ButtonReact', () => {
