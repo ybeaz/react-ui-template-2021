@@ -48,20 +48,20 @@ export type ToDoListReactPropsType = {
         - display a numbered list of tasks from the component props
         - keep the list of tasks in the state of the component
         - display an input field for entering the name of the new task
-        - display a button labeled "Add" next to the input field
-        - ensure that clicking on the "Add" button adds an item from the input field on the top of the list of tasks
+        - display a button labeled 'Add' next to the input field
+        - ensure that clicking on the 'Add' button adds an item from the input field on the top of the list of tasks
         - prevent adding an item from the input field on the top of the list of tasks if the input field is empty
-        - make sure that when you click on the "Add" button, the input field is cleared
-        - display a button labeled "Clear" next to the Add button if input field value is not empty (non-zero)
-        - ensure that when you click on the "Clear" button, the input field is cleared
-        - display buttons labeled "Remove" in the list of tasks next to the name of each task
-        - provide that clicking on the "Remove" button removes the task in the corresponding line from the component view
-        - ensure that clicking on the "Remove" button removes that task in the corresponding line from the state of the component
+        - make sure that when you click on the 'Add' button, the input field is cleared
+        - display a button labeled 'Clear' next to the Add button if input field value is not empty (non-zero)
+        - ensure that when you click on the 'Clear' button, the input field is cleared
+        - display buttons labeled 'Remove' in the list of tasks next to the name of each task
+        - provide that clicking on the 'Remove' button removes the task in the corresponding line from the component view
+        - ensure that clicking on the 'Remove' button removes that task in the corresponding line from the state of the component
  * @props type ToDoListReactPropsType = {
             list?: ListType[]
             handlers?: Record<string, (handlersProps: any) => void>
           }
- * @import import { ToDoListReact } from '../ComponentsSamples/ToDoListReact'
+ * @import import { ToDoListReact } from './ToDoListReact'
  */
 export const ToDoListReact: React.FunctionComponent<ToDoListReactPropsType> = ({
   list: listIn = listDefault,
