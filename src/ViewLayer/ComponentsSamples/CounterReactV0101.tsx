@@ -16,18 +16,23 @@ export type CounterReactPropsType = {
   handlers?: Record<string, (handlersProps: any) => void>
 }
 
-/**
- * @description React functional component with an internal state to
-        - display a title from props
-        - display a clickable button to increase the counter value by 1
-        - display a clickable button to decrease the counter value by 1
-        - render the counter value if this value is non-zero
- * @props type CounterReactPropsType = {
-            title: string
-            increment: (count: number, func: any) => void
-            decrement: (count: number, func: any) => void
-          }
- * @import import { CounterReact } from './CounterReact'
+/** 
+ TypeDoc https://typedoc.org
+ @name CounterReact
+ @function type React.FunctionComponent<[@name]PropsType>
+ @description Functional component in ReactJS with an internal state to
+  - display a title from props
+  - display a clickable button to increase the counter value by 1
+  - display a clickable button to decrease the counter value by 1
+  - render the counter value if this value is non-zero
+ @argument type [@name]PropsType = {
+  title: string
+  increment: (count: number, func: any) => void
+  decrement: (count: number, func: any) => void
+  handlers?: Record<string, (handlersProps: any) => void>
+ }
+ @returns type ReactNode
+ @import import { [@name] } from './[@name]'
  */
 export const CounterReact: React.FunctionComponent<CounterReactPropsType> = ({
   title: titleIn,

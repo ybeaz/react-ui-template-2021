@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 export type ButtonReactPropsType = {
   title: string
@@ -7,21 +7,25 @@ export type ButtonReactPropsType = {
 }
 
 /**
- * @description React functional component without an internal state to
-        - display button with title from props
-        - trigger 'click' function with 'params' argument from props
- * @props type ButtonReactPropsType = {
-            title: string
-            click?: (params?: any) => void
-            params?: any
-          }
- * @import import { ButtonReact } from './ButtonReact'
+ TypeDoc https://typedoc.org
+ @name ButtonReact
+ @function type React.FunctionComponent<[@name]PropsType>
+ @description Functional component in ReactJS without an internal state to
+  - display button with title from props
+  - trigger 'click' function with 'params' argument from props
+ @argument type [@name]PropsType = {
+  title: string
+  click?: (params?: any) => void
+  params?: any
+}
+ @returns type ReactNode
+ @import import { [@name] } from './[@name]'
  */
 export const ButtonReact: React.FunctionComponent<ButtonReactPropsType> = ({
   title,
   click = () => {},
   params,
-}: ButtonReactPropsType) => {
+}: ButtonReactPropsType): ReactNode => {
   return (
     <div className='ButtonReact'>
       <button className='buttonElement' onClick={() => click(params)}>

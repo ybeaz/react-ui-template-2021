@@ -25,9 +25,17 @@ export const getReadFile = async (path: string) => {
  * @import import { getStringFromFileTool } from ./Shared/getStringFromFileTool'
  */
 ;(async () => {
-  const path = SOURCES_DICTIONARY.ToDoListReactV0301
+  const path = SOURCES_DICTIONARY.ButtonReactV0101
+  // const path = SOURCES_DICTIONARY.ButtonReactV0101Test
+  // const path = SOURCES_DICTIONARY.CounterReactV0101
+  // const path = SOURCES_DICTIONARY.CounterReactV0101Test
+  // const path = SOURCES_DICTIONARY.ToDoListReactV0301
+  // const path = SOURCES_DICTIONARY.ToDoListReactV0301test
 
   let str = await getReadFile(path)
-  str = str.replace(/\s\s+/g, ' ')
+  // str = str.replace(/\s\s+/g, ' ')
   console.info('getStringFromFileTool [25]', { str })
 })()
+
+// str = str.replace(/(\\n)/gm, '')
+// str = str.split('\\n').join('\n')
