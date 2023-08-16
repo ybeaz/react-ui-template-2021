@@ -32,10 +32,6 @@ const path01 = SOURCES_DICTIONARY.ButtonReactV0101
 const path02 = SOURCES_DICTIONARY.CounterReactV0101
 const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
 
-// const path = SOURCES_DICTIONARY.ButtonReactV0101Test
-// const path = SOURCES_DICTIONARY.CounterReactV0101Test
-// const path = SOURCES_DICTIONARY.ToDoListReactV0301test
-
 ;(async () => {
   const str01 = await getReadFileToString(path01)
   const user01 = await getPromptExample(str01)

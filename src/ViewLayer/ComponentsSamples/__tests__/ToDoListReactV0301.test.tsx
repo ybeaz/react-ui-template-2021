@@ -32,16 +32,19 @@ const toDoListReactProps: ToDoListReactPropsType = {
 let useStateSpy: any
 
 /**
- * @description: Unit Test Suites that implement
-       - Render Test
-       - Props Test
-       - Handlers Callbacks Test
-       - Behavior Test
-       - State Change Test
-       - Conditional Rendering Test
-       - Error Handling Test
-       - Prop Validation Test
-       - Hooks usage Test
+ TypeDoc https://typedoc.org
+ @name CounterReact.test.tsx
+ @function type jest.Describe
+ @description Unit Test Suites to implement
+  - Render Test
+  - Props Test
+  - Props Callbacks Test for arguments
+  - Props Callbacks Test for calls number
+  - Behavior Test
+  - Conditional Rendering Test
+  - Error Handling Test and Prop Validation Test
+  - Hooks Usage Test for arguments
+  - Hooks Usage Test for calls number
  */
 describe('ToDoListReact', () => {
   beforeEach(() => {
@@ -54,7 +57,7 @@ describe('ToDoListReact', () => {
     jest.clearAllMocks()
   })
 
-  test('Render Test: ToDoListReact renders all elements with expected content', () => {
+  test('Render Test: checks rendering all elements with expected content', () => {
     const container = render(
       <ToDoListReact {...toDoListReactProps} />
     ).container
@@ -77,7 +80,7 @@ describe('ToDoListReact', () => {
     expect(removeItems.length).toBe(3)
   })
 
-  test('Props Test: displays the correct list items', () => {
+  test('Props Test: tests display the correct values from props', () => {
     let toDoListReactProps: ToDoListReactPropsType = {
       list: [
         { id: 'id_3', name: 'list_Item_4' },
@@ -95,7 +98,7 @@ describe('ToDoListReact', () => {
     expect(listLi[1]).toHaveTextContent('list_Item_5')
   })
 
-  test('Handlers Callbacks Test: checks values handlers are called with', () => {
+  test('Props Callbacks Test for arguments: checks values of props of calls', () => {
     const inputEventSpy = jest.spyOn(handlersDefault, 'inputEvent')
     const addItemSpy = jest.spyOn(handlersDefault, 'addItem')
     const clearInputSpy = jest.spyOn(handlersDefault, 'clearInput')
@@ -136,7 +139,7 @@ describe('ToDoListReact', () => {
     removeItemSpy.mockRestore()
   })
 
-  test('Handlers Callbacks Test: checks number of times they are called', () => {
+  test('Props Callbacks Test for calls number: counts calls', () => {
     const inputEventSpy = jest.spyOn(handlersDefault, 'inputEvent')
     const addItemSpy = jest.spyOn(handlersDefault, 'addItem')
     const removeItemSpy = jest.spyOn(handlersDefault, 'removeItem')
@@ -165,7 +168,7 @@ describe('ToDoListReact', () => {
     removeItemSpy.mockRestore()
   })
 
-  test('Behavior Test and State Change Test: adds and removes items correctly', () => {
+  test('Behavior Test', () => {
     const container = render(
       <ToDoListReact {...toDoListReactProps} />
     ).container
@@ -202,7 +205,7 @@ describe('ToDoListReact', () => {
     expect(listLi.length).toBe(5)
   })
 
-  test('Conditional Rendering Test: displays the correct list items conditionally', () => {
+  test('Conditional Rendering Test', () => {
     let toDoListReactProps: ToDoListReactPropsType = {
       list: [],
     }
@@ -213,7 +216,7 @@ describe('ToDoListReact', () => {
     expect(listLi.length).toBe(0)
   })
 
-  test('Error Handling Test and Prop Validation Test: displays default list items if the list is not an array', () => {
+  test('Error Handling Test and Prop Validation Test', () => {
     let toDoListReactProps: ToDoListReactPropsType = {
       // @ts-expect-error
       list: 'not an array',
@@ -227,7 +230,7 @@ describe('ToDoListReact', () => {
     expect(listLi.length).toBe(0)
   })
 
-  test('Hooks usage Test: checks values hooks are called with', async () => {
+  test('Hooks Usage Test for arguments: checks values of props of calls', async () => {
     const setStateMock = jest.fn()
     const useStateMock: any = (stateMock: any) => [stateMock, setStateMock]
     const useStateSpy = jest.spyOn(React, 'useState')
@@ -248,7 +251,7 @@ describe('ToDoListReact', () => {
     useMemoSpy.mockRestore()
   })
 
-  test('Hooks usage Test: checks number of hooks calls', async () => {
+  test('Hooks Usage Test for calls number: counts calls', async () => {
     const setStateMock = jest.fn()
     const useStateMock: any = (stateMock: any) => [stateMock, setStateMock]
     const useStateSpy = jest.spyOn(React, 'useState')

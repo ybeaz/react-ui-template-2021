@@ -15,14 +15,16 @@ const buttonReactProps: ButtonReactPropsType = {
 }
 
 /**
- * @description: Unit Test Suites that implement
-      - Render Test
-      - Props Test
-      - Function Callbacks Test
-      - Function Callbacks Test
-      - Error Handling Test and Prop Validation Test
+ TypeDoc https://typedoc.org
+ @name ButtonReact.test.tsx
+ @function type jest.Describe
+ @description Unit Test Suites to implement
+  - Render Test
+  - Props Test
+  - Props Callbacks Test for arguments
+  - Props Callbacks Test for calls number
+  - Error Handling Test and Prop Validation Test
  */
-
 describe('ButtonReact', () => {
   beforeEach(() => {
     container = render(<ButtonReact {...buttonReactProps} />).container
@@ -34,7 +36,7 @@ describe('ButtonReact', () => {
     jest.clearAllMocks()
   })
 
-  test('Render Test: ButtonReact renders all elements with expected content', () => {
+  test('Render Test: checks rendering all elements with expected content', () => {
     expect(buttonReact).toBeInTheDocument()
     expect(buttonReact).toHaveTextContent('Click me')
 
@@ -42,7 +44,7 @@ describe('ButtonReact', () => {
     expect(buttonElement).toHaveTextContent('Click me')
   })
 
-  test('Props Test: displays the coorrect ButtonReact', () => {
+  test('Props Test: tests display the correct values from props', () => {
     let buttonReactProps: ButtonReactPropsType = {
       title: 'The first buttonReact',
       click,
@@ -60,7 +62,7 @@ describe('ButtonReact', () => {
     expect(buttonReact).toHaveTextContent('The second buttonReact')
   })
 
-  test('Function Callbacks Test: checks click functions arguments', () => {
+  test('Props Callbacks Test for arguments: checks values of props of calls', () => {
     params = 'test param'
     const buttonReactProps: ButtonReactPropsType = {
       title: 'Click me',
@@ -79,7 +81,7 @@ describe('ButtonReact', () => {
     expect(clickMock).toHaveBeenCalledWith(params)
   })
 
-  test('Function Callbacks Test: counts click function calls', () => {
+  test('Props Callbacks Test for calls number: counts calls', () => {
     params = 'test param'
     const clickMock = jest.fn()
 
@@ -99,7 +101,7 @@ describe('ButtonReact', () => {
     expect(clickMock).toHaveBeenCalledTimes(3)
   })
 
-  test('Error Handling Test and Prop Validation Test: displays title, converted to the string if the title is not a string', () => {
+  test('Error Handling Test and Prop Validation Test', () => {
     let buttonReactProps: ButtonReactPropsType = {
       // @ts-ignore
       title: 123,
