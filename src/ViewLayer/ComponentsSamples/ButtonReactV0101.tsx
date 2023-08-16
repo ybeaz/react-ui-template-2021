@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { ReactElement } from 'react'
 
 export type ButtonReactPropsType = {
   title: string
@@ -18,14 +18,14 @@ export type ButtonReactPropsType = {
   click?: (params?: any) => void
   params?: any
 }
- @returns type ReactNode
+ @returns type ReactElement<any, any>
  @import import { [@name] } from './[@name]'
  */
 export const ButtonReact: React.FunctionComponent<ButtonReactPropsType> = ({
   title,
   click = () => {},
   params,
-}: ButtonReactPropsType) => {
+}: ButtonReactPropsType): ReactElement<any, any> => {
   return (
     <div className='ButtonReact'>
       <button className='buttonElement' onClick={() => click(params)}>

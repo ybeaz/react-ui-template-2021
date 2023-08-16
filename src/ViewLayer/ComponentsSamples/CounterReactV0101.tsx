@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { ReactElement, useState } from 'react'
 
 export const handlersDefault: Record<string, (handlersProps: any) => void> = {
   increment({ incrementIn, counterState, setCounterState }) {
@@ -39,7 +39,7 @@ export const CounterReact: React.FunctionComponent<CounterReactPropsType> = ({
   increment: incrementIn,
   decrement: decrementIn,
   handlers = handlersDefault,
-}: CounterReactPropsType) => {
+}: CounterReactPropsType): ReactElement => {
   let title = titleIn
   if (typeof titleIn !== 'string') title = 'Sorry for unexpected behavior'
 

@@ -14,7 +14,7 @@ const optionsDefault = { headerColor: 'cyan', logColor: 'gray', endLog: '\n' }
 
 /**
  * @description Function to
- * @import import { consoler } from './Shared/consoler'
+ * @import import { consoler } from './consoler'
  */
 
 export const consoler: ConsolerType = (
@@ -26,9 +26,9 @@ export const consoler: ConsolerType = (
   const { headerColor, logColor, endLog } = options
 
   const inspectedObject = util.inspect(entity, { depth: null })
-  // @ts-ignore
+
   console.log(chalk.bold[headerColor](comment, entityName))
-  // @ts-ignore
+
   console.log(chalk[logColor](inspectedObject))
   if (endLog) console.log(endLog)
 }

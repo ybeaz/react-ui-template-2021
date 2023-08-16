@@ -8,6 +8,34 @@ const listDefault: ListType[] = [
   { id: 'id_2', name: 'list_Item_3' },
 ]
 
+type RederedListPropsType = {
+  listInput: ListType[]
+  handlers?: Record<string, (handlersProps: any) => void>
+  setListState: any
+}
+
+const RenderedList: React.FunctionComponent<RederedListPropsType> = ({
+  listInput,
+  handlers,
+  setListState,
+}: RederedListPropsType): ReactElement => {
+  const liItems = listInput.map((listItem: ListType) => (
+    <li key={listItem.id} className='listLi'>
+      {listItem.name}
+      <button
+        className='removeItem'
+        onClick={() =>
+          handlers.removeItem({ data: listItem.id, listInput, setListState })
+        }
+      >
+        Remove
+      </button>
+    </li>
+  ))
+
+  return <ol className='listOl'>{liItems}</ol>
+}
+
 export const handlersDefault: Record<string, (handlersProps: any) => void> = {
   inputEvent({ data, setInputValueState }) {
     setInputValueState(data)
@@ -30,8 +58,8 @@ export const handlersDefault: Record<string, (handlersProps: any) => void> = {
   clearInput({ setInputValueState }) {
     setInputValueState('')
   },
-  removeItem({ data, listState, setListState }) {
-    const listStateNext = listState.filter((list: ListType) => list.id !== data)
+  removeItem({ data, listInput, setListState }) {
+    const listStateNext = listInput.filter((list: ListType) => list.id !== data)
     setListState(listStateNext)
   },
 }
@@ -70,32 +98,22 @@ export type ToDoListReactPropsType = {
 export const ToDoListReact: React.FunctionComponent<ToDoListReactPropsType> = ({
   list: listIn = listDefault,
   handlers = handlersDefault,
-}: ToDoListReactPropsType) => {
+}: ToDoListReactPropsType): ReactElement => {
   let list: ListType[] = []
   if (Array.isArray(listIn)) list = listIn
 
   const [listState, setListState] = useState(list)
   const [inputValueState, setInputValueState] = useState('')
 
-  const getRenderedList = (listInput: ListType[]): ReactElement => {
-    const liItems = listInput.map((listItem: ListType) => (
-      <li key={listItem.id} className='listLi'>
-        {listItem.name}
-        <button
-          className='removeItem'
-          onClick={() =>
-            handlers.removeItem({ data: listItem.id, listState, setListState })
-          }
-        >
-          Remove
-        </button>
-      </li>
-    ))
-
-    return <ol className='listOl'>{liItems}</ol>
+  const renderedListProps: RederedListPropsType = {
+    listInput: listState,
+    handlers,
+    setListState,
   }
-
-  const renderedList = useMemo(() => getRenderedList(listState), [listState])
+  const renderedList = useMemo(
+    () => <RenderedList {...renderedListProps} />,
+    [listState]
+  )
 
   return (
     <div className='ToDoListReact'>

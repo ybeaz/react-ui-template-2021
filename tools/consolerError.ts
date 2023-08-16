@@ -7,7 +7,7 @@ interface ConsolerType {
 
 /**
  * @description Function to
- * @import import { consolerError } from './shared/utils/consolerError'
+ * @import import { consolerError } from './consolerError'
  */
 
 export const consolerError: ConsolerType = (fileName, error) => {
