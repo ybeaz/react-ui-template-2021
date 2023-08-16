@@ -1,10 +1,10 @@
 import { promises as fs } from 'fs'
-import { getReadFileToString } from './getReadFileToString'
+import { getReadFileToString } from '../tools/getReadFileToString'
 import { join } from 'path'
-import { consoler } from './consoler'
-import { getWriteFile } from './getWriteFile'
-import { getReplacedSpacesInString } from './getReplacedSpacesInString'
-import { getPromptExample } from './getPromptExample'
+import { consoler } from '../tools/consoler'
+import { getWriteFile } from '../tools/getWriteFile'
+import { getReplacedSpacesInString } from '../tools/getReplacedSpacesInString'
+import { getPromptExample } from '../tools/getPromptExample'
 
 const SOURCES_DICTIONARY: Record<string, string> = {
   ButtonReactV0101:
@@ -23,10 +23,11 @@ const SOURCES_DICTIONARY: Record<string, string> = {
 
 /**
  * @description Function to getBotReactFcData
- * @run ts-node tools/getBotReactFcData.ts
+ * @run ts-node botBuilding/getBotReactFcScenario.ts
  */
 
-const fileNameOut = 'botData/botReactFcData.json'
+const folderNameOut = 'output/'
+const fileNameOut = 'botReactFcData.json'
 const path01 = SOURCES_DICTIONARY.ButtonReactV0101
 const path02 = SOURCES_DICTIONARY.CounterReactV0101
 const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
@@ -36,6 +37,15 @@ const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
 // const path = SOURCES_DICTIONARY.ToDoListReactV0301test
 
 ;(async () => {
+  type GetBotReactFcDataPropsType = {
+    user01: string
+    assist01: string
+    user02: string
+    assist02: string
+    user03: string
+    assist03: string
+  }
+
   const getBotReactFcData = ({
     user01,
     assist01,
@@ -43,7 +53,7 @@ const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
     assist02,
     user03,
     assist03,
-  }): string => {
+  }: GetBotReactFcDataPropsType): string => {
     const propmtReturnObject = {
       model: 'gpt-3.5-turbo',
       messages: [
@@ -120,7 +130,7 @@ const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
     assist03,
   })
 
-  let pathFull = join(__dirname, fileNameOut)
+  let pathFull = join(__dirname, folderNameOut, fileNameOut)
   let getWriteFileRes = await getWriteFile(pathFull, promptReturn, {
     printRes: false,
   })
