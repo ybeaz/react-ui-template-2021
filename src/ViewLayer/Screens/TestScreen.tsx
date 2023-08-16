@@ -38,13 +38,13 @@ export const TestScreen: React.FunctionComponent<TestScreenPropsType> = (
   } = store
 
   useEffect(() => {
-    handleEvents(
-      {},
-      {
-        typeEvent: 'TEMPLATE',
-        data: { id: '3' },
-      }
-    )
+    // handleEvents(
+    //   {},
+    //   {
+    //     typeEvent: 'TEMPLATE',
+    //     data: { id: '3' },
+    //   }
+    // )
   }, [])
 
   console.info('TestScreen  [41]', {

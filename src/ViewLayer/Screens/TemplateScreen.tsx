@@ -34,13 +34,13 @@ export const TemplateScreen: React.FunctionComponent<
   } = store
 
   useEffect(() => {
-    handleEvents(
-      {},
-      {
-        typeEvent: 'TEMPLATE',
-        data: { id: '3' },
-      }
-    )
+    // handleEvents(
+    //   {},
+    //   {
+    //     typeEvent: 'TEMPLATE',
+    //     data: { id: '3' },
+    //   }
+    // )
   }, [])
 
   console.info('TemplateScreen  [41]', {

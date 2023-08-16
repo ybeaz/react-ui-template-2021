@@ -9,23 +9,23 @@ const listDefault: ListType[] = [
 ]
 
 type RederedListPropsType = {
-  listInput: ListType[]
-  handlers?: Record<string, (handlersProps: any) => void>
+  listState: ListType[]
+  handlers: Record<string, (handlersProps: any) => void>
   setListState: any
 }
 
 const RenderedList: React.FunctionComponent<RederedListPropsType> = ({
-  listInput,
+  listState,
   handlers,
   setListState,
 }: RederedListPropsType): ReactElement => {
-  const liItems = listInput.map((listItem: ListType) => (
+  const liItems = listState.map((listItem: ListType) => (
     <li key={listItem.id} className='listLi'>
       {listItem.name}
       <button
         className='removeItem'
         onClick={() =>
-          handlers.removeItem({ data: listItem.id, listInput, setListState })
+          handlers.removeItem({ data: listItem.id, listState, setListState })
         }
       >
         Remove
@@ -58,8 +58,8 @@ export const handlersDefault: Record<string, (handlersProps: any) => void> = {
   clearInput({ setInputValueState }) {
     setInputValueState('')
   },
-  removeItem({ data, listInput, setListState }) {
-    const listStateNext = listInput.filter((list: ListType) => list.id !== data)
+  removeItem({ data, listState, setListState }) {
+    const listStateNext = listState.filter((list: ListType) => list.id !== data)
     setListState(listStateNext)
   },
 }
@@ -106,7 +106,7 @@ export const ToDoListReact: React.FunctionComponent<ToDoListReactPropsType> = ({
   const [inputValueState, setInputValueState] = useState('')
 
   const renderedListProps: RederedListPropsType = {
-    listInput: listState,
+    listState,
     handlers,
     setListState,
   }

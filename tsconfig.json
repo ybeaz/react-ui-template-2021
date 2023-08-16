@@ -1,27 +1,56 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "declaration": true,
-    "noLib": false,
-    "lib": ["ESNext"],
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ESNext",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "baseUrl": "./",
-    "incremental": true,
-    "esModuleInterop": true,
+    "target": "es2015",
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
     "moduleResolution": "node",
-    "jsx": "react-jsx",
-    "allowJs": true
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2015"],
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
-  "allowJs": true,
-  "assets": ["src/**/*"],
-  "watchAssets": true,
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
+
+// {
+//   "compilerOptions": {
+//     "module": "commonjs",
+//     "declaration": true,
+//     "noLib": false,
+//     "lib": ["ESNext"],
+//     "removeComments": true,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true,
+//     "allowSyntheticDefaultImports": true,
+//     "target": "ESNext",
+//     "sourceMap": true,
+//     "outDir": "./dist",
+//     "baseUrl": "./",
+//     "incremental": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "moduleResolution": "node",
+//     "jsx": "react",
+//     "allowJs": true
+//   },
+//   "allowJs": true,
+//   "assets": ["src/**/*"],
+//   "watchAssets": true,
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "dist"],
+//   "types": ["node", "jest", "@testing-library/jest-dom"]
+// }
