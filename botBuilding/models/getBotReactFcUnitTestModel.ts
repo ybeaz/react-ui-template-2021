@@ -5,6 +5,7 @@ import { consolerError } from '../../tools/consolerError'
 interface GetBotReactFcUnitTestModelType {
   (
     getBotReactFcUnitTestModelParams: {
+      model: string
       component01: string
       unitTest01: string
       assist01: string
@@ -27,6 +28,7 @@ interface GetBotReactFcUnitTestModelType {
 export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
   async (
     {
+      model,
       component01,
       unitTest01,
       assist01,
@@ -41,16 +43,16 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
   ) => {
     try {
       const propmtReturnObject = {
-        model: 'gpt-3.5-turbo',
+        model,
         messages: [
           {
             role: 'system',
             content:
-              'Context: "NPM Jest unit tests for ReactJS, Typescript, programming" Language: "Use language based on the User question language" System_message: "Generate a response in the markdown format with typescript code snippet." ',
+              'Context: "NPM Jest unit tests for ReactJS, Typescript, programming" Language: "Use language based on the User question language"',
           },
           {
             role: 'user',
-            content: `Task: Create TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest01} Component: ${component01}`,
+            content: `I have the following component: ${component01}, The task is to Create TypeDoc and unit tests for my ReactJS component. Instructions: ${unitTest01},Response format: plain text`,
           },
           {
             role: 'assistant',
@@ -58,7 +60,7 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
           },
           // {
           //   role: 'user',
-          //   content: `Great, nice. This time the task is: Task: Create TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest02} Component: ${component02}`,
+          //   content: `Great, nice. This time I have the another component: ${component02}, The task is to Create TypeDoc and unit tests for my ReactJS component. Instructions: ${unitTest02}, Response format: plain text`,
           // },
           // {
           //   role: 'assistant',
@@ -66,7 +68,7 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
           // },
           {
             role: 'user',
-            content: `Great, nice. This time the task is: Create TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest03} Component: ${component03}`,
+            content: `Great, nice. This time I have the another component: ${component03}, The task is to Create TypeDoc and unit tests for my ReactJS component. Instructions: ${unitTest03}, Response format: plain text`,
           },
           {
             role: 'assistant',
@@ -74,7 +76,7 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
           },
           {
             role: 'user',
-            content: `Great, nice, I like it. This time the task is: Create TypeDoc and unit tests for the following ReactJS component. {userText}`,
+            content: `Good, nice. This time I have the another component and instructions: \${userText}, The task is to Create TypeDoc and unit tests for my ReactJS component. Instructions: Response format: markdown format with typescript code snippet`,
           },
           {
             role: 'system',
@@ -89,9 +91,9 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
         requestBody: propmtReturnObject,
         requestBodyLen: JSON.stringify(propmtReturnObject).length,
         promptExamples: [
-          `Example 1.\\nCreate TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest01}\\nComponent: ...`,
-          `Example 2.\\nCreate TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest02}\\nComponent: ...`,
-          `Example 3.\\nCreate TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest03}\\nComponent: ...`,
+          `Example 1.\\nComponent: ... \\nCreate unit tests for the following ReactJS component. Instructions: ${unitTest01}.`,
+          `Example 2.\\nComponent: ... \\nCreate unit tests for the following ReactJS component. Instructions: ${unitTest02}`,
+          `Example 3.\\nComponent: ... \\nCreate unit tests for the following ReactJS component. Instructions: ${unitTest03}`,
         ],
       })
 

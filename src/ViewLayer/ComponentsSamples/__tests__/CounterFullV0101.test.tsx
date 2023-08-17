@@ -33,7 +33,6 @@ const counterReactProps: CounterReactPropsType = {
 let useStateSpy: any
 
 /**
- TypeDoc https://typedoc.org
  @function type jest.Describe
  @description Unit Test Suites to implement
   - Render Test

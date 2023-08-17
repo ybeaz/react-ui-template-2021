@@ -5,6 +5,7 @@ import { consolerError } from '../../tools/consolerError'
 interface GetBotReactFcModelType {
   (
     getBotReactFcModelParams: {
+      model: string
       user01: string
       assist01: string
       user02: string
@@ -22,12 +23,12 @@ interface GetBotReactFcModelType {
  */
 
 export const getBotReactFcModel: GetBotReactFcModelType = async (
-  { user01, assist01, user02, assist02, user03, assist03 },
+  { model, user01, assist01, user02, assist02, user03, assist03 },
   options
 ) => {
   try {
     const propmtReturnObject = {
-      model: 'gpt-3.5-turbo',
+      model,
       messages: [
         {
           role: 'system',
@@ -73,6 +74,7 @@ export const getBotReactFcModel: GetBotReactFcModelType = async (
 
     const getBotReactFcModelRes = await JSON.stringify({
       requestBody: propmtReturnObject,
+      requestBodyLen: JSON.stringify(propmtReturnObject).length,
       promptExamples: [
         `Example 1.\\nCreate TypeDoc and a Functional component in ReactJS. Instructions: ${user01}`,
         `Example 2.\\nCreate TypeDoc and a Functional component in ReactJS. Instructions: ${user02}`,

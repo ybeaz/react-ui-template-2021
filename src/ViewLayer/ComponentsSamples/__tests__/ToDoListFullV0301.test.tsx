@@ -32,7 +32,6 @@ const toDoListReactProps: ToDoListReactPropsType = {
 let useStateSpy: any
 
 /**
- TypeDoc https://typedoc.org
  @function type jest.Describe
  @description Unit Test Suites to implement
   - Render Test

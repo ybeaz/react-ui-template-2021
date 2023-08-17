@@ -5,6 +5,7 @@ import { getWriteFile } from '../tools/getWriteFile'
 import { getReplacedSpacesInString } from '../tools/getReplacedSpacesInString'
 import { getPromptExample } from '../tools/getPromptExample'
 import { getBotReactFcModel } from './models/getBotReactFcModel'
+import { getDateString } from '../src/Shared/getDateString'
 
 const SOURCES_DICTIONARY: Record<string, string> = {
   ButtonReactV0101:
@@ -26,8 +27,6 @@ const SOURCES_DICTIONARY: Record<string, string> = {
  * @run ts-node botBuilding/getBotReactFcScenario.ts
  */
 
-const folderNameOut = 'output/'
-const fileNameOut = 'botReactFcData.json'
 const path01 = SOURCES_DICTIONARY.ButtonReactV0101
 const path02 = SOURCES_DICTIONARY.CounterReactV0101
 const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
@@ -45,24 +44,29 @@ const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
   const user03 = await getPromptExample(str03)
   const assist03 = await getReplacedSpacesInString(str03)
 
-  const promptReturn = await getBotReactFcModel({
-    user01,
-    assist01,
-    user02,
-    assist02,
-    user03,
-    assist03,
-  })
+  const promptReturn =
+    (await getBotReactFcModel({
+      model: 'gpt-3.5-turbo',
+      user01,
+      assist01,
+      user02,
+      assist02,
+      user03,
+      assist03,
+    })) || ''
 
+  const dateTime = getDateString({ dash: true })
+  const folderNameOut = 'output/'
+  const fileNameOut = `${'botReactFc'}-${dateTime}.json`
   let pathFull = join(__dirname, folderNameOut, fileNameOut)
+
   let getWriteFileRes =
     promptReturn &&
     (await getWriteFile(pathFull, promptReturn, {
       printRes: false,
     }))
-  consoler(
-    'getBotReactFcData [124]',
-    'getWriteFileRes',
-    JSON.parse(getWriteFileRes)
-  )
+  consoler('getBotReactFcScenario [69]', 'getWriteFileRes', {
+    ...JSON.parse(getWriteFileRes),
+    dateTime,
+  })
 })()

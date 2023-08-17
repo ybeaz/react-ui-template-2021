@@ -4,9 +4,6 @@ import { ButtonReact, ButtonReactPropsType } from '../ButtonReactV0101'
 
 let click = () => {}
 let params = 'test param'
-let container: any
-let buttonReact: Node
-let buttonElement: Node
 
 const buttonReactProps: ButtonReactPropsType = {
   title: 'Click me',
@@ -15,7 +12,6 @@ const buttonReactProps: ButtonReactPropsType = {
 }
 
 /**
- TypeDoc https://typedoc.org
  @function type jest.Describe
  @description Unit Test Suites to implement
   - Render Test
@@ -25,17 +21,17 @@ const buttonReactProps: ButtonReactPropsType = {
   - Error Handling Test and Prop Validation Test
  */
 describe('ButtonReact', () => {
-  beforeEach(() => {
-    container = render(<ButtonReact {...buttonReactProps} />).container
-    buttonReact = container.getElementsByClassName('ButtonReact')[0]
-    buttonElement = container.getElementsByClassName('buttonElement')[0]
-  })
+  beforeEach(() => {})
 
   afterEach(() => {
     jest.clearAllMocks()
   })
 
   test('Render Test: checks rendering all elements with expected content', () => {
+    const container = render(<ButtonReact {...buttonReactProps} />).container
+    const buttonReact = container.getElementsByClassName('ButtonReact')[0]
+    const buttonElement = container.getElementsByClassName('buttonElement')[0]
+
     expect(buttonReact).toBeInTheDocument()
     expect(buttonReact).toHaveTextContent('Click me')
 
@@ -48,8 +44,8 @@ describe('ButtonReact', () => {
       title: 'The first buttonReact',
       click,
     }
-    container = render(<ButtonReact {...buttonReactProps} />).container
-    buttonReact = container.getElementsByClassName('ButtonReact')[0]
+    let container = render(<ButtonReact {...buttonReactProps} />).container
+    let buttonReact = container.getElementsByClassName('ButtonReact')[0]
     expect(buttonReact).toHaveTextContent('The first buttonReact')
 
     buttonReactProps = {
@@ -70,8 +66,8 @@ describe('ButtonReact', () => {
     }
     const clickMock = jest.spyOn(buttonReactProps, 'click')
 
-    container = render(<ButtonReact {...buttonReactProps} />).container
-    buttonElement = container.getElementsByClassName('buttonElement')[0]
+    const container = render(<ButtonReact {...buttonReactProps} />).container
+    const buttonElement = container.getElementsByClassName('buttonElement')[0]
 
     fireEvent.click(buttonElement)
     expect(clickMock).toHaveBeenCalledWith(params)
@@ -89,8 +85,8 @@ describe('ButtonReact', () => {
       click: clickMock,
       params,
     }
-    container = render(<ButtonReact {...buttonReactProps} />).container
-    buttonElement = container.getElementsByClassName('buttonElement')[0]
+    const container = render(<ButtonReact {...buttonReactProps} />).container
+    const buttonElement = container.getElementsByClassName('buttonElement')[0]
 
     fireEvent.click(buttonElement)
     expect(clickMock).toHaveBeenCalledTimes(1)
@@ -102,14 +98,13 @@ describe('ButtonReact', () => {
 
   test('Error Handling Test and Prop Validation Test', () => {
     let buttonReactProps: ButtonReactPropsType = {
-      // @ts-ignore
+      // @ts-expect-error
       title: 123,
       click,
     }
 
-    // @ts-ignore
-    container = render(<ButtonReact {...buttonReactProps} />).container
-    buttonReact = container.getElementsByClassName('ButtonReact')[0]
+    const container = render(<ButtonReact {...buttonReactProps} />).container
+    const buttonReact = container.getElementsByClassName('ButtonReact')[0]
     expect(buttonReact).toHaveTextContent('123')
   })
 })
