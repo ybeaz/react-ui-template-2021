@@ -23,8 +23,8 @@ const SOURCES_DICTIONARY: Record<string, string> = {
 }
 
 /**
- * @description Function to getBotReactFcData
- * @run ts-node botBuilding/getBotReactFcScenario.ts
+ * @description Function to getBotFamilyReactFc
+ * @run ts-node botBuilding/getBotFamilyReactFc.ts
  */
 
 const path01 = SOURCES_DICTIONARY.ButtonReactV0101
@@ -65,7 +65,7 @@ const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
     (await getWriteFile(pathFull, promptReturn, {
       printRes: false,
     }))
-  consoler('getBotReactFcScenario [69]', 'getWriteFileRes', {
+  consoler('getBotFamilyReactFc [69]', 'getWriteFileRes', {
     ...JSON.parse(getWriteFileRes),
     dateTime,
   })

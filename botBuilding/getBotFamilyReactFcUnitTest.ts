@@ -8,8 +8,8 @@ import { getBotReactFcUnitTestModel } from './models/getBotReactFcUnitTestModel'
 import { getDateString } from '../src/Shared/getDateString'
 
 /**
- * @description Function to getBotReactFcData
- * @run ts-node botBuilding/getBotReactFcUnitTestScenario.ts
+ * @description Function to getBotFamilyReactFcUnitTest
+ * @run ts-node botBuilding/getBotFamilyReactFcUnitTest.ts
  */
 
 const folderNameOut = 'output/'
@@ -106,7 +106,7 @@ Object.keys(scenarioTree).forEach(async (botKey: string) => {
         printRes: false,
       }))
 
-    consoler('getBotReactFcUnitTestScenario [84]', 'getWriteFileRes', {
+    consoler('getBotFamilyReactFcUnitTest [84]', 'getWriteFileRes', {
       ...JSON.parse(getWriteFileRes),
       dateTime,
     })
