@@ -16,7 +16,8 @@ const folderNameOut = 'output/'
 
 const scenarioTree: Record<string, Record<string, any>> = {
   botReactFCUnitTestFull: {
-    isActive: false,
+    isActive: true,
+    arrFilt: [3, 4],
     model: 'gpt-4-0314',
     temperature: 0.5,
     pathes: {
@@ -36,6 +37,7 @@ const scenarioTree: Record<string, Record<string, any>> = {
   },
   botReactFCUnitTestRender: {
     isActive: true,
+    arrFilt: [],
     model: 'gpt-4-0314',
     temperature: 0.5,
     pathes: {
@@ -56,7 +58,7 @@ const scenarioTree: Record<string, Record<string, any>> = {
 }
 
 Object.keys(scenarioTree).forEach(async (botKey: string) => {
-  const { isActive, model, temperature, pathes } = scenarioTree[botKey]
+  const { isActive, arrFilt, model, temperature, pathes } = scenarioTree[botKey]
   if (isActive) {
     const componentStr01 = await getReadFileToString(pathes.component01)
     const component01 = await getReplacedSpacesInString(componentStr01)
@@ -81,6 +83,7 @@ Object.keys(scenarioTree).forEach(async (botKey: string) => {
 
     const promptReturn =
       (await getBotReactFcUnitTestModel({
+        arrFilt,
         model,
         temperature,
         component01,
