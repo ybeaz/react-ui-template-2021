@@ -16,6 +16,7 @@ dist/index.html
 build/stats.json
 build/duplicates-*
 build
+botBuilding/output
 
 # Compiled Java class files
 *.class

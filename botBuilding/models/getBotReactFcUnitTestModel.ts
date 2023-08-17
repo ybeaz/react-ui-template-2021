@@ -50,23 +50,23 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
           },
           {
             role: 'user',
-            content: `Task: Create TypeDoc and a unit tests for following ReactJS component. Instructions: ${unitTest01} Component: ${component01}`,
+            content: `Task: Create TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest01} Component: ${component01}`,
           },
           {
             role: 'assistant',
             content: assist01,
           },
+          // {
+          //   role: 'user',
+          //   content: `Great, nice. This time the task is: Task: Create TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest02} Component: ${component02}`,
+          // },
+          // {
+          //   role: 'assistant',
+          //   content: assist02,
+          // },
           {
             role: 'user',
-            content: `Great, nice. This time the task is: Task: Create TypeDoc and a unit tests for following ReactJS component. Instructions: ${unitTest02} Component: ${component02}`,
-          },
-          {
-            role: 'assistant',
-            content: assist02,
-          },
-          {
-            role: 'user',
-            content: `Great, nice. This time the task is: Create TypeDoc and a unit tests for following ReactJS component. Instructions: ${unitTest03} Component: ${component03}`,
+            content: `Great, nice. This time the task is: Create TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest03} Component: ${component03}`,
           },
           {
             role: 'assistant',
@@ -74,7 +74,7 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
           },
           {
             role: 'user',
-            content: `Great, nice, I like it. This time the task is: Create TypeDoc and a unit tests for following ReactJS component. {userText}`,
+            content: `Great, nice, I like it. This time the task is: Create TypeDoc and unit tests for the following ReactJS component. {userText}`,
           },
           {
             role: 'system',
@@ -87,10 +87,11 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
 
       const getBotReactFcUnitTestModelRes = await JSON.stringify({
         requestBody: propmtReturnObject,
+        requestBodyLen: JSON.stringify(propmtReturnObject).length,
         promptExamples: [
-          `Example 1.\\nCreate TypeDoc and a unit tests for following ReactJS component. Instructions: ${unitTest01} Component: ...`,
-          `Example 2.\\nCreate TypeDoc and a unit tests for following ReactJS component. Instructions: ${unitTest02} Component: ...`,
-          `Example 3.\\nCreate TypeDoc and a unit tests for following ReactJS component. Instructions: ${unitTest03} Component: ...`,
+          `Example 1.\\nCreate TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest01}\\nComponent: ...`,
+          `Example 2.\\nCreate TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest02}\\nComponent: ...`,
+          `Example 3.\\nCreate TypeDoc and unit tests for the following ReactJS component. Instructions: ${unitTest03}\\nComponent: ...`,
         ],
       })
 

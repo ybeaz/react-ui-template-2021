@@ -34,7 +34,6 @@ let useStateSpy: any
 
 /**
  TypeDoc https://typedoc.org
- @name CounterReact.test.tsx
  @function type jest.Describe
  @description Unit Test Suites to implement
   - Render Test

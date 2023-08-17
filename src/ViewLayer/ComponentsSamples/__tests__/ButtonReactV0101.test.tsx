@@ -16,7 +16,6 @@ const buttonReactProps: ButtonReactPropsType = {
 
 /**
  TypeDoc https://typedoc.org
- @name ButtonReact.test.tsx
  @function type jest.Describe
  @description Unit Test Suites to implement
   - Render Test
