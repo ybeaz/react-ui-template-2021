@@ -18,6 +18,7 @@ const scenarioTree: Record<string, Record<string, any>> = {
   botReactFCUnitTestFull: {
     isActive: false,
     model: 'gpt-4-0314',
+    temperature: 0.5,
     pathes: {
       component01:
         '/Users/admin/Dev/react-ui-template-2021/src/ViewLayer/ComponentsSamples/ButtonReactV0101.tsx',
@@ -36,6 +37,7 @@ const scenarioTree: Record<string, Record<string, any>> = {
   botReactFCUnitTestRender: {
     isActive: true,
     model: 'gpt-4-0314',
+    temperature: 0.5,
     pathes: {
       component01:
         '/Users/admin/Dev/react-ui-template-2021/src/ViewLayer/ComponentsSamples/ButtonReactV0101.tsx',
@@ -54,7 +56,7 @@ const scenarioTree: Record<string, Record<string, any>> = {
 }
 
 Object.keys(scenarioTree).forEach(async (botKey: string) => {
-  const { isActive, model, pathes } = scenarioTree[botKey]
+  const { isActive, model, temperature, pathes } = scenarioTree[botKey]
   if (isActive) {
     const componentStr01 = await getReadFileToString(pathes.component01)
     const component01 = await getReplacedSpacesInString(componentStr01)
@@ -80,6 +82,7 @@ Object.keys(scenarioTree).forEach(async (botKey: string) => {
     const promptReturn =
       (await getBotReactFcUnitTestModel({
         model,
+        temperature,
         component01,
         unitTest01,
         assist01,

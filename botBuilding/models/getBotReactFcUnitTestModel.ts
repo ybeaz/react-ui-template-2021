@@ -6,6 +6,7 @@ interface GetBotReactFcUnitTestModelType {
   (
     getBotReactFcUnitTestModelParams: {
       model: string
+      temperature: number
       component01: string
       unitTest01: string
       assist01: string
@@ -29,6 +30,7 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
   async (
     {
       model,
+      temperature,
       component01,
       unitTest01,
       assist01,
@@ -58,14 +60,14 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
             role: 'assistant',
             content: assist01,
           },
-          // {
-          //   role: 'user',
-          //   content: `Great, nice. This time I have the another component: ${component02}, The task is to Create TypeDoc and unit tests for my ReactJS component. Instructions: ${unitTest02}, Response format: plain text`,
-          // },
-          // {
-          //   role: 'assistant',
-          //   content: assist02,
-          // },
+          {
+            role: 'user',
+            content: `Great, nice. This time I have the another component: ${component02}, The task is to Create TypeDoc and unit tests for my ReactJS component. Instructions: ${unitTest02}, Response format: plain text`,
+          },
+          {
+            role: 'assistant',
+            content: assist02,
+          },
           {
             role: 'user',
             content: `Great, nice. This time I have the another component: ${component03}, The task is to Create TypeDoc and unit tests for my ReactJS component. Instructions: ${unitTest03}, Response format: plain text`,
@@ -84,16 +86,16 @@ export const getBotReactFcUnitTestModel: GetBotReactFcUnitTestModelType =
               'System_message: Generate a response in the markdown format with typescript code snippet',
           },
         ],
-        temperature: 0.1,
+        temperature,
       }
 
       const getBotReactFcUnitTestModelRes = await JSON.stringify({
         requestBody: propmtReturnObject,
         requestBodyLen: JSON.stringify(propmtReturnObject).length,
         promptExamples: [
-          `Example 1.\\nComponent: ... \\nCreate unit tests for the following ReactJS component. Instructions: ${unitTest01}.`,
-          `Example 2.\\nComponent: ... \\nCreate unit tests for the following ReactJS component. Instructions: ${unitTest02}`,
-          `Example 3.\\nComponent: ... \\nCreate unit tests for the following ReactJS component. Instructions: ${unitTest03}`,
+          `Example 1.\\nComponent: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest01}.`,
+          `Example 2.\\nComponent: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest02}`,
+          `Example 3.\\nComponent: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest03}`,
         ],
       })
 
