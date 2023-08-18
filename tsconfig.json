@@ -1,35 +1,56 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "alwaysStrict": true,
-    "declaration": true,
+    "target": "es2015",
+    "skipLibCheck": true,
     "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "es2019"],
-    "module": "CommonJS",
-    "noEmitOnError": false,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "outDir": "lib",
-    "resolveJsonModule": true,
-    "rootDir": "src",
+    "allowSyntheticDefaultImports": true,
     "strict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "stripInternal": true,
-    "target": "ES2019"
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "noEmit": true,
+    "jsx": "preserve",
+    "lib": ["dom", "es2015"],
+    "baseUrl": "./",
+    "paths": {
+      "src/*": ["src/*"]
+    }
   },
-  "include": ["./src/**/*"],
-  "exclude": ["./node_modules/**/*", "./dist/**/*"],
-  "linterOptions": {
-    "exclude": ["config/**/*", "node_modules/**/*"]
-  },
-  "defaultSeverity": "warning",
-  "// 01": "compilerOptions > \"noUnusedLocals\": true,",
-  "// 02": "compilerOptions > \"noUnusedParameters\": true,"
+  "include": ["src"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  }
 }
+
+// {
+//   "compilerOptions": {
+//     "module": "commonjs",
+//     "declaration": true,
+//     "noLib": false,
+//     "lib": ["ESNext"],
+//     "removeComments": true,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true,
+//     "allowSyntheticDefaultImports": true,
+//     "target": "ESNext",
+//     "sourceMap": true,
+//     "outDir": "./dist",
+//     "baseUrl": "./",
+//     "incremental": true,
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "moduleResolution": "node",
+//     "jsx": "react",
+//     "allowJs": true
+//   },
+//   "allowJs": true,
+//   "assets": ["src/**/*"],
+//   "watchAssets": true,
+//   "include": ["src/**/*"],
+//   "exclude": ["node_modules", "dist"],
+//   "types": ["node", "jest", "@testing-library/jest-dom"]
+// }

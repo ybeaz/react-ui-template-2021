@@ -1,16 +1,19 @@
 import React, { ReactElement } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
+import { GlobalTheme } from './ViewLayer/Styles/GlobalTheme'
 import { routes } from './Constants/routes.const'
 import { StubInProgress } from './ViewLayer/Screens/StubInProgress'
 import { Error404 } from './ViewLayer/Screens/Error404'
 import { TemplateScreen } from './ViewLayer/Screens/TemplateScreen'
 import { URL_APP_BASE } from './Constants/servers.const'
+import { TestScreen } from './ViewLayer/Screens/TestScreen'
 
 const PAGES: Record<string, any> = {
   TemplateScreen,
   StubInProgress,
   Error404,
+  TestScreen,
 }
 
 export const RouterScreensConfig: React.FunctionComponent<any> = () => {
@@ -103,12 +106,14 @@ export const RouterScreensConfig: React.FunctionComponent<any> = () => {
   }
 
   return (
-    <BrowserRouter basename={'.'}>
-      <Switch>
-        {getRoutes(routes)}
-        {getRedirects(redirects)}
-        {getError404Route()}
-      </Switch>
-    </BrowserRouter>
+    <GlobalTheme>
+      <BrowserRouter basename={'/'}>
+        <Switch>
+          {getRoutes(routes)}
+          {getRedirects(redirects)}
+          {getError404Route()}
+        </Switch>
+      </BrowserRouter>
+    </GlobalTheme>
   )
 }

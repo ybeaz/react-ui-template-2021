@@ -1,4 +1,4 @@
-import { template } from '../template'
+import { getTemplate } from '../getTemplate'
 
 describe('Test function template', () => {
   it('test', () => {
