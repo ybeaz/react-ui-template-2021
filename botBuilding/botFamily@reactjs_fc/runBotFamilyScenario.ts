@@ -1,11 +1,16 @@
-import { getReadFileToString } from '../tools/getReadFileToString'
+import { getReadFileToString } from '../../tools/getReadFileToString'
 import { join } from 'path'
-import { consoler } from '../tools/consoler'
-import { getWriteFile } from '../tools/getWriteFile'
-import { getReplacedSpacesInString } from '../tools/getReplacedSpacesInString'
-import { getPromptExample } from '../tools/getPromptExample'
-import { getBotReactFcModel } from './models/getBotReactFcModel'
-import { getDateString } from '../src/Shared/getDateString'
+import { consoler } from '../../tools/consoler'
+import { isDirectory } from '../../tools/isDirectory'
+import { getCreatedFolder } from '../../tools/getCreatedFolder'
+import { getWriteFile } from '../../tools/getWriteFile'
+import { getReplacedSpacesInString } from '../../tools/getReplacedSpacesInString'
+import { getPromptExample } from '../../tools/getPromptExample'
+import { getBotModel } from './getBotModel'
+import { getDateString } from '../../src/Shared/getDateString'
+import { getWrittenPromptReturn } from '../shared/getWrittenPromptReturn'
+
+const fileBaseName = 'botReactFcUnitTests'
 
 const SOURCES_DICTIONARY: Record<string, string> = {
   ButtonReactV0101:
@@ -23,8 +28,8 @@ const SOURCES_DICTIONARY: Record<string, string> = {
 }
 
 /**
- * @description Function to getBotFamilyReactFc
- * @run ts-node botBuilding/getBotFamilyReactFc.ts
+ * @description Function to runBotFamilyScenario
+ * @run ts-node botBuilding/botFamily@reactjs_fc/runBotFamilyScenario.ts
  */
 
 const path01 = SOURCES_DICTIONARY.ButtonReactV0101
@@ -45,7 +50,7 @@ const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
   const assist03 = await getReplacedSpacesInString(str03)
 
   const promptReturn =
-    (await getBotReactFcModel({
+    (await getBotModel({
       model: 'gpt-3.5-turbo',
       user01,
       assist01,
@@ -55,18 +60,13 @@ const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
       assist03,
     })) || ''
 
-  const dateTime = getDateString({ dash: true })
-  const folderNameOut = 'output/'
-  const fileNameOut = `${'botReactFc'}-${dateTime}.json`
-  let pathFull = join(__dirname, folderNameOut, fileNameOut)
-
-  let getWriteFileRes =
-    promptReturn &&
-    (await getWriteFile(pathFull, promptReturn, {
-      printRes: false,
-    }))
-  consoler('getBotFamilyReactFc [69]', 'getWriteFileRes', {
-    ...JSON.parse(getWriteFileRes),
-    dateTime,
-  })
+  getWrittenPromptReturn(
+    {
+      promptReturn,
+      dirname: __dirname,
+      fileBaseName,
+      folderNameOut: 'output/',
+    },
+    { printRes: true }
+  )
 })()

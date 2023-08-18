@@ -1,18 +1,10 @@
-import { getReadFileToString } from '../tools/getReadFileToString'
-import { join } from 'path'
-import { consoler } from '../tools/consoler'
-import { getWriteFile } from '../tools/getWriteFile'
-import { getReplacedSpacesInString } from '../tools/getReplacedSpacesInString'
-import { getPromptExample } from '../tools/getPromptExample'
-import { getBotReactFcUnitTestModel } from './models/getBotReactFcUnitTestModel'
-import { getDateString } from '../src/Shared/getDateString'
+import { getReadFileToString } from '../../tools/getReadFileToString'
+import { getReplacedSpacesInString } from '../../tools/getReplacedSpacesInString'
+import { getPromptExample } from '../../tools/getPromptExample'
+import { getBotModel } from './getBotModel'
+import { getWrittenPromptReturn } from '../shared/getWrittenPromptReturn'
 
-/**
- * @description Function to getBotFamilyReactFcUnitTest
- * @run ts-node botBuilding/getBotFamilyReactFcUnitTest.ts
- */
-
-const folderNameOut = 'output/'
+const fileBaseName = 'botReactFcUnitTests'
 
 const scenarioTree: Record<string, Record<string, any>> = {
   botReactFCUnitTestFull: {
@@ -57,6 +49,11 @@ const scenarioTree: Record<string, Record<string, any>> = {
   },
 }
 
+/**
+ * @description Function to runBotFamilyScenarioUnitTest
+ * @run ts-node botBuilding/botFamily@reactjs_unit-tests/runBotFamilyScenario.ts
+ */
+
 Object.keys(scenarioTree).forEach(async (botKey: string) => {
   const { isActive, arrFilt, model, temperature, pathes } = scenarioTree[botKey]
   if (isActive) {
@@ -82,7 +79,7 @@ Object.keys(scenarioTree).forEach(async (botKey: string) => {
     const assist03 = await getReplacedSpacesInString(unitTestStr03)
 
     const promptReturn =
-      (await getBotReactFcUnitTestModel({
+      (await getBotModel({
         arrFilt,
         model,
         temperature,
@@ -97,18 +94,14 @@ Object.keys(scenarioTree).forEach(async (botKey: string) => {
         assist03,
       })) || ''
 
-    const dateTime = getDateString({ dash: true })
-    const fileNameOut = `${botKey}-${dateTime}.json`
-    let pathFull = join(__dirname, folderNameOut, fileNameOut)
-    let getWriteFileRes =
-      promptReturn &&
-      (await getWriteFile(pathFull, promptReturn, {
-        printRes: false,
-      }))
-
-    consoler('getBotFamilyReactFcUnitTest [84]', 'getWriteFileRes', {
-      ...JSON.parse(getWriteFileRes),
-      dateTime,
-    })
+    getWrittenPromptReturn(
+      {
+        promptReturn,
+        dirname: __dirname,
+        fileBaseName,
+        folderNameOut: 'output/',
+      },
+      { printRes: true }
+    )
   }
 })

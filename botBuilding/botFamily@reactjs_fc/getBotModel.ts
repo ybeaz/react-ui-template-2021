@@ -2,9 +2,9 @@ import chalk from 'chalk'
 import { consoler } from '../../tools/consoler'
 import { consolerError } from '../../tools/consolerError'
 
-interface GetBotReactFcModelType {
+interface GetBotModelType {
   (
-    getBotReactFcModelParams: {
+    getBotModelParams: {
       model: string
       user01: string
       assist01: string
@@ -18,11 +18,11 @@ interface GetBotReactFcModelType {
 }
 
 /**
- * @description Function to getBotReactFcModel
- * @import import { getBotReactFcModel } from './models/getBotReactFcModel'
+ * @description Function to getBotModel
+ * @import import { getBotModel } from './models/getBotModel'
  */
 
-export const getBotReactFcModel: GetBotReactFcModelType = async (
+export const getBotModel: GetBotModelType = async (
   { model, user01, assist01, user02, assist02, user03, assist03 },
   options
 ) => {
@@ -72,7 +72,7 @@ export const getBotReactFcModel: GetBotReactFcModelType = async (
       temperature: 0.1,
     }
 
-    const getBotReactFcModelRes = await JSON.stringify({
+    const getBotModelRes = await JSON.stringify({
       requestBody: propmtReturnObject,
       requestBodyLen: JSON.stringify(propmtReturnObject).length,
       promptExamples: [
@@ -83,16 +83,12 @@ export const getBotReactFcModel: GetBotReactFcModelType = async (
     })
 
     if (options?.printRes) {
-      consoler(
-        'getBotReactFcModel',
-        'getBotReactFcModelRes',
-        getBotReactFcModelRes
-      )
+      consoler('getBotModel', 'getBotModelRes', getBotModelRes)
     }
 
-    return getBotReactFcModelRes
+    return getBotModelRes
   } catch (error) {
-    consolerError('getBotReactFcModel', error)
+    consolerError('getBotModel', error)
     return
   }
 }
