@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import { consoler } from '../../tools/consoler'
 import { consolerError } from '../../tools/consolerError'
 

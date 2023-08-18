@@ -1,13 +1,7 @@
 import { getReadFileToString } from '../../tools/getReadFileToString'
-import { join } from 'path'
-import { consoler } from '../../tools/consoler'
-import { isDirectory } from '../../tools/isDirectory'
-import { getCreatedFolder } from '../../tools/getCreatedFolder'
-import { getWriteFile } from '../../tools/getWriteFile'
 import { getReplacedSpacesInString } from '../../tools/getReplacedSpacesInString'
 import { getPromptExample } from '../../tools/getPromptExample'
 import { getBotModel } from './getBotModel'
-import { getDateString } from '../../src/Shared/getDateString'
 import { getWrittenPromptReturn } from '../shared/getWrittenPromptReturn'
 
 const fileBaseName = 'botReactFcUnitTests'

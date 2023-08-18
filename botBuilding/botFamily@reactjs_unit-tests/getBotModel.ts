@@ -1,4 +1,3 @@
-import chalk from 'chalk'
 import { consoler } from '../../tools/consoler'
 import { consolerError } from '../../tools/consolerError'
 import { getFilteredArrByIndexs } from '../../src/Shared/getFilteredArrByIndexs'
