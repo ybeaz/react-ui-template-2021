@@ -1,8 +1,6 @@
 import { Axios, Method } from 'axios'
 export interface IConnectorOutput {
-  testCapture: string
-  axiosClient: Axios
-  method: Method
+  client: Axios
   params?: {
     operationName: string
     variables: any
@@ -10,4 +8,4 @@ export interface IConnectorOutput {
   }
 }
 
-export { AxiosRequestHeaders, Method } from 'axios'
+export { Method } from 'axios'
