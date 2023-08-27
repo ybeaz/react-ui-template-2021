@@ -2,7 +2,7 @@ import { getReadFileToString } from '../../tools/getReadFileToString'
 import { getReplacedSpacesInString } from '../../tools/getReplacedSpacesInString'
 import { getPromptExample } from '../../tools/getPromptExample'
 import { getBotModel } from './getBotModel'
-import { getWrittenPromptReturn } from '../shared/getWrittenPromptReturn'
+import { getWrittenPromptReturnAsync } from '../shared/getWrittenPromptReturnAsync'
 
 const fileBaseName = 'botReactFcUnitTests'
 
@@ -94,7 +94,7 @@ Object.keys(scenarioTree).forEach(async (botKey: string) => {
         assist03,
       })) || ''
 
-    getWrittenPromptReturn(
+    getWrittenPromptReturnAsync(
       {
         promptReturn,
         dirname: __dirname,

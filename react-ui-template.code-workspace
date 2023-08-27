@@ -1,6 +1,9 @@
 {
   "folders": [
     {
+      "path": "./node_modules/openai"
+    },
+    {
       "path": "."
     }
   ],

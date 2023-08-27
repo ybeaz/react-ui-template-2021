@@ -8,7 +8,7 @@ import {
   PatternSrcType,
 } from './botFamilyConfig'
 import { getBotModel } from './getBotModel'
-import { getWrittenPromptReturn } from '../shared/getWrittenPromptReturn'
+import { getWrittenPromptReturnAsync } from '../shared/getWrittenPromptReturnAsync'
 
 /**
  * @description Function to runbotFamily@triz
@@ -62,7 +62,7 @@ Object.keys(botFamilyConfig).forEach(async (botKey: string) => {
         assist03: (await patternArrayActive[2]).assistantSrc,
       })) || ''
 
-    getWrittenPromptReturn(
+    getWrittenPromptReturnAsync(
       {
         promptReturn,
         dirname: __dirname,

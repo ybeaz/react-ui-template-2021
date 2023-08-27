@@ -2,7 +2,7 @@ import { getReadFileToString } from '../../tools/getReadFileToString'
 import { getReplacedSpacesInString } from '../../tools/getReplacedSpacesInString'
 import { getPromptExample } from '../../tools/getPromptExample'
 import { getBotModel } from './getBotModel'
-import { getWrittenPromptReturn } from '../shared/getWrittenPromptReturn'
+import { getWrittenPromptReturnAsync } from '../shared/getWrittenPromptReturnAsync'
 
 const fileBaseName = 'botReactFcUnitTests'
 
@@ -54,7 +54,7 @@ const path03 = SOURCES_DICTIONARY.ToDoListReactV0301
       assist03,
     })) || ''
 
-  getWrittenPromptReturn(
+  getWrittenPromptReturnAsync(
     {
       promptReturn,
       dirname: __dirname,
