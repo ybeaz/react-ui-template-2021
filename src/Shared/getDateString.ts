@@ -1,5 +1,5 @@
-interface GetDateStringProps {
-  timestamp: Date
+export type GetDateStringProps = {
+  timestamp: Date | number
   dash: boolean
   hours: boolean
   minutes: boolean
@@ -8,19 +8,34 @@ interface GetDateStringProps {
   style: string
 }
 
-interface GetDateString {
-  (props: Partial<GetDateStringProps>): string
+const propsDefault: GetDateStringProps = {
+  timestamp: +new Date(),
+  dash: false,
+  hours: true,
+  minutes: true,
+  seconds: false,
+  rest: false,
+  style: 'military',
 }
 
+interface GetDateString {
+  (props?: Partial<GetDateStringProps>): string
+}
+
+/**
+ * @description Function to get date as formatted string
+ * @example getDateString({style: 'US'})
+ * @import import { getDateString } from '../Shared/getDateString'
+ */
 export const getDateString: GetDateString = ({
-  timestamp = new Date(),
+  timestamp = +new Date(),
   dash = false,
   hours = true,
   minutes = true,
   seconds = false,
   rest = false,
   style = 'military',
-}) => {
+} = propsDefault) => {
   const plus0 = (num: number) => `0${num.toString()}`.slice(-2)
 
   const d = new Date(timestamp)
@@ -46,7 +61,9 @@ export const getDateString: GetDateString = ({
     res = `${date}/${month}/${year}${hoursPlus}${minutesPlus}${secondsPlus}${restPlus}`
   else if (style === 'US')
     res = `${month}/${date}/${year}${hoursPlus}${minutesPlus}${secondsPlus}${restPlus}`
-  else
+  else if (style === 'year') {
+    res = String(year)
+  } else
     res = `${year}-${month}-${date}${hoursPlus}${minutesPlus}${secondsPlus}${restPlus}`
 
   return res

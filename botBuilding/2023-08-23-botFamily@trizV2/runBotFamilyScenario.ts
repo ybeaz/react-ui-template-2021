@@ -12,7 +12,7 @@ import { getWrittenPromptReturnAsync } from '../shared/getWrittenPromptReturnAsy
 
 /**
  * @description Function to runbotFamily@triz
- * @run ts-node botBuilding/botFamily@trizV2/runBotFamilyScenario.ts
+ * @run ts-node botBuilding/2023-08-23-botFamily@trizV2/runBotFamilyScenario.ts
  */
 
 Object.keys(botFamilyConfig).forEach(async (botKey: string) => {

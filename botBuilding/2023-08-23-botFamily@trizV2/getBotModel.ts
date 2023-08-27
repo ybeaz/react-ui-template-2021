@@ -59,7 +59,7 @@ export const getBotModel: GetBotModelType = async (
       })
       .map((patternSrc: PatternSrcType, index: number) => {
         const { contentSrc } = patternSrc
-        return `Example ${index + 1}. ${contentSrc}`
+        return contentSrc
       })
 
     const getBotModelRes = await JSON.stringify({

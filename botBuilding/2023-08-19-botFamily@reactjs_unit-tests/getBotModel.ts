@@ -97,9 +97,9 @@ export const getBotModel: GetBotModelType = async (
       requestBody: propmtReturnObject,
       requestBodyLen: JSON.stringify(propmtReturnObject).length,
       promptExamples: [
-        `Example 1.\\nComponent: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest01}.`,
-        `Example 2.\\nComponent: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest02}`,
-        `Example 3.\\nComponent: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest03}`,
+        `Component: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest01}.`,
+        `Component: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest02}`,
+        `Component: ... \\nCreate unit tests for my ReactJS component. Instructions: ${unitTest03}`,
       ],
     })
 

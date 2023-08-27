@@ -125,6 +125,7 @@
     "dotenv-expand": "5.1.0"
   },
   "scripts": {
+    "gems": "ts-node --script-mode tools/getGems.ts",
     "docgen": "npx typedoc src/index.tsx",
     "start": "PORT=3550 node scripts/start.js",
     "start:dev": "PORT=3550 node scripts/start.js",
