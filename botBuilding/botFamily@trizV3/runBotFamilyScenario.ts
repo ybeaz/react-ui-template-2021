@@ -10,7 +10,7 @@ import { getJsonToJsonLAsync } from '../../tools/getJsonToJsonLAsync'
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY
 
 /**
- * @description Function to
+ * @description Scenario to teach a ChatGPT submodel
  * @run NODE_ENV=develop && ts-node botBuilding/botFamily@trizV3/firstStep.ts
  */
 
