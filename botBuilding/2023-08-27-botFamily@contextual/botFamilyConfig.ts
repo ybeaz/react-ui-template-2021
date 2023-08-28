@@ -36,10 +36,10 @@ const CONSTANTS: ConstantsType = {
     language: `Language: "Use language based on the User question language"`,
   },
   openai_api_persona: {
-    isActive: true,
+    isActive: false,
     model: 'gpt-3.5-turbo',
     temperature: 0.1,
-    topic: `OpenAI , ChatGPT`,
+    topic: `OpenAI, ChatGPT`,
     context: `OpenAI (openai.com), ChatGPT, OpenAI Documentation, OpenAI API reference, OpenAI Examples, OpenAI API troubleshooting, OpenAI API debugging`,
     sources: `OpenAI platform content (platform.openai.com), OpenAI forum (community.openai.com), Stackoverflow site (stackoverflow.com), other question-answering and forum sites, articles and blogs about OpenAI`,
     language: `Language: "Use language based on the User question language"`,
@@ -90,7 +90,7 @@ const CONSTANTS: ConstantsType = {
     language: `Language: "Use language based on the User question language"`,
   },
   typescript_persona: {
-    isActive: false,
+    isActive: true,
     model: 'gpt-3.5-turbo',
     temperature: 0.1,
     topic: `Typescript`,
@@ -105,7 +105,7 @@ const CONSTANTS: ConstantsType = {
     topic: `Vision, Ophthalmology`,
     context: `Vision, Ophthalmology`,
     sources: `professional ophthalmology journals, ophthalmology research papers and works`,
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
 }
 
@@ -125,14 +125,22 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
   patternsSrcs: [
     {
       isActive: true,
-      position: 100,
+      position: 500,
       roleType: RoleType['system'],
       contentSrcType: ContentSrcType['text'],
       contentSrc: ``,
       contentResFunc: (contentInput, CONST = CONSTANTS[name]) => {
-        return `System_message: You are an assistant designed to help users answer their questions related to the context: ${CONST.context}. ${CONST.language}.`
+        return `SYSTEM_MESSAGE: You are an assistant designed to help users answer their questions related to the CONTEXT: ${CONST.context}.\\n
+        LANGUAGE: ${CONST.language}.\\n
+        INSTRUCTIONS:
+          - If the a question is out of mentioned CONTEXT, you say "I'm sorry. Please, ask me a question about ${CONST.topic}" and STOP answering.
+          - If you don't have enough information, you say "I don't know" or "I'm not sure".
+          - If you're need more context for the question, you say "Please, repeat your question and provide me more details about ...".
+          - Generate a response in the markdown markup language where possible.
+          - Search for information in descending priorities in ${CONST.sources}.`
       },
     },
+
     {
       isActive: true,
       position: 200,
@@ -140,7 +148,10 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
       contentSrcType: ContentSrcType['text'],
       contentSrc: '',
       contentResFunc: (contentInput, CONST = CONSTANTS[name]) => {
-        return `---\\nINSTRUCTIONS: cite sources and give reasoning before sharing the final answer in the following format:  REFERENCES: ...\\n REASONING: ...\\n ANSWER: ...\\n ---\\n ## GIVE FACTUAL DATA ABOUT \${userText}:`
+        return `---\\nINSTRUCTIONS: 
+        - cite sources and give reasoning before sharing the final answer 
+        - use the following format:  REFERENCES: ... REASONING: ... ANSWER: ...\\n ---\\n 
+        ## GIVE FACTUAL DATA ABOUT \${userText}:`
       },
     },
 
@@ -151,14 +162,9 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
       contentSrcType: ContentSrcType['text'],
       contentSrc: ``,
       contentResFunc: (contentInput, CONST = CONSTANTS[name]) => {
-        return `INSTRUCTIONS:\\n
-          - If the a question does not relate to "TOPIC": "${CONSTANTS[name].topic}", say "I'm sorry. This is not my area of expertise"\\n
-          - If you're unsure of an answer, you say "I don't know" or "I'm not sure"\\n
-          - Generate a response in the markdown markup language where possible.\\n
-          - Search for information in descending priorities in ${CONSTANTS[name].sources}\\n
-          - Use the structure for your response suggested by the user\\n
-          - Take a step-by-step approach in your response.\\n
-          - ${CONST.language}.`
+        return `INSTRUCTIONS:
+          - Take a step-by-step approach in your response.
+          - Use the structure for your response suggested by the user.`
       },
     },
   ],
