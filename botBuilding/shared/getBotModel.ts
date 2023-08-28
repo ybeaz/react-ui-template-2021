@@ -63,11 +63,13 @@ export const getBotModel: GetBotModelType = async (
         return contentSrc
       })
 
-    const getBotModelRes = await JSON.stringify({
+    const getBotModelRes = JSON.stringify({
       requestBody: propmtReturnObject,
       requestBodyLen: JSON.stringify(propmtReturnObject).length,
       promptExamples,
     })
+      .split('\\\\n')
+      .join('\\n')
 
     if (options?.printRes) {
       consoler('getBotModel', 'getBotModelRes', getBotModelRes)

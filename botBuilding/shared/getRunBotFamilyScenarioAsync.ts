@@ -8,6 +8,7 @@ import { getReadFileToString } from '../../tools/getReadFileToString'
 import { BotConfigType, BotFamilyConfigType } from '../@types/BotConfigType'
 import { PatternSrcType } from '../@types/PatternSrcType'
 import { ContentSrcType } from '../@types/ContentSrcType'
+import { getWritrenFilePathAsync } from '../../tools/getWritrenFileAsync'
 
 type getRunBotFamilyScenarioAsyncParams = {
   botFamilyConfig: BotFamilyConfigType
