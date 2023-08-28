@@ -1,13 +1,13 @@
-import * as fs from 'fs';
+import * as fs from 'fs'
 
 import { deleteArr } from './config'
 
 const deleteFolder = (path: string): void => {
-  if (fs.existsSync(path) && fs.lstatSync(path).isDirectory()) {
+  if (fs.existsSync(path) && fs.lstatSync(path).isDirectorySync()) {
     fs.readdirSync(path).forEach(function (file: any) {
       var curPath = path + '/' + file
 
-      if (fs.lstatSync(curPath).isDirectory()) {
+      if (fs.lstatSync(curPath).isDirectorySync()) {
         // recurse
         deleteFolder(curPath)
       } else {
