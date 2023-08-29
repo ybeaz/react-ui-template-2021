@@ -11,30 +11,31 @@ const OPENAI_API_KEY = process.env.OPENAI_API_KEY
 
 /**
  * @description Scenario to teach a ChatGPT submodel
- * @run NODE_ENV=develop && ts-node botBuilding/botFamily@trizV3/firstStep.ts
+ * @run ts-node botBuilding/2023-08-25-botFamily@sarcastic_marv/runBotFamilyScenario.ts
  */
 
 const openai = new OpenAI({ apiKey: OPENAI_API_KEY })
 
-async function main() {
-  const completion = await openai.chat.completions.create({
-    messages: [{ role: 'user', content: 'Say this is a test' }],
-    model: 'gpt-3.5-turbo',
-  })
+/* As a Hello Worls test */
+// async function main() {
+//   const completion = await openai.chat.completions.create({
+//     messages: [{ role: 'user', content: 'Say this is a test' }],
+//     model: 'gpt-3.5-turbo',
+//   })
 
-  consoler('test [6]', 'completion', completion)
-}
+//   consoler('test [6]', 'completion', completion)
+// }
 
 // main()
 
 ;(async () => {
   try {
     /* Create a dataset.jsonl file */
-    const pathIn = __dirname + '/dataStore/dataset.json'
-    const pathOut = __dirname + '/dataStore/dataset.jsonl'
-    const getJsonToJsonLAsyncParams = { pathIn, pathOut }
-    await getJsonToJsonLAsync(getJsonToJsonLAsyncParams)
-    const file = fs.createReadStream(pathOut)
+    // const pathIn = __dirname + '/dataStore/dataset.json'
+    // const pathOut = __dirname + '/dataStore/dataset.jsonl'
+    // const getJsonToJsonLAsyncParams = { pathIn, pathOut }
+    // await getJsonToJsonLAsync(getJsonToJsonLAsyncParams)
+    // const file = fs.createReadStream(pathOut)
 
     /* Upload dataset file */
     // const fileCreateRes = await openai.files.create({
@@ -48,12 +49,12 @@ async function main() {
     consoler('test [48]', 'fileListRes', { filesObject, filesList })
 
     /* Returns the contents of the specified file */
-    const training_file = 'file-avD6LoUD7m2jXscDKemRufMr' // fileCreateRes.id
-    const filesContentRes = await openai.files.retrieveContent(training_file)
-    consoler('test [53]', 'filesContentRes', filesContentRes)
+    // const training_file = 'file-avD6LoUD7m2jXscDKemRufMr' // fileCreateRes.id
+    // const filesContentRes = await openai.files.retrieveContent(training_file)
+    // consoler('test [53]', 'filesContentRes', filesContentRes)
 
     /* Delete uploaded files, if we don't need them anymore */
-    const filesListToDel: Record<string, any>[] = []
+    const filesListToDel: Record<string, any>[] = [] // filesList
     if (filesListToDel.length) {
       filesListToDel.forEach(async (fileObj: Record<string, any>) => {
         try {
@@ -63,8 +64,8 @@ async function main() {
     }
 
     /* DEPRECIATED. Create a model learning job */
-    const ftCreateBody = { training_file, model: 'gpt-3.5-turbo' }
-    consoler('test [63]', 'ftCreateBody', ftCreateBody)
+    // const ftCreateBody = { training_file, model: 'gpt-3.5-turbo' }
+    // consoler('test [63]', 'ftCreateBody', ftCreateBody)
     // const ftCreateRes = await openai.fineTunes.create(ftCreateBody, {})
     // consoler('test [65]', 'ftCreateRes', ftCreateRes)
 
