@@ -3,8 +3,15 @@ import { promises as fs } from 'fs'
 import { consoler } from './consoler'
 import { consolerError } from './consolerError'
 
+export type GetTemplateParamsType = any
+
+export type GetTemplateResType = Promise<any>
+
 interface GetTemplateType {
-  (getTemplateParams, options?: { printRes: boolean }): Promise<any>
+  (
+    params: GetTemplateParamsType,
+    options?: { printRes: boolean }
+  ): GetTemplateResType
 }
 
 /**
@@ -12,18 +19,15 @@ interface GetTemplateType {
  * @import import { getTemplate } from './getTemplate'
  */
 
-export const getTemplate: GetTemplateType = async (
-  getTemplateParams,
-  options
-) => {
+export const getTemplate: GetTemplateType = async (params, options) => {
   try {
-    const getTemplateRes = await ''
+    const res = await ''
 
     if (options?.printRes) {
-      consoler('getTemplate', 'getTemplateRes', getTemplateRes)
+      consoler('getTemplate', 'getTemplateRes', res)
     }
 
-    return getTemplateRes
+    return res
   } catch (error) {
     consolerError('getTemplate', error)
     return

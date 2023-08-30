@@ -8,9 +8,22 @@ import { getWritrenFileAsync } from '../../tools/getWritrenFileAsync'
 import { getPreparedDatasetSarcasticSync } from './getPreparedDatasetSarcasticSync'
 import { ChatMessagesType } from '../@types/ChatMessagesType'
 import { getJsonToJsonLAsync } from '../../tools/getJsonToJsonLAsync'
+import { getJsonToJsonL2Async } from '../../tools/getJsonToJsonL2Async'
+import { getReadFileCsvAsync } from '../../tools/getReadFileCsvAsync'
+import {
+  getPreparedDatasetJokesSync,
+  JokeObjectType,
+} from './getPreparedDatasetJokesSync'
+
+type GetPreparedDatasetParamsType = {
+  datasetInit: ChatMessagesType[]
+  datasetSarcasm: any
+  datasetCsvPath: JokeObjectType[]
+  mode: string
+}
 
 interface getPreparedDatasetType {
-  (sarcasmData: any, options?: { printRes: boolean }): Promise<any>
+  (params: any, options?: { printRes: boolean }): Promise<void>
 }
 
 /**
@@ -20,47 +33,78 @@ interface getPreparedDatasetType {
  */
 
 export const getPreparedDataset: getPreparedDatasetType = async (
-  datasets,
+  params,
   options
 ) => {
-  const { datasetInit, datasetSarcasm } = datasets
+  const { datasetInit, datasetSarcasm, datasetCsvPath, mode } = params
 
   try {
-    const sarcasmDataInLen = Object.keys(datasetSarcasm).length
-    let sarcasmData: ChatMessagesType[] =
-      getPreparedDatasetSarcasticSync(datasetSarcasm)
+    if (mode === 'json') {
+      const datasetCsvInit = await getReadFileCsvAsync(
+        { path: datasetCsvPath },
+        { printRes: true }
+      )
 
-    sarcasmData = [...datasetInit, ...sarcasmData]
-    const sarcasmDataStr = JSON.stringify(sarcasmData)
-    const sarcasmDataLen = sarcasmData.length
+      const sarcasmData: ChatMessagesType[] =
+        getPreparedDatasetSarcasticSync(datasetSarcasm)
 
-    // const pathFull = __dirname + '/dataStore/dataset.json'
-    // await getWritrenFileAsync(pathFull, sarcasmDataStr, {
-    //   printRes: false,
-    // })
+      const datasetCsv = getPreparedDatasetJokesSync({
+        dataset: datasetCsvInit,
+      })
 
-    consoler('getPreparedDataset [22]', 'sarcasmData', {
-      sarcasmData,
-      sarcasmDataInLen,
-      sarcasmDataLen,
-    })
+      const datasetData = [...datasetInit, ...sarcasmData, ...datasetCsv]
+      const datasetDataStr = JSON.stringify(datasetData)
 
-    // const getPreparedDatasetRes = await ''
-    const pathIn = __dirname + '/dataStore/dataset.json'
-    const pathOut = __dirname + '/dataStore/dataset.jsonl'
-    const getJsonToJsonLAsyncParams = { pathIn, pathOut }
-    await getJsonToJsonLAsync(getJsonToJsonLAsyncParams)
+      const datasetInitLen = datasetInit.length
+      const sarcasmDataLen = sarcasmData.length
+      const datasetCsvInitLen = datasetCsvInit.length
+      const datasetDataLen = datasetData.length
 
-    if (options?.printRes) {
-      consoler('getPreparedDataset', 'getPreparedDatasetRes', sarcasmData)
+      const pathFull = __dirname + '/dataStore/dataset.json'
+      await getWritrenFileAsync(pathFull, datasetDataStr, {
+        printRes: false,
+      })
+
+      consoler('getPreparedDataset [22]', 'sarcasmData', {
+        datasetInitLen,
+        sarcasmDataLen,
+        datasetCsvInitLen,
+        totalLen: datasetInitLen + sarcasmDataLen + datasetCsvInitLen,
+        datasetDataLen,
+        datasetCsvPath,
+      })
+
+      if (options?.printRes) {
+        consoler('getPreparedDataset', 'getPreparedDatasetRes', datasetData)
+      }
+    } else if (mode === 'jsonl') {
+      const pathIn = __dirname + '/dataStore/dataset.json'
+      const pathOut = __dirname + '/dataStore/dataset.jsonl'
+      const getJsonToJsonLAsyncParams = { pathIn, pathOut }
+      await getJsonToJsonL2Async(getJsonToJsonLAsyncParams, { printRes: true })
     }
-
-    return sarcasmData
   } catch (error) {
     consolerError('getPreparedDataset', error)
-    return
   }
 }
+
+/* Run script to prepare both files */
 ;(async () => {
-  await getPreparedDataset({ datasetInit, datasetSarcasm })
+  const datasetCsvPath = __dirname + '/dataStore/dataset_shortjokes.csv'
+
+  let mode: string = 'json'
+  await getPreparedDataset({
+    datasetInit,
+    datasetSarcasm,
+    datasetCsvPath,
+    mode,
+  })
+
+  mode = 'jsonl'
+  await getPreparedDataset({
+    datasetInit,
+    datasetSarcasm,
+    datasetCsvPath,
+    mode,
+  })
 })()

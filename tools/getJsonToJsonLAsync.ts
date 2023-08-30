@@ -5,14 +5,14 @@ import { consolerError } from './consolerError'
 
 import { getWritrenFileAsync } from './getWritrenFileAsync'
 
-type getJsonToJsonLAsyncParams = {
+type GetJsonToJsonLAsyncParams = {
   pathIn: string
   pathOut: string
 }
 
-interface getJsonToJsonLAsyncType {
+interface GetJsonToJsonLAsyncType {
   (
-    getJsonToJsonLAsyncParams: getJsonToJsonLAsyncParams,
+    params: GetJsonToJsonLAsyncParams,
     options?: { printRes: boolean }
   ): Promise<string>
 }
@@ -22,12 +22,12 @@ interface getJsonToJsonLAsyncType {
  * @import import { getJsonToJsonLAsync } from './getJsonToJsonLAsync'
  */
 
-export const getJsonToJsonLAsync: getJsonToJsonLAsyncType = async (
-  getJsonToJsonLAsyncParams,
+export const getJsonToJsonLAsync: GetJsonToJsonLAsyncType = async (
+  params,
   options
 ) => {
   try {
-    const { pathIn, pathOut } = getJsonToJsonLAsyncParams
+    const { pathIn, pathOut } = params
 
     const readFileToStringRes = await fs.readFile(pathIn, 'utf8')
     const replacedSpacesInString = readFileToStringRes?.replace(
@@ -42,20 +42,13 @@ export const getJsonToJsonLAsync: getJsonToJsonLAsyncType = async (
       ?.split('}, { "messages":')
       .join('}\n{ "messages":')
 
-    const getJsonToJsonLAsyncRes = await getWritrenFileAsync(
-      pathOut,
-      replacedSpacesInString3
-    )
+    const res = await getWritrenFileAsync(pathOut, replacedSpacesInString3)
 
     if (options?.printRes) {
-      consoler(
-        'getJsonToJsonLAsync',
-        'getJsonToJsonLAsyncRes',
-        getJsonToJsonLAsyncRes
-      )
+      consoler('getJsonToJsonLAsync', 'getJsonToJsonLAsyncRes', res)
     }
 
-    return getJsonToJsonLAsyncRes
+    return res
   } catch (error) {
     consolerError('getJsonToJsonLAsync', error)
     return

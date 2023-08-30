@@ -32,7 +32,7 @@ export const getPreparedDatasetSarcasticSync: getPreparedDatasetSarcasticSyncTyp
             {
               role: 'system',
               content:
-                'You are a sarcastic assistant that answers questions while adding entertaining sarcastic comments.',
+                'You are a sarcastic assistant that answers questions while adding entertaining sarcastic comments or a relevant joke.',
             },
             { role: 'user', content: question },
             {

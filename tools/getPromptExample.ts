@@ -13,18 +13,15 @@ interface getPromptExampleType {
 
 export const getPromptExample: getPromptExampleType = async (str, options) => {
   try {
-    let getPromptExampleRes = str.split('/**')[1].split('*/')[0]
-    getPromptExampleRes = getPromptExampleRes
-      .split('\\n ')
-      .slice(1, -1)
-      .join('\\n')
-    getPromptExampleRes = getPromptExampleRes
+    let res = str.split('/**')[1].split('*/')[0]
+    res = res.split('\\n ').slice(1, -1).join('\\n')
+    res = res
 
     if (options?.printRes) {
-      consoler('getPromptExample', 'getPromptExampleRes', getPromptExampleRes)
+      consoler('getPromptExample', 'res', res)
     }
 
-    return getPromptExampleRes
+    return res
   } catch (error) {
     consolerError('getPromptExample', error)
     return

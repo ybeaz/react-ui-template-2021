@@ -30,19 +30,18 @@ const openai = new OpenAI({ apiKey: OPENAI_API_KEY })
 
 ;(async () => {
   try {
-    /* Create a dataset.jsonl file */
-    // const pathIn = __dirname + '/dataStore/dataset.json'
-    // const pathOut = __dirname + '/dataStore/dataset.jsonl'
-    // const getJsonToJsonLAsyncParams = { pathIn, pathOut }
-    // await getJsonToJsonLAsync(getJsonToJsonLAsyncParams)
-    // const file = fs.createReadStream(pathOut)
+    /* Create a dataset.jsonl file
+      You need to run 
+    */
 
     /* Upload dataset file */
-    // const fileCreateRes = await openai.files.create({
-    //   file,
-    //   purpose: 'fine-tune',
-    // })
-    // consoler('test [44]', 'fileCreateRes', fileCreateRes)
+    const pathOut = __dirname + '/dataStore/dataset.jsonl'
+    const file = fs.createReadStream(pathOut)
+    const fileCreateRes = await openai.files.create({
+      file,
+      purpose: 'fine-tune',
+    })
+    consoler('test [44]', 'fileCreateRes', fileCreateRes)
 
     /* Upload list uploaded files */
     const { object: filesObject, data: filesList } = await openai.files.list()
