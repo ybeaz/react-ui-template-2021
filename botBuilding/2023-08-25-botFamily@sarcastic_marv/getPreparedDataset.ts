@@ -40,24 +40,25 @@ export const getPreparedDataset: getPreparedDatasetType = async (
 
   try {
     if (mode === 'json') {
-      const datasetCsvInit = await getReadFileCsvAsync(
-        { path: datasetCsvPath },
-        { printRes: true }
-      )
+      // const datasetCsvInit = await getReadFileCsvAsync(
+      //   { path: datasetCsvPath },
+      //   { printRes: true }
+      // )
+
+      // const datasetCsv = getPreparedDatasetJokesSync({
+      //   dataset: datasetCsvInit,
+      // })
+
+      // const datasetCsvInitLen = datasetCsvInit.length
 
       const sarcasmData: ChatMessagesType[] =
         getPreparedDatasetSarcasticSync(datasetSarcasm)
 
-      const datasetCsv = getPreparedDatasetJokesSync({
-        dataset: datasetCsvInit,
-      })
-
-      const datasetData = [...datasetInit, ...sarcasmData, ...datasetCsv]
+      const datasetData = [...datasetInit, ...sarcasmData]
       const datasetDataStr = JSON.stringify(datasetData)
 
       const datasetInitLen = datasetInit.length
       const sarcasmDataLen = sarcasmData.length
-      const datasetCsvInitLen = datasetCsvInit.length
       const datasetDataLen = datasetData.length
 
       const pathFull = __dirname + '/dataStore/dataset.json'
@@ -68,8 +69,7 @@ export const getPreparedDataset: getPreparedDatasetType = async (
       consoler('getPreparedDataset [22]', 'sarcasmData', {
         datasetInitLen,
         sarcasmDataLen,
-        datasetCsvInitLen,
-        totalLen: datasetInitLen + sarcasmDataLen + datasetCsvInitLen,
+        totalLen: datasetInitLen + sarcasmDataLen,
         datasetDataLen,
         datasetCsvPath,
       })
@@ -81,7 +81,7 @@ export const getPreparedDataset: getPreparedDatasetType = async (
       const pathIn = __dirname + '/dataStore/dataset.json'
       const pathOut = __dirname + '/dataStore/dataset.jsonl'
       const getJsonToJsonLAsyncParams = { pathIn, pathOut }
-      await getJsonToJsonL2Async(getJsonToJsonLAsyncParams, { printRes: true })
+      await getJsonToJsonL2Async(getJsonToJsonLAsyncParams, { printRes: false })
     }
   } catch (error) {
     consolerError('getPreparedDataset', error)
