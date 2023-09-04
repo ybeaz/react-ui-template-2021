@@ -234,7 +234,7 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
   ],
 })
 
-export const botFamilyConfig = Object.keys(CONSTANTS)
+export const botFamilyConfigDefault = Object.keys(CONSTANTS)
   .filter((constKey: string) => CONSTANTS[constKey].isActive)
   .reduce((initObj, constKey: string) => {
     return { ...initObj, [constKey]: getBotFamilyConfig(CONSTANTS, constKey) }
