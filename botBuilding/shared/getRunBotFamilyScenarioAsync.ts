@@ -41,8 +41,14 @@ export const getRunBotFamilyScenarioAsync: getRunBotFamilyScenarioAsyncType =
           .filter((botKey: string) => botFamilyConfig[botKey].isActive)
           .map(async (botKey: string) => {
             try {
-              const { isActive, arrFilt, model, temperature, patternsSrcs } =
-                botFamilyConfig[botKey] as BotConfigType
+              const {
+                isActive,
+                arrFilt,
+                model,
+                temperature,
+                patternsSrcs,
+                promptExamples,
+              } = botFamilyConfig[botKey] as BotConfigType
 
               const fileOutputBaseName = botKey
 
@@ -75,12 +81,17 @@ export const getRunBotFamilyScenarioAsync: getRunBotFamilyScenarioAsyncType =
                 )
 
                 const promptReturn =
-                  (await getBotModel({
-                    arrFilt: [],
-                    model,
-                    temperature,
-                    patternsSrcs: patternsSrcsActiveMapped,
-                  })) || ''
+                  (await getBotModel(
+                    {
+                      isActive,
+                      arrFilt: [],
+                      model,
+                      temperature,
+                      patternsSrcs: patternsSrcsActiveMapped,
+                      promptExamples,
+                    },
+                    { printRes: false }
+                  )) || ''
 
                 getRunBotFamilyScenarioAsyncRes[fileOutputBaseName] =
                   await getWrittenPromptReturnAsync(
@@ -101,7 +112,7 @@ export const getRunBotFamilyScenarioAsync: getRunBotFamilyScenarioAsyncType =
         consoler(
           'getRunBotFamilyScenarioAsync',
           'getRunBotFamilyScenarioAsyncRes',
-          getRunBotFamilyScenarioAsyncRes
+          { getRunBotFamilyScenarioAsyncRes }
         )
       }
 

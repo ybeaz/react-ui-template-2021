@@ -4,17 +4,12 @@ import { getFilteredArrByIndexs } from '../../src/Shared/getFilteredArrByIndexs'
 import { getReplacedSpacesInString } from '../../tools/getReplacedSpacesInString'
 import { PatternSrcType } from '../@types/PatternSrcType'
 import { RoleType } from '../@types/RoleType'
+import { BotConfigType } from '../@types/BotConfigType'
 
 interface GetBotModelType {
-  (
-    getBotModelParams: {
-      arrFilt: number[]
-      model: string
-      temperature: number
-      patternsSrcs: PatternSrcType[]
-    },
-    options?: { printRes: boolean }
-  ): Promise<string | undefined>
+  (getBotModelParams: BotConfigType, options?: { printRes: boolean }): Promise<
+    string | undefined
+  >
 }
 
 /**
@@ -23,7 +18,7 @@ interface GetBotModelType {
  */
 
 export const getBotModel: GetBotModelType = async (
-  { arrFilt, model, temperature, patternsSrcs },
+  { arrFilt, model, temperature, patternsSrcs, promptExamples },
   options
 ) => {
   try {
@@ -50,7 +45,7 @@ export const getBotModel: GetBotModelType = async (
       temperature,
     }
 
-    const promptExamples = patternsSrcs
+    const promptExamplesFromPatterns = patternsSrcs
       .filter((patternSrc: PatternSrcType) => {
         const { roleType, contentSrc } = patternSrc
         return (
@@ -62,11 +57,14 @@ export const getBotModel: GetBotModelType = async (
         const { contentSrc } = patternSrc
         return contentSrc
       })
+      .filter((promptExample: string) => promptExample !== '')
 
     const getBotModelRes = JSON.stringify({
       requestBody: propmtReturnObject,
       requestBodyLen: JSON.stringify(propmtReturnObject).length,
-      promptExamples,
+      promptExamples: promptExamplesFromPatterns.length
+        ? promptExamplesFromPatterns
+        : promptExamples,
     })
       .split('\\\\n')
       .join('\\n')

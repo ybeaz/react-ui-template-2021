@@ -5,6 +5,8 @@ import { botFamilyConfigDefault } from './botFamilyConfigDefault'
 import { botFamilyConfigCustomCorrector } from './botFamilyConfigCustomCorrector'
 import { botFamilyConfigCustomIlyaFrank } from './botFamilyConfigCustomIlyaFrank'
 import { botFamilyConfigCustomKeyPhrases } from './botFamilyConfigCustomKeyPhrases'
+import { botFamilyConfigPersonaPushkin2 } from './botFamilyConfigPersonaPushkin2'
+
 import { getRunBotFamilyScenarioAsync } from '../shared/getRunBotFamilyScenarioAsync'
 
 /* Define the command-line options using yargs */
@@ -17,11 +19,14 @@ const options: any = yargs.option('conf', {
 const conf = options.conf
 
 const BOT_FAMILY_CONFIG: Record<string, any> = {
+  pushkin2: botFamilyConfigPersonaPushkin2,
   kph: botFamilyConfigCustomKeyPhrases,
   ilf: botFamilyConfigCustomIlyaFrank,
   enc: botFamilyConfigCustomCorrector,
   default: botFamilyConfigDefault,
 }
+
+consoler('runBotFamilyScenario [29]', 'config', conf)
 
 if (!conf || BOT_FAMILY_CONFIG[conf]) {
   let botFamilyConfig = conf
@@ -30,7 +35,7 @@ if (!conf || BOT_FAMILY_CONFIG[conf]) {
 
   /**
    * @description Function to runbotFamily@triz
-   * @run ts-node botBuilding/2023-08-27-botFamily@contextual/runBotFamilyScenario.ts
+   * @run ts-node botBuilding/2023-08-27-botFamily@contextual/runBotFamilyScenario.ts -c default
    */
   getRunBotFamilyScenarioAsync(
     { botFamilyConfig, dirname: __dirname },

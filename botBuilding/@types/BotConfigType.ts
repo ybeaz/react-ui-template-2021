@@ -7,6 +7,7 @@ export type BotConfigType = {
   model: string
   temperature: number
   patternsSrcs: PatternSrcType[]
+  promptExamples?: string[]
 }
 
 export type BotFamilyConfigType = Record<string, BotConfigType>

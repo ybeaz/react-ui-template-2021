@@ -61,3 +61,4 @@ Thumbs.db
 # Others
 archive/
 .env*
+botBuilding/*/output/
