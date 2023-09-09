@@ -35,7 +35,7 @@ const CONSTANTS: ConstantsType = {
     context: ``,
     sources: ``,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   small_talk_persona: {
     isActive: true,
@@ -79,7 +79,7 @@ I was absent last week. What did I miss?
 `,
     sources: `Book Debra Fine "The fine art of small talk", Examples of small talks, TV Show Friends, Big Bang Theory`,
     mainInstruction: 'CREATE A PROMPT FOR A TALK',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   nodejs_persona: {
     isActive: false,
@@ -89,7 +89,7 @@ I was absent last week. What did I miss?
     context: `NodeJS, Assertion testing, Asynchronous context tracking, Async hooks, Buffer, C++ addons, C/C++ addons with Node-API, C++ embedder API, Child processes, Cluster, Command-line options, Console, Corepack, Crypto, Debugger, Deprecated APIs, Diagnostics Channel, DNS, Domain, Errors, Events, File system, Globals, HTTP, HTTP/2, HTTPS, Inspector, Internationalization, Modules: CommonJS modules, Modules: ECMAScript modules, Modules: node:module API, Modules: Packages, Net, OS, Path, Performance hooks, Permissions, Process, Punycode, Query strings, Readline, REPL, Report, Single executable applications, Stream, String decoder, Test runner, Timers, TLS/SSL, Trace events, TTY, UDP/datagram, URL, Utilities, V8, VM, WASI, Web Crypto API, Web Streams API, Worker threads, Zlib`,
     sources: `NodeJS (nodejs.org), Typescript site (www.typescriptlang.org), Stackoverflow site (stackoverflow.com), other question-answering and forum sites, articles and blogs about NodeJS shell`,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   openai_api_persona: {
     isActive: false,
@@ -99,7 +99,7 @@ I was absent last week. What did I miss?
     context: `OpenAI (openai.com), ChatGPT, OpenAI Documentation, OpenAI API reference, OpenAI Examples, OpenAI API troubleshooting, OpenAI API debugging`,
     sources: `OpenAI platform content (platform.openai.com), OpenAI forum (community.openai.com), Stackoverflow site (stackoverflow.com), other question-answering and forum sites, articles and blogs about OpenAI`,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   us_job_resume_persona: {
     isActive: false,
@@ -109,7 +109,7 @@ I was absent last week. What did I miss?
     context: `US job market, resume of an software engineer, competitive analysis, resume pros and cons, job description matching`,
     sources: `Articles on LinkedIn.com, Glassdoor.com, Indeed.com, Monster.com, SimplyHired.com, other job search sites, blogs about job search, employers recommendations, guidances, articles about job market, forums about jobs`,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   triz_tech_persona: {
     isActive: false,
@@ -119,7 +119,7 @@ I was absent last week. What did I miss?
     context: `TRIZ, Theory of Inventive Problem Solving, Systematic Innovation, Ideal final result (IFR), Inventive principles, the matrix of contradictions, Evolution Patterns of technical systems, Laws of technical systems evolution, triz stages of evolution, data intepretation, inventing new solutions`,
     sources: `Books about TRIZ, Theory of Inventive Problem Solving, Systematic Innovation, scholar articles, blogs and forums`,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   uscis_support_persona: {
     isActive: false,
@@ -129,7 +129,7 @@ I was absent last week. What did I miss?
     context: `U.S. Citizenship and Immigration Service (USCIS),  U.S. Department of Homeland Security, application process, supporting examples`,
     sources: `USCIS (https://www.uscis.gov), dhs (https://www.dhs.gov), National Terrorism Advisory System, sample documents, layers, court cases, Immigration Justice Compaign, Samples of documents`,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   c_sharp_programming_persona: {
     isActive: false,
@@ -139,7 +139,7 @@ I was absent last week. What did I miss?
     context: `C# programming language, .Net library, Nullable reference types. Nullable reference migrations, Methods Properties, Indexers, Iterators, Versioning, Delegates, Events, C# labraries`,
     sources: `C# programming language (learn.microsoft.com/en-us/dotnet/csharp), .Next (dotnet.microsoft.com),  Stackoverflow (stackoverflow.com), other question-answering sites and forum sites, articles and blogs about C#`,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   react_native_persona: {
     isActive: false,
@@ -149,7 +149,7 @@ I was absent last week. What did I miss?
     context: `React Native, Expo, Flipper, React Native Elements, React Native Visual libraries`,
     sources: `React Native (reactnative.dev), Expo (expo.dev), Flipper (fbflipper.com), React Native Elements (reactnativeelements.com), Stackoverflow (stackoverflow.com), other question-answering sites and forum sites, articles and blogs about React Native`,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   typescript_persona: {
     isActive: false,
@@ -159,7 +159,7 @@ I was absent last week. What did I miss?
     context: `Typescript, ES6, ECMAScript, Javascript programming languages, Optional Chaining, Mapped Types, Utility types, Variable Declarations, Interfaces, Classes, Functions, Generic, Enums, Type Inference, Type Compatibility, Advanced Types, Symbols, Iterators and Generators, Modules, Namespaces, Namespaces and Modules, Module Resolution, Declaration Merging, JSX, Decorators, Mixins, Triple-Slash Directives`,
     sources: `Typescript site (www.typescriptlang.org), Stackoverflow site (stackoverflow.com), other question-answering sites and forum sites, articles and blogs about Typescript`,
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
-    language: `Language: "Use language based on the User question language"`,
+    language: `Use language based on the User question language`,
   },
   ophthalmologist_persona: {
     isActive: false,
@@ -215,7 +215,7 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
         return `---\\nINSTRUCTIONS: 
         - cite sources and give reasoning before sharing the final answer 
         - use the following format:  REFERENCES: ... REASONING: ... ANSWER: ...\\n ---\\n 
-        ## In context of ${CONST.topic} ${CONST.mainInstruction} \${userText}:`
+        ## In context of ${CONST.topic} ${CONST.mainInstruction}: \${userText}`
       },
     },
 
