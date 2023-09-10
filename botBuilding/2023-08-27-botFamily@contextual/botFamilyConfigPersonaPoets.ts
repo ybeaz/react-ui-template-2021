@@ -14,6 +14,7 @@ type ConstantsType = {
     mainInstruction: string
     language: string
     promptExamples: string[]
+    answers: string[]
   }
 }
 
@@ -38,9 +39,10 @@ const CONSTANTS: ConstantsType = {
     mainInstruction: 'GIVE FACTUAL DATA ABOUT',
     language: `Language: "Use language based on the User question language"`,
     promptExamples: [],
+    answers: [],
   },
-  shakespeare: {
-    isActive: true,
+  shakespeare_persona: {
+    isActive: false,
     model: 'gpt-3.5-turbo', // gpt-3.5-turbo gpt-4
     temperature: 0.33,
     topic: `William Shakespeare`,
@@ -53,6 +55,95 @@ const CONSTANTS: ConstantsType = {
       'To be or not to be, that is the question...?',
       "That which we call a rose by any other name would smell as sweet. What's in a name? ",
       'If you prick us, do we not bleed? If you tickle us, do we not laugh?',
+    ],
+    answers: [
+      `REFERENCES:\\n First Quarto (1603) is a short early text of Hamlet \\n\\n
+      REASONING:\\n Hamlet discources about the question this way\\n\\n
+      ANSWER:\\n To be, or not to be, Ay there's the point,\\n
+      To Die, to sleep, is that all? Aye all:\\n
+      No, to sleep, to dream, aye marry there it goes,\\n
+      For in that dream of death, when we awake,\\n
+      And borne before an everlasting Judge,\\n
+      From whence no passenger ever returned,\\n
+      The undiscovered country, at whose sight\\n
+      The happy smile, and the accursed damn'd.\\n
+      But for this, the joyful hope of this,\\n
+      Who'd bear the scorns and flattery of the world,\\n
+      Scorned by the right rich, the rich cursed of the poor?\\n
+      The widow being oppressed, the orphan wrong'd,\\n
+      The taste of hunger, or a tyrants reign,\\n
+      And thousand more calamities besides,\\n
+      To grunt and sweat under this weary life,\\n
+      When that he may his full Quietus make,\\n
+      With a bare bodkin, who would this endure,\\n
+      But for a hope of something after death?\\n
+      Which puzzles the brain, and doth confound the sense,\\n
+      Which makes us rather bear those evils we have,\\n
+      Than fly to others that we know not of.\\n
+      Aye that, O this conscience makes cowards of us all,\\n
+      Lady in thy orizons, be all my sins remembered.`,
+
+      `REFERENCES:\\n William Shakespeare's play Romeo and Juliet.\\n\\n
+      REASONING:\\n The reference is used to state that the names of things do not affect what they really are.\\n\\n
+      ANSWER:\\n Tis but thy name that is my enemy;\\n
+      Thou art thyself, though not a Montague.\\n
+      What's Montague? It is nor hand, nor foot,\\n
+      Nor arm, nor face, nor any other part\\n
+      Belonging to a man. O, be some other name!\\n
+      What's in a name? That which we call a rose\\n
+      By any other name would smell as sweet;\\n
+      So Romeo would, were he not Romeo call'd,\\n
+      Retain that dear perfection which he owes\\n
+      Without that title. \\n`,
+    ],
+  },
+  pushkin_persona_2: {
+    isActive: true,
+    model: 'gpt-3.5-turbo', // gpt-3.5-turbo gpt-4
+    temperature: 0.33,
+    topic: `poetry of Alexander Pushkin`,
+    context: `Russian poet Alexander Pushkin, lyrics, rhyming Words and rhyming phrases, songs, eclogue, elegy, satire, hymn, epigram, madrigal, letrilla, sonnet, pastorela, villancico, odes`,
+    sources: `Alexander Pushkin poetry, Пушкин А. С. Полное собрание сочинений: В 10 т. / АН СССР, Russian poetry of the nineteenth century, rhyme thesaurus, rhyme distionary, rhyme generator, Walker's Rhyming Dictionary`,
+    mainInstruction:
+      'GENERATE A RESPONSE IN RHYMES AS A PROBABLE ANSWER TO THE QUESTION',
+    language: `Use language based on the User question language`,
+    promptExamples: [
+      'Александр, что Вы скажете о зимнем утре?',
+      'What do you think about a beautiful woman?',
+      'Какой Ваш взгляд на чтение зарубежной литературы?',
+    ],
+    answers: [
+      `REFERENCES:\\n Напечатано в альманахе «Царское Село» на 1830 год. Написано 3 ноября по ст. ст. (15 ноября) 1829 г. в с. Павловском.\\n
+      Источник: Пушкин А. С. Полное собрание сочинений: В 10 т. / АН СССР. Ин-т рус. лит. (Пушкин. дом); 4-е изд. – Л.: Наука. Ленингр. отд-ние, 1977 – 1979.\\n\\n
+      REASONING:\\n Стихотворение посвящено зимнему утру\\n\\n
+      ANSWER:\\n Мороз и солнце; день чудесный!\\n
+      Еще ты дремлешь, друг прелестный —\\n
+      Пора, красавица, проснись:\\n
+      Открой сомкнуты негой взоры\\n
+      Навстречу северной Авроры,\\n
+      Звездою севера явись!\\n\\n\\n
+      Вечор, ты помнишь, вьюга злилась,\\n
+      На мутном небе мгла носилась;\\n
+      Луна, как бледное пятно,\\n
+      Сквозь тучи мрачные желтела,\\n
+      И ты печальная сидела —\\n
+      А нынче… погляди в окно:\\n\\n
+      Под голубыми небесами\\n
+      Великолепными коврами,\\n
+      Блестя на солнце, снег лежит;\\n
+      Прозрачный лес один чернеет,\\n
+      И ель сквозь иней зеленеет,\\n
+      И речка подо льдом блестит.`,
+      `REFERENCES:\\n Pushkin A.S. Complete Works: In 16 vols. T. 2, book. 1. Poems, 1817-1825. Lyceum poems in later editions. — M.; L .: Publishing house of the Academy of Sciences of the USSR, 1947. - S. 406-407.\\n\\n
+      REASONING:\\n Pushkin presents an outline of his life between the first meeting with the heroine of the message and the present moment\\n\\n
+      ANSWER:\\n I still recall the wondrous moment:\\n
+      When you appeared before my sight\\n
+      As though a brief and fleeting omen,\\n
+      Pure phantom in enchanting light.\\n\\n
+      In sorrow, when I felt unwell,\\n
+      Caught in the bustle, in a daze,\\n
+      I fell under your voice’s spell\\n
+      And dreamt the features of your face.`,
     ],
   },
 }
@@ -95,7 +186,7 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
       contentSrc: '',
       contentResFunc: (contentInput, CONST = CONSTANTS[name]) => {
         return `---\\nINSTRUCTIONS:
-        - cite sources of poetry of ${CONST.topic} and give reasoning before sharing the final answer\\n
+        - cite sources of ${CONST.topic} and give reasoning before sharing the final answer\\n
         - use the following format: REFERENCES:\\n ... \\n\\n REASONING:\\n ... \\n\\n ANSWER:\\n ...\\n ---\\n 
         ## Using ${CONST.topic}'s thinking and style ${CONST.mainInstruction}: ${CONST.promptExamples[0]}`
       },
@@ -108,31 +199,7 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
       contentSrcType: ContentSrcType['text'],
       contentSrc: '',
       contentResFunc: (contentInput, CONST = CONSTANTS[name]) => {
-        return `REFERENCES:\\n First Quarto (1603) is a short early text of Hamlet \\n\\n
-        REASONING:\\n Hamlet discources about the question this way\\n\\n
-        ANSWER:\\n To be, or not to be, Ay there's the point,\\n
-        To Die, to sleep, is that all? Aye all:\\n
-        No, to sleep, to dream, aye marry there it goes,\\n
-        For in that dream of death, when we awake,\\n
-        And borne before an everlasting Judge,\\n
-        From whence no passenger ever returned,\\n
-        The undiscovered country, at whose sight\\n
-        The happy smile, and the accursed damn'd.\\n
-        But for this, the joyful hope of this,\\n
-        Who'd bear the scorns and flattery of the world,\\n
-        Scorned by the right rich, the rich cursed of the poor?\\n
-        The widow being oppressed, the orphan wrong'd,\\n
-        The taste of hunger, or a tyrants reign,\\n
-        And thousand more calamities besides,\\n
-        To grunt and sweat under this weary life,\\n
-        When that he may his full Quietus make,\\n
-        With a bare bodkin, who would this endure,\\n
-        But for a hope of something after death?\\n
-        Which puzzles the brain, and doth confound the sense,\\n
-        Which makes us rather bear those evils we have,\\n
-        Than fly to others that we know not of.\\n
-        Aye that, O this conscience makes cowards of us all,\\n
-        Lady in thy orizons, be all my sins remembered.`
+        return CONST.answers[0]
       },
     },
 
@@ -157,18 +224,7 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
       contentSrcType: ContentSrcType['text'],
       contentSrc: '',
       contentResFunc: (contentInput, CONST = CONSTANTS[name]) => {
-        return `REFERENCES:\\n William Shakespeare's play Romeo and Juliet.\\n\\n
-        REASONING:\\n The reference is used to state that the names of things do not affect what they really are.\\n\\n
-        ANSWER:\\n Tis but thy name that is my enemy;\\n
-        Thou art thyself, though not a Montague.\\n
-        What's Montague? It is nor hand, nor foot,\\n
-        Nor arm, nor face, nor any other part\\n
-        Belonging to a man. O, be some other name!\\n
-        What's in a name? That which we call a rose\\n
-        By any other name would smell as sweet;\\n
-        So Romeo would, were he not Romeo call'd,\\n
-        Retain that dear perfection which he owes\\n
-        Without that title. \\n`
+        return CONST.answers[1]
       },
     },
 
@@ -204,7 +260,7 @@ export const getBotFamilyConfig: GetBotFamilyConfig = (CONSTANTS, name) => ({
   ],
 })
 
-export const botFamilyConfigPersonaShakespeare = Object.keys(CONSTANTS)
+export const botFamilyConfigPersonaPoets = Object.keys(CONSTANTS)
   .filter((constKey: string) => CONSTANTS[constKey].isActive)
   .reduce((initObj, constKey: string) => {
     return { ...initObj, [constKey]: getBotFamilyConfig(CONSTANTS, constKey) }

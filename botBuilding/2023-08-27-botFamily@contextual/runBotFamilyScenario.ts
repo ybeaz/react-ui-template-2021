@@ -5,6 +5,7 @@ import { botFamilyConfigDefault } from './botFamilyConfigDefault'
 import { botFamilyConfigCustomCorrector } from './botFamilyConfigCustomCorrector'
 import { botFamilyConfigCustomIlyaFrank } from './botFamilyConfigCustomIlyaFrank'
 import { botFamilyConfigCustomKeyPhrases } from './botFamilyConfigCustomKeyPhrases'
+import { botFamilyConfigPersonaPoets } from './botFamilyConfigPersonaPoets'
 import { botFamilyConfigPersonaPushkin2 } from './botFamilyConfigPersonaPushkin2'
 import { botFamilyConfigPersonaShakespeare } from './botFamilyConfigPersonaShakespeare'
 
@@ -20,6 +21,7 @@ const options: any = yargs.option('conf', {
 const conf = options.conf
 
 const BOT_FAMILY_CONFIG: Record<string, any> = {
+  poets: botFamilyConfigPersonaPoets,
   shakespeare: botFamilyConfigPersonaShakespeare,
   pushkin2: botFamilyConfigPersonaPushkin2,
   kph: botFamilyConfigCustomKeyPhrases,
