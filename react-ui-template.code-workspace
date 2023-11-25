@@ -1,17 +1,17 @@
 {
   "folders": [
     {
-      "path": "./node_modules/openai"
+      "path": "."
     },
     {
-      "path": "."
+      "path": "../manuals/."
     }
   ],
   "settings": {
     "grammarly.files.include": [
       "**/README.md",
-      "**/readme.md",
-      "**/*.txt"
+      "**/readme.md"
+      // "**/*.txt"
       // "**/*.ts"
     ],
     "grammarly.files.exclude": ["/Users/admin/Dev/archive.txt"],

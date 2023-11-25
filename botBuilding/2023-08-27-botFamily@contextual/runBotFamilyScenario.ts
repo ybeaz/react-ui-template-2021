@@ -36,7 +36,8 @@ if (!conf || BOT_FAMILY_CONFIG[conf]) {
     : BOT_FAMILY_CONFIG['default']
 
   /**
-   * @description Function to runbotFamily@triz
+   * @description Function to runbotFamily@contextual
+   * @run ts-node botBuilding/2023-08-27-botFamily@contextual/runBotFamilyScenario.ts -c kph
    * @run ts-node botBuilding/2023-08-27-botFamily@contextual/runBotFamilyScenario.ts -c default
    */
   getRunBotFamilyScenarioAsync(
