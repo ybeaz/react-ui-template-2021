@@ -16,7 +16,6 @@ dist/index.html
 build/stats.json
 build/duplicates-*
 build
-botBuilding/output
 
 # Compiled Java class files
 *.class
@@ -61,4 +60,5 @@ Thumbs.db
 
 # Others
 archive/
-workspace.code-workspace
+.env*
+botBuilding/*/output/

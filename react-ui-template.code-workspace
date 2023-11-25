@@ -2,9 +2,19 @@
   "folders": [
     {
       "path": "."
+    },
+    {
+      "path": "../manuals/."
     }
   ],
   "settings": {
+    "grammarly.files.include": [
+      "**/README.md",
+      "**/readme.md"
+      // "**/*.txt"
+      // "**/*.ts"
+    ],
+    "grammarly.files.exclude": ["/Users/admin/Dev/archive.txt"],
     "[json]": {
       "editor.quickSuggestions": {
         "strings": true
