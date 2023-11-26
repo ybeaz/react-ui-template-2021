@@ -2,6 +2,7 @@ import yargs from 'yargs'
 
 import { consoler } from '../../tools/consoler'
 import { botFamilyConfigDefault } from './botFamilyConfigDefault'
+import { botFamilyConfigAcademyQO } from './botFamilyConfigAcademyQO'
 import { botFamilyConfigCustomCorrector } from './botFamilyConfigCustomCorrector'
 import { botFamilyConfigCustomIlyaFrank } from './botFamilyConfigCustomIlyaFrank'
 import { botFamilyConfigCustomKeyPhrases } from './botFamilyConfigCustomKeyPhrases'
@@ -25,6 +26,7 @@ const BOT_FAMILY_CONFIG: Record<string, any> = {
   kph: botFamilyConfigCustomKeyPhrases,
   ilf: botFamilyConfigCustomIlyaFrank,
   enc: botFamilyConfigCustomCorrector,
+  edu: botFamilyConfigAcademyQO,
   default: botFamilyConfigDefault,
 }
 
@@ -37,6 +39,7 @@ if (!conf || BOT_FAMILY_CONFIG[conf]) {
 
   /**
    * @description Function to runbotFamily@contextual
+   * @run ts-node botBuilding/2023-08-27-botFamily@contextual/runBotFamilyScenario.ts -c edu
    * @run ts-node botBuilding/2023-08-27-botFamily@contextual/runBotFamilyScenario.ts -c kph
    * @run ts-node botBuilding/2023-08-27-botFamily@contextual/runBotFamilyScenario.ts -c default
    */
